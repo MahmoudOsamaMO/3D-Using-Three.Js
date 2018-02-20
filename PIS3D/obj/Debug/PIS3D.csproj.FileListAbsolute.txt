@@ -1,0 +1,176 @@
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\ApplicationInsights.config
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\csc.exe
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\vbc.exe
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\VBCSCompiler.exe
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\PIS3D.dll.config
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\PIS3D.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\PIS3D.pdb
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Antlr3.Runtime.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\EntityFramework.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\EntityFramework.SqlServer.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.Web.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.ApplicationInsights.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Newtonsoft.Json.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Owin.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.Helpers.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.Mvc.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.Optimization.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.Razor.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.Deployment.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.Razor.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\WebGrease.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.Web.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.ApplicationInsights.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.Helpers.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.Mvc.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.Optimization.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.Razor.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.Deployment.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.Razor.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Antlr3.Runtime.pdb
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Newtonsoft.Json.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\EntityFramework.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\EntityFramework.SqlServer.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\obj\Debug\PIS3D.csprojResolveAssemblyReference.cache
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\obj\Debug\PIS3D.dll
+C:\Users\moa\documents\visual studio 2015\Projects\PIS3D\PIS3D\obj\Debug\PIS3D.pdb
+E:\Projects\PIS3D\PIS3D\bin\ApplicationInsights.config
+E:\Projects\PIS3D\PIS3D\bin\roslyn\csc.exe
+E:\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Projects\PIS3D\PIS3D\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Projects\PIS3D\PIS3D\bin\roslyn\System.Collections.Immutable.dll
+E:\Projects\PIS3D\PIS3D\bin\roslyn\System.Reflection.Metadata.dll
+E:\Projects\PIS3D\PIS3D\bin\roslyn\vbc.exe
+E:\Projects\PIS3D\PIS3D\bin\roslyn\VBCSCompiler.exe
+E:\Projects\PIS3D\PIS3D\bin\roslyn\VBCSCompiler.exe.config
+E:\Projects\PIS3D\PIS3D\bin\PIS3D.dll.config
+E:\Projects\PIS3D\PIS3D\bin\PIS3D.dll
+E:\Projects\PIS3D\PIS3D\bin\PIS3D.pdb
+E:\Projects\PIS3D\PIS3D\bin\Antlr3.Runtime.dll
+E:\Projects\PIS3D\PIS3D\bin\EntityFramework.dll
+E:\Projects\PIS3D\PIS3D\bin\EntityFramework.SqlServer.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.Agent.Intercept.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.DependencyCollector.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.Web.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.WindowsServer.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.ApplicationInsights.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.Core.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Cookies.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Facebook.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Google.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.OAuth.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Twitter.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Web.Infrastructure.dll
+E:\Projects\PIS3D\PIS3D\bin\Newtonsoft.Json.dll
+E:\Projects\PIS3D\PIS3D\bin\Owin.dll
+E:\Projects\PIS3D\PIS3D\bin\System.Web.Helpers.dll
+E:\Projects\PIS3D\PIS3D\bin\System.Web.Mvc.dll
+E:\Projects\PIS3D\PIS3D\bin\System.Web.Optimization.dll
+E:\Projects\PIS3D\PIS3D\bin\System.Web.Razor.dll
+E:\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.Deployment.dll
+E:\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.dll
+E:\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.Razor.dll
+E:\Projects\PIS3D\PIS3D\bin\WebGrease.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.DependencyCollector.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.Web.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AI.WindowsServer.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.ApplicationInsights.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Projects\PIS3D\PIS3D\bin\System.Web.Helpers.xml
+E:\Projects\PIS3D\PIS3D\bin\System.Web.Mvc.xml
+E:\Projects\PIS3D\PIS3D\bin\System.Web.Optimization.xml
+E:\Projects\PIS3D\PIS3D\bin\System.Web.Razor.xml
+E:\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.xml
+E:\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.Deployment.xml
+E:\Projects\PIS3D\PIS3D\bin\System.Web.WebPages.Razor.xml
+E:\Projects\PIS3D\PIS3D\bin\Antlr3.Runtime.pdb
+E:\Projects\PIS3D\PIS3D\bin\Newtonsoft.Json.xml
+E:\Projects\PIS3D\PIS3D\bin\EntityFramework.xml
+E:\Projects\PIS3D\PIS3D\bin\EntityFramework.SqlServer.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.Core.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Facebook.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Cookies.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.OAuth.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Google.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.Twitter.xml
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\Projects\PIS3D\PIS3D\obj\Debug\PIS3D.csprojResolveAssemblyReference.cache
+E:\Projects\PIS3D\PIS3D\obj\Debug\PIS3D.dll
+E:\Projects\PIS3D\PIS3D\obj\Debug\PIS3D.pdb
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.ReportViewer.WebForms.dll
+E:\Projects\PIS3D\PIS3D\bin\Microsoft.SqlServer.Types.dll
+E:\Projects\PIS3D\PIS3D\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Projects\PIS3D\PIS3D\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Projects\PIS3D\PIS3D\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Projects\PIS3D\PIS3D\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Projects\PIS3D\PIS3D\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Projects\PIS3D\PIS3D\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Projects\PIS3D\PIS3D\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Projects\PIS3D\PIS3D\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Projects\PIS3D\PIS3D\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+E:\Projects\PIS3D\PIS3D\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll

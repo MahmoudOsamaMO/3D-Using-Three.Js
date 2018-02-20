@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "V3D";
+}
+
+<script src="~/Scripts/three.js"></script>
+<script src="~/Scripts/js/renderers/Projector.js"></script>
+<script src="~/Scripts/js/renderers/CanvasRenderer.js"></script>
+<script src="~/Scripts/js/libs/stats.min.js"></script>
+<script src="~/Scripts/js/libs/dat.gui.min.js"></script>
+
+<script src="~/Scripts/js/Detector.js"></script>
+<script src="~/Scripts/js/controls/OrbitControls.js"></script>
+<script src="~/Scripts/js/libs/stats.min.js"></script>
+@*<script src="~/Scripts/js/Cloth.js"></script>*@
+<script src="~/Scripts/js/loaders/FBXLoader.js"></script>
+<script src="~/Scripts/Site/3D/FileSaver.min.js"></script>
+<div class="row" style="margin-top:-40px" id="3D"></div>
+@*<div class="col-lg-12">
+    <button class="form-control" onclick="TestSave()">STL Format</button>
+</div>*@
+
+
+<script type="x-shader/x-fragment" id="fragmentShaderDepth">
+    #include
+    <packing>
+        uniform sampler2D texture;
+        varying vec2 vUV;
+
+        void main() {
+
+        vec4 pixel = texture2D( texture, vUV );
+
+        if ( pixel.a < 0.5 ) discard;
+
+        gl_FragData[ 0 ] = packDepthToRGBA( gl_FragCoord.z );
+
+        }
+</script>
+<script type="x-shader/x-vertex" id="vertexShaderDepth">
+    varying vec2 vUV;
+
+    void main() {
+
+    vUV = 0.75 * uv;
+
+    vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+    gl_Position = projectionMatrix * mvPosition;
+
+    }
+
+</script>
+<style>
+    .v3D
+    {
+        margin-top:-40px;
+    }
+</style>
+
+<script src="~/Scripts/Site/3D/Viewer.js"></script>
+<script src="~/Scripts/Site/3D/BuildibArea3D.js"></script>
+<script src="~/Scripts/Site/3D/Openinings3D.js"></script>
+<script src="~/Scripts/Site/3D/SubSysems3D.js"></script>
+<script src="~/Scripts/Site/3D/STLExporter.js"></script>
+@*<script src="~/Scripts/Site/3D/PersonalDoor.js"></script>*@

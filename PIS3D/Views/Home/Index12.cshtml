@@ -1,0 +1,321 @@
+﻿@model IEnumerable<PIS3D.Models.BuildingArea>
+@using PIS3D.Models
+
+<script src="~/Scripts/angular.min.js"></script>
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+
+    body {
+        padding: 10px;
+    }
+
+    #exTab1 .tab-content {
+        color: white;
+        background-color: #428bca;
+        padding: 5px 15px;
+    }
+
+    #exTab2 h3 {
+        color: white;
+        background-color: #428bca;
+        padding: 5px 15px;
+    }
+
+    /* remove border radius for the tab */
+
+    #exTab1 .nav-pills > li > a {
+        border-radius: 0;
+    }
+
+    /* change border radius for the tab , apply corners on top*/
+
+    #exTab3 .nav-pills > li > a {
+        border-radius: 4px 4px 0 0;
+    }
+
+    #exTab3 .tab-content {
+        color: white;
+        background-color: #428bca;
+        padding: 5px 15px;
+    }
+</style>
+@*<h2>Building Area</h2>*@
+
+<form ng-app="myApp" ng-controller="validateCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div class="row">
+        <div id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Building Area</h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <h2>Building Area Information</h2>
+                    <div class="col-lg-6">
+                        Design Code:<br>
+                        <input type="text" name="DesignCode" ng-model="DesignCode" required>
+                        <span style="color:red" ng-show="myForm.DesignCode.$dirty && myForm.DesignCode.$invalid">
+                            <span ng-show="myForm.DesignCode.$error.required">Design Code is required.</span>
+                        </span>
+                    </div>
+                    <div class="col-lg-6">
+                        Surface Treatment:<br>
+                        <input type="text" name="SurfaceTreatment" ng-model="SurfaceTreatment" required>
+                        <span style="color:red" ng-show="myForm.SurfaceTreatment.$dirty && myForm.SurfaceTreatment.$invalid">
+                            <span ng-show="myForm.SurfaceTreatment.$error.required">Surface Treatment is required.</span>
+                        </span>
+                    </div>
+                    <div class="col-lg-6">
+                        Bracings:<br>
+                        <input type="text" name="Bracings" ng-model="Bracings" required>
+                        <span style="color:red" ng-show="myForm.Bracings.$dirty && myForm.Bracings.$invalid">
+                            <span ng-show="myForm.Bracings.$error.required">Bracings is required.</span>
+                        </span>
+                    </div>
+                    <div class="col-lg-6">
+                        Length (integer 0 - 1000):<br />
+                        <input type="number" ng-model="Length" name="Length" required min="0" max="1000" integer /><br />
+                        <span style="color:red" ng-show="myForm.Length.$dirty && myForm.Length.$invalid">
+                            <span ng-show="myForm.Length.$error.required">Number Required</span>
+                            <span ng-show="myForm.Length.$error.integer">The value is not a valid integer!</span>
+                            <span ng-show="myForm.Length.$error.min || myForm.Length.$error.max">
+                                The value must be in range 0 to 1000!
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="col-lg-6">
+                        Width (integer 0 - 1000):<br />
+                        <input type="number" ng-model="Width" name="Width" required min="0" max="1000" integer /><br />
+                        <span style="color:red" ng-show="myForm.Width.$dirty && myForm.Width.$invalid">
+                            <span ng-show="myForm.Width.$error.required">Number Required</span>
+                            <span ng-show="myForm.Width.$error.integer">The value is not a valid integer!</span>
+                            <span ng-show="myForm.Width.$error.min || myForm.Width.$error.max">
+                                The value must be in range 0 to 1000!
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="col-lg-6">
+                        Hight (integer 0 - 1000):<br />
+                        <input type="number" ng-model="Hight" name="Hight" required min="0" max="1000" integer /><br />
+                        <span style="color:red" ng-show="myForm.Hight.$dirty && myForm.Hight.$invalid">
+                            <span ng-show="myForm.Hight.$error.required">Number Required</span>
+                            <span ng-show="myForm.Hight.$error.integer">The value is not a valid integer!</span>
+                            <span ng-show="myForm.Hight.$error.min || myForm.Hight.$error.max">
+                                The value must be in range 0 to 10!
+                            </span>
+                        </span>
+                    </div>
+
+
+                    @*<div class="col-lg-6">
+                            Email:<br>
+                            <input type="email" name="email" ng-model="email" required>
+                            <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                                <span ng-show="myForm.email.$error.required">Email is required.</span>
+                                <span ng-show="myForm.email.$error.email">Invalid email address.</span>
+                            </span>
+                        </div>*@
+                </div>
+
+                <hr />
+                <h3>End Walls</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-lg-offset-5">
+                        <input id="submit" type="submit" value="Save" class="btn-default"
+                               ng-disabled="myForm.DesignCode.$dirty && myForm.DesignCode.$invalid
+                           || myForm.Bracings.$dirty && myForm.Bracings.$invalid
+                           || myForm.SurfaceTreatment.$dirty && myForm.SurfaceTreatment.$invalid
+                           || myForm.Length.$dirty && myForm.Length.$invalid
+                           || myForm.Width.$dirty && myForm.Width.$invalid
+                           || myForm.Hight.$dirty && myForm.Hight.$invalid">
+                    </div>
+                </div>
+
+
+
+
+                <div class="container"><h2>Example 3 </h2></div>
+                <div id="exTab3" class="container">
+                    <ul class="nav nav-pills">
+                        <li class="active">
+                            <a href="#1b" data-toggle="tab">Information</a>
+                        </li>
+                        <li>
+                            <a href="#2b" data-toggle="tab">Location</a>
+                        </li>
+                        <li>
+                            <a href="#3b" data-toggle="tab">Geometry</a>
+                        </li>
+                        <li>
+                            <a href="#4a" data-toggle="tab">End Walls</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content clearfix">
+                        <div class="tab-pane active" id="1b">
+                            <h3>Same as example 1 but we have now styled the tab's corner</h3>
+                            <div class="col-lg-6">
+                                Hight (integer 0 - 1000):<br />
+                                <input type="number" ng-model="Hight" name="Hight" required min="0" max="1000" integer /><br />
+                                <span style="color:red" ng-show="myForm.Hight.$dirty && myForm.Hight.$invalid">
+                                    <span ng-show="myForm.Hight.$error.required">Number Required</span>
+                                    <span ng-show="myForm.Hight.$error.integer">The value is not a valid integer!</span>
+                                    <span ng-show="myForm.Hight.$error.min || myForm.Hight.$error.max">
+                                        The value must be in range 0 to 10!
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="2b">
+                            <h3>We use the class nav-pills instead of nav-tabs which automatically creates a background color for the tab</h3>
+                        </div>
+                        <div class="tab-pane" id="3b">
+                            <h3>We applied clearfix to the tab-content to rid of the gap between the tab and the content</h3>
+                        </div>
+                        <div class="tab-pane" id="4b">
+                            <h3>We use css to change the background color of the content to be equal to the tab</h3>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+
+    //document.getElementById("submit").onclick = function () {
+    //    document.getElementById("panel").className = "panel panel-success";
+
+    //};
+    var building;
+
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        $http({
+            method: "GET",
+            url: "@Url.Action("Getjson")"
+        }).then(function mySucces(response) {
+            console.log(response.data);
+            $scope.DesignCode = response.data.DesignCode;
+            $scope.Bracings = response.data.Bracings;
+            $scope.SurfaceTreatment = response.data.SurfaceTreatment;
+            $scope.Length = response.data.length;
+            $scope.Width = response.data.Width;;
+            $scope.Hight = response.data.height;
+            building = response.data;
+        }, function myError(response) {
+            alert("error");
+        });
+
+        $scope.submit = function () {
+            building.DesignCode = $scope.DesignCode;
+            building.Bracings = $scope.Bracings;
+            building.SurfaceTreatment = $scope.SurfaceTreatment;
+            building.length = $scope.Length;
+            building.Width = $scope.Width;
+            building.height = $scope.Hight;
+
+            var myJSONText = JSON.stringify(building, null, 2);
+            document.getElementById("panel").className = "panel panel-success";
+            $http({
+                method: "POST",
+                url: "@Url.Action("Setjson")",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ jsonStr: myJSONText })
+            }).then(function mySucces(response) {
+
+            }, function myError(response) {
+                alert("error");
+            });
+        }
+
+
+    });
+</script>
+
+
+
+
+
+
+@*<form data-toggle="validator" role="form">
+        <div class="row">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Building Area</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Length</label>
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.DisplayFor(modelItem => Model.First().length)
+                            <div class="form-group">
+                                <label for="inputName" class="control-label">Name</label>
+                                <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="control-label">Email</label>
+                                <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Height</label>
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.DisplayFor(modelItem => Model.First().height)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label>Width</label>
+                        </div>
+                        <div class="col-lg-6">
+                            @Html.DisplayFor(modelItem => Model.First().Width)
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>*@
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@

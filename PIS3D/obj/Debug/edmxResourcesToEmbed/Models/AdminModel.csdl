@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Downspouts_Table">
+    <Key>
+      <PropertyRef Name="ID_Downspouts" />
+    </Key>
+    <Property Name="ID_Downspouts" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Downspouts" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="EaveConditionEnum_Table">
+    <Key>
+      <PropertyRef Name="ID_EaveConditionEnum" />
+    </Key>
+    <Property Name="ID_EaveConditionEnum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EaveConditionEnum" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="FrameType_Table">
+    <Key>
+      <PropertyRef Name="ID_FrameType" />
+    </Key>
+    <Property Name="ID_FrameType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FrameType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HeightReference_Table">
+    <Key>
+      <PropertyRef Name="ID_HeightReference" />
+    </Key>
+    <Property Name="ID_HeightReference" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HeightReference" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LengthReference_Table">
+    <Key>
+      <PropertyRef Name="ID_LengthReference" />
+    </Key>
+    <Property Name="ID_LengthReference" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LengthReference" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WidthReferenceTable">
+    <Key>
+      <PropertyRef Name="ID_WidthReference" />
+    </Key>
+    <Property Name="ID_WidthReference" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WidthReference" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="PISEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Downspouts_Table" EntityType="Self.Downspouts_Table" />
+    <EntitySet Name="EaveConditionEnum_Table" EntityType="Self.EaveConditionEnum_Table" />
+    <EntitySet Name="FrameType_Table" EntityType="Self.FrameType_Table" />
+    <EntitySet Name="HeightReference_Table" EntityType="Self.HeightReference_Table" />
+    <EntitySet Name="LengthReference_Table" EntityType="Self.LengthReference_Table" />
+    <EntitySet Name="WidthReferenceTables" EntityType="Self.WidthReferenceTable" />
+    <EntitySet Name="EndWallTypeTypeTables" EntityType="PISModel.EndWallTypeTypeTable" />
+    <EntitySet Name="WindExposureTables" EntityType="PISModel.WindExposureTable" />
+    <EntitySet Name="ApplyLoadsPerTables" EntityType="PISModel.ApplyLoadsPerTable" />
+    <EntitySet Name="ColdFormedDesignCodesTables" EntityType="PISModel.ColdFormedDesignCodesTable" />
+    <EntitySet Name="DesignCodesTables" EntityType="PISModel.DesignCodesTable" />
+    <EntitySet Name="SeismicTables" EntityType="PISModel.SeismicTable" />
+    <EntitySet Name="WindSpeedEnumTables" EntityType="PISModel.WindSpeedEnumTable" />
+    <EntitySet Name="C__RefactorLog" EntityType="PISModel.C__RefactorLog" />
+    <EntitySet Name="PaintSystemTables" EntityType="PISModel.PaintSystemTable" />
+    <EntitySet Name="SecondarySurfaceFinishTables" EntityType="PISModel.SecondarySurfaceFinishTable" />
+    <EntitySet Name="SurfaceFinishTables" EntityType="PISModel.SurfaceFinishTable" />
+    <EntitySet Name="SurfaceTreatmentTables" EntityType="PISModel.SurfaceTreatmentTable" />
+    <EntitySet Name="BracingTypeTables" EntityType="PISModel.BracingTypeTable" />
+  </EntityContainer>
+  <EntityType Name="EndWallTypeTypeTable">
+    <Key>
+      <PropertyRef Name="EndWallTypeType_ID" />
+    </Key>
+    <Property Name="EndWallTypeType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EndWallTypeType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WindExposureTable">
+    <Key>
+      <PropertyRef Name="WindExposure_ID" />
+    </Key>
+    <Property Name="WindExposure_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WindExposure" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ApplyLoadsPerTable">
+    <Key>
+      <PropertyRef Name="ApplyLoadsPer_ID" />
+    </Key>
+    <Property Name="ApplyLoadsPer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplyLoadsPer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ColdFormedDesignCodesTable">
+    <Key>
+      <PropertyRef Name="ColdFormedDesignCodes_ID" />
+    </Key>
+    <Property Name="ColdFormedDesignCodes_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ColdFormedDesignCodes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DesignCodesTable">
+    <Key>
+      <PropertyRef Name="DesignCodes_ID" />
+    </Key>
+    <Property Name="DesignCodes_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DesignCodes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SeismicTable">
+    <Key>
+      <PropertyRef Name="Seismic_ID" />
+    </Key>
+    <Property Name="Seismic_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Seismic" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="WindSpeedEnumTable">
+    <Key>
+      <PropertyRef Name="WindSpeedEnum_ID" />
+    </Key>
+    <Property Name="WindSpeedEnum_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WindSpeedEnum" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="C__RefactorLog">
+    <Key>
+      <PropertyRef Name="OperationKey" />
+    </Key>
+    <Property Name="OperationKey" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaintSystemTable">
+    <Key>
+      <PropertyRef Name="PaintSystem_ID" />
+    </Key>
+    <Property Name="PaintSystem_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaintSystem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SecondarySurfaceFinishTable">
+    <Key>
+      <PropertyRef Name="SecondarySurfaceFinish_ID" />
+    </Key>
+    <Property Name="SecondarySurfaceFinish_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SecondarySurfaceFinish" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SurfaceFinishTable">
+    <Key>
+      <PropertyRef Name="SurfaceFinish_ID" />
+    </Key>
+    <Property Name="SurfaceFinish_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SurfaceFinish" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="SurfaceTreatmentTable">
+    <Key>
+      <PropertyRef Name="SurfaceTreatment_ID" />
+    </Key>
+    <Property Name="SurfaceTreatment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SurfaceTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BracingTypeTable">
+    <Key>
+      <PropertyRef Name="BracingType_ID" />
+    </Key>
+    <Property Name="BracingType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BracingType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

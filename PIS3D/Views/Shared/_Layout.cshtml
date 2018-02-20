@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    @*to refreash javascript*@
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - PIS Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+    <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
+
+    <script src="~/Scripts/angular.min.js"></script>
+    @*<script src="~/Scripts/tinymce/tinymce.min.js"></script>
+        <script>tinymce.init({ selector:'textarea' });</script>*@
+</head>
+<body ng-app="myApp" style="font-family:monospace;">
+    <style>
+        /*.tree {
+            min-height: 20px;
+            padding: 19px;
+            margin-bottom: 20px;
+            background-color: #fbfbfb;
+            border: 1px solid #999;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        }*/
+        .bluetext {
+            color: #337ab7 !important;
+        }
+
+        .tree li {
+            list-style-type: none;
+            margin: 0;
+            /*padding: 10px 5px 0 5px;*/
+            /*position: relative;*/
+        }
+
+            .tree li::before, .tree li::after {
+                content: '';
+                left: -20px;
+                position: absolute;
+                right: auto;
+            }
+
+            .tree li::before {
+                /*border-left: 1px solid #999;
+                bottom: 50px;
+                height: 100%;
+                top: 0;
+                width: 1px;*/
+            }
+
+            .tree li::after {
+                /*border-top: 1px solid #999;*/
+                height: 20px;
+                top: 25px;
+                width: 25px;
+            }
+
+            .tree li span {
+                /*-moz-border-radius: 5px;
+                    -webkit-border-radius: 5px;
+                    border: 1px solid #999;
+                    border-radius: 5px;
+                    display: inline-block;
+                    padding: 3px 8px;
+                    text-decoration: none;*/
+            }
+
+            .tree li.parent_li > span {
+                cursor: pointer;
+            }
+
+        .tree > ul > li::before, .tree > ul > li::after {
+            border: 0;
+        }
+
+        .tree li:last-child::before {
+            height: 30px;
+        }
+
+        .tree li.parent_li > span:hover, .tree li.parent_li > span:hover + ul li span {
+            /*background: #eee;
+                border: 1px solid #94a0b4;
+                color: #000;*/
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Expand this branch');
+
+            $('.tree li.parent_li > span').parent('li.parent_li').find(' > ul > li').hide('fast');
+
+            $('.tree li.parent_li > span').on('click', function (e) {
+                var children = $(this).parent('li.parent_li').find(' > ul > li');
+                if (children.is(":visible")) {
+                    children.hide('fast');
+                    $(this).attr('title', 'Expand this branch').find(' > i').addClass('glyphicon-collapse-down').removeClass('glyphicon-collapse-up');
+                } else {
+                    children.show('fast');
+                    $(this).attr('title', 'Collapse this branch').find(' > i').addClass('glyphicon-collapse-up').removeClass('glyphicon-collapse-down');
+                }
+                e.stopPropagation();
+            });
+        });
+    </script>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:black !important;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                @*<a href="#menu-toggle" id="menu-toggle">
+                        <span class="glyphicon glyphicon-hand-left"></span>
+                    </a>*@
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("PIS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="font:700 !important;margin-left: 188px;">
+                    <li>
+                        <a href="#menu-toggle" id="menu-toggle">
+                            <span class="glyphicon glyphicon-circle-arrow-left"></span>
+                        </a>
+                    </li>
+                    <li>@Html.ActionLink("PIS", "summary", "Home", null, null)</li>
+                    <li>@Html.ActionLink("3D Viewer", "Viewer", "Home", null, null)</li>
+                    <li>@Html.ActionLink("Load/Save", "Contact", "Home", null, null)</li>
+                </ul>
+
+                @*@Html.Partial("_LoginPartial")*@
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid body-content">
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav tree" style="color:#337ab7 !important;">
+                    <li>
+                        @Html.ActionLink("Building Parameters", "Index", "Home", null, new { @class = "bluetext" })
+
+                        @*<a href="@Url.Action("Index", "Home" ,null)" class="bluetext">
+                                <img src="~/Image/PIC/insertArea.bmp" />
+                                <span>
+                                    <strong>Building Parameters</strong>
+                                </span>
+                            </a>*@
+                    </li>
+                    <li>
+                        @Html.ActionLink("Loads & Codes", "LoadsAndCodes", "Home", null, new { @class = "bluetext" })
+                    </li>
+                    <li>
+                        @*@Html.ActionLink("Surface Treatment", "PrimaryMember", "Home", null, new { @class = "bluetext" })*@
+                        <span style="color:#337ab7;margin-left:-20px;"><i class="glyphicon glyphicon-collapse-down"></i> Surface Treatment</span>
+                        <ul>
+                            <li>
+                                @*<a href="@Url.Action("PrimaryMember", "Home", null, null)"> 
+                                    <span>
+                                        <img src="~/Image/PIC/Surface Treatment.bmp" />
+                                    </span>
+                                    Primary Members
+                                </a>*@
+                                
+                                @Html.ActionLink("Primary Members", "PrimaryMember", "Home", null, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Secondry Members", "SecondaryMember", "Home", null, null)
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Bracing", "Bracing", "Home", null, new { @class = "bluetext" })
+                    </li>
+                    <li>
+                        <span style="color:#337ab7;margin-left:-20px;"><i class="glyphicon glyphicon-collapse-down"></i> Panels and Trims </span>
+                        <ul>
+                            <li>
+                                @Html.ActionLink("Roof And Walls", "RoofAndWalls", "Home", null, null)
+                            </li>
+                            <li>
+                                @Html.ActionLink("Wall Panel Accessories", "WallPanelAccessories", "Home", null, null)
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span style="color:#337ab7;margin-left:-20px;"><i class="glyphicon glyphicon-collapse-down"></i> Accessories </span>
+                        <ul>
+                            <li>
+                                @Html.ActionLink("Framed Opinings ", "FramedOpinings", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Open Walls  ", "OpenWalls", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Personal Doors ", "PersonalDoors", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Sliding Doors  ", "SlidingDoors", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Rollup Doors ", "RollupDoors", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Windows ", "Windows", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Louvers ", "Louvers", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Power Ventilators ", "PowerVentilators", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Roof Curbs ", "RoofCurbs", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Trans. Panels ", "TransPanels", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Ridge Ventrs ", "RidgeVentrs", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Other SBO ", "OtherSBO", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Pipe Flashings ", "PipeFlashings", "Accessories")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Manage Accessories ", "ManageAccessories", "Accessories")
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Mezzanines ", "Mezzannine", "Home", null, new { @class = "bluetext" })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Crane Systems", "CraneSystems", "Home", null, new { @class = "bluetext" })
+                    </li>
+                    <li>
+                        <span style="color:#337ab7;margin-left:-20px;"><i class="glyphicon glyphicon-collapse-down"></i> Sub Systems </span>
+                        <ul>
+                            <li>
+                                @Html.ActionLink("Canopies", "Canopies", "SubSystems")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Roof Extensions", "RoofExtensions", "SubSystems")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Fascias", "Fascias", "SubSystems")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Roof Monitors", "RoofMonitors", "SubSystems")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Interior Catwalks", "InteriorCatwalks", "SubSystems")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Ladders", "Ladders", "SubSystems")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Partitions", "Partitions", "SubSystems")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Roof Platforms", "RoofPlatforms", "SubSystems")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Roof Walkways", "RoofWalkways", "SubSystems")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Staircases", "Staircases", "SubSystems")
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+        <!-- /#wrapper -->
+    </div>
+    <div class="container body-content" id="before">
+        <div class="col-lg-offset-3">
+            <div class="container-fluid">
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - PIS Web Application</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+
+    <link href="~/Scripts/ngWYSIWYG-master/dist/editor.min.css" rel="stylesheet" />
+    <script src="~/Scripts/ngWYSIWYG-master/dist/wysiwyg.min.js"></script>
+
+
+
+
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"> <!-- the reason for everything. Clean styles-->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"><!-- Styles for right controls-->
+    <script src="~/Scripts/Site/textAngular.min.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    @*<script src="~/Scripts/angular-sanitize.min.js"></script>*@
+
+</body>
+</html>

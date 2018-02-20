@@ -1,0 +1,429 @@
+﻿   
+@{
+    ViewBag.Title = "WallPanelAccessories";
+}
+<style>
+    .Marg {
+        margin-top: 10px;
+    }
+</style>
+
+<form ng-controller="WallPanelAccessoriesCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div>
+        <div id="foo" ng-show="Loading" style="margin-top:20%;">
+        </div>
+        <div ng-hide="Loading" id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Wall Panel Accessories </h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Summary</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="tab-pane active" id="5b">
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @*load*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well" style="font-size:12px;">
+                                                    <h4 class="text-primary"><u>Wall Panel Accessories</u></h4>
+                                                    <div class="container-fluid">
+                                                        <div class="row Marg">
+                                                            <div class="col-lg-6 Marg">Wall Panel related Accessories</div>
+                                                            <div class="col-lg-6 Marg">
+                                                                    {{building.WallPanelAccessories.WallPanelRelatedAccessories}}
+                                                            </div>
+                                                        </div>
+                                                        <div ng-show="SpecialWall">
+                                                            <div ng-show="building.WallPanelAccessories.WallAccessories.WallAccessory" class="col-lg-12 Marg table-responsive">
+                                                                <table st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                                    <thead class="text-center text-info">
+                                                                        <tr>
+                                                                            <th>NO</th>
+                                                                            <th>Component</th>
+                                                                            <th>Base Metal</th>
+                                                                            <th>Thickness (mm)</th>
+                                                                            <th>Paint Finish</th>
+                                                                            <th>Color</th>
+                                                                            <th>Remarks</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr id="WallAccRepeater" ng-repeat="x in building.WallPanelAccessories.WallAccessories.WallAccessory track by $index">
+                                                                            <td>
+                                                                                <div>{{x.ID}}</div>
+                                                                            </td>
+                                                                            <td>
+                                                                                {{ x.Component }}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{x.BaseMetal}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{x.Thickness}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{x.PaintFinish}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{x.Color}}
+                                                                            </td>
+                                                                            <td>
+                                                                                {{x.Remarks.Remark[0].Remark}}
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Wall Panel Accessories</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="1b">
+
+                                    <div class="container-fluid">
+                                        <div class="row Marg">
+                                            <div class="col-lg-6 Marg">Wall Panel related Accessories</div>
+                                            <div class="col-lg-6 Marg">
+                                                <div class="col-xs-5">
+                                                    <select ng-change="ChangeWallAcc()" class="form-control" ng-model="building.WallPanelAccessories.WallPanelRelatedAccessories" ng-options="x for x in WallPanelRelatedAccessories">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="SpecialWall">
+                                            <div class="col-lg-12 Marg table-responsive">
+                                                <table st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                    <thead class="text-center text-info">
+                                                        <tr>
+                                                            <th>NO</th>
+                                                            <th>Component</th>
+                                                            <th>Base Metal</th>
+                                                            <th>Thickness (mm)</th>
+                                                            <th>Paint Finish</th>
+                                                            <th>Color</th>
+                                                            <th>Remarks</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr id="WallAccRepeater"
+                                                            ng-repeat="x in building.WallPanelAccessories.WallAccessories.WallAccessory track by $index">
+                                                            <td>
+                                                                <div>{{x.ID=$index+1 }}</div>
+                                                            </td>
+                                                            <td>
+                                                                {{ x.Component }}
+                                                            </td>
+                                                            <td>
+                                                               {{x.BaseMetal}}
+                                                            </td>
+                                                            <td>
+                                                                {{x.Thickness}}
+                                                            </td>
+                                                            <td>
+                                                                {{x.PaintFinish}}
+                                                            </td>
+                                                            <td style="background-color:{{colorit(x.Color)}} !important;">
+                                                                {{x.Color}}
+                                                            </td>
+                                                            <td>
+                                                                {{x.Remarks.Remark[0].Remark}}
+                                                            </td>
+                                                            <td style="width:50px;">
+                                                                <button type="button" ng-click="UpdateWall($index)" class="btn btn-sm">
+                                                                    <i class="glyphicon glyphicon-pencil">
+                                                                    </i>
+                                                                </button>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" ng-click="removeWallAcc($index)" class="btn btn-sm btn-danger">
+                                                                    <i class="glyphicon glyphicon-remove">
+                                                                    </i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <button type="button" ng-click="ResetWallAcc()" class="btn btn-primary" data-toggle="modal" data-target="#WallAccModal">Add Wall Accessory</button>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <button class="btn btn-warning" ng-show="WallAcchistory.length > 0" ng-click="UndoWallAcc()">Undo Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" role="dialog" id="WallAccModal">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">{{WallAccAddupdate}} Wall Accessory</h4>
+                                                </div>
+                                                <div class="modal-body" ng-model="newobj">
+                                                    <div class="container-fluid">
+                                                        <div class="col-lg-offset-2">
+                                                            <div class="col-lg-12 Marg">
+                                                                <div class="col-xs-2">
+                                                                    ID:
+                                                                </div>
+                                                                <div class="col-xs-10">
+                                                                    {{newobj.ID}}
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 Marg">
+                                                                <div class="col-xs-2">
+                                                                    Component:
+                                                                </div>
+                                                                <div class="col-xs-10">
+                                                                    <select class="form-control" ng-model="newobj.Component" ng-options="x for x in Components"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 Marg">
+                                                                <div class="col-xs-2">
+                                                                    Base Metal:
+                                                                </div>
+                                                                <div class="col-xs-10">
+                                                                    <select class="form-control" ng-model="newobj.BaseMetal" ng-options="x for x in BaseMetals"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 Marg">
+                                                                <div class="col-xs-2">
+                                                                    Thickness (mm):
+                                                                </div>
+                                                                <div class="col-xs-10">
+                                                                    <select class="form-control" ng-model="newobj.Thickness" ng-options="x for x in Thicknesss"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 Marg">
+                                                                <div class="col-xs-2">
+                                                                    PaintFinish:
+                                                                </div>
+                                                                <div class="col-xs-10">
+                                                                    <select class="form-control" ng-model="newobj.PaintFinish" ng-options="x for x in PaintFinishs"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 Marg">
+                                                                <div class="col-xs-2">
+                                                                    Color:
+                                                                </div>
+                                                                <div class="col-xs-10">
+                                                                    <select class="form-control" ng-model="newobj.Color" ng-change="changecolor()" style="color: black;font-size:large;font-weight:bolder;background-color:{{selectedcolor}} !important;">
+                                                                        <option ng-repeat="x in Colors" value="{{x.name}}" style="background-color:{{x.color}} !important;">
+                                                                            <text style="font-size:large;font-weight:bolder;">{{x.name}}</text>
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 Marg">
+                                                                <div class="col-xs-2">
+                                                                    Remarks:
+                                                                </div>
+                                                                <div class="col-xs-10">
+                                                                    <textarea  class="form-control" ng-model="newobj.Remarks.Remark[0].Remark" ></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <div class="container-fluid">
+                                                        <div class="col-lg-6">
+                                                            <button data-dismiss="modal" class="form-control" ng-click="AddUpdateWallAcc()"
+                                                                    ng-disabled="myForm.NewHeight.$dirty && myForm.NewHeight.$invalid
+                                                                        ||myForm.NewATGL.$dirty && myForm.NewATGL.$invalid
+                                                                        ||myForm.NewOffset.$dirty && myForm.NewOffset.$invalid">
+                                                                Confirm
+                                                            </button>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <button data-dismiss="modal" class="form-control">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Tab Remarks*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseR">Remarks </a>
+                            </h4>
+                        </div>
+                        <div id="collapseR" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4bR">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12  table-responsive">
+                                            Show Deleted: <input type="checkbox" ng-model="Deletedchecked" aria-label="Toggle ngShow"><br />
+                                            <table ng-show="building.WallPanelAccessories.Remarks.Remark" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-left text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Remark</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: left;">
+                                                    <tr ng-repeat="x in building.WallPanelAccessories.Remarks.Remark track by $index" ng-show="ShowDeleRemark(x.State)">
+                                                        <td style="width:50px;">
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-class="{'text-warning':(x.State == 'false') }" style="white-space:pre-line"><div ng-bind-html="x.Remark"></div></div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="RemarkUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button ng-show="(x.State == 'true')" type="button" ng-click="removeRemark($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetRemark()" class="btn btn-primary" data-toggle="modal" data-target="#RemarkModal">Add Remark</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Remarkhistory.length > 0" ng-click="UndoRemark()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="RemarkModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Remarkword}} Remark{{newRemark.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newRemark">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                <wysiwyg-edit content="newRemark.Remark" config="editorConfig"></wysiwyg-edit>
+                                                                                <span style="color:red" ng-show="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                                    <span ng-show="myForm.Remark.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-12">
+                                                                                {{512 - newRemark.Remark.length}} / 512
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateRemark()"
+                                                                            ng-disabled="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Remarks *@
+                    <br />
+                    <div class="container-fluid">
+                        <div class="text-center">
+                            <input id="submit" @*type="submit"*@ type="button" ng-click="SaveData()" value="Save" class="btn-default form-control"
+                                   ng-disabled="" />
+                        </div>
+                    </div>
+
+                </div> @*EndContainer*@
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<script src="~/Scripts/Site/WallPanelAccessories.js"></script>
+
+<script src="~/Scripts/Site/spin.min.js"></script>
+
+<script>
+    var opts = {
+        lines: 15 // The number of lines to draw
+        , length: 28 // The length of each line
+        , width: 14 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 0.50 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000' // #rgb or #rrggbb or array of colors
+        , opacity: 0.25 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    }
+    var target = document.getElementById('foo')
+    var spinner = new Spinner(opts).spin(target);
+</script>

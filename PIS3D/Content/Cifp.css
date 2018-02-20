@@ -1,0 +1,24 @@
+
+.remarksbody { background-color: #FFFFFF; font-size: 11px;   }
+.maintable   { display:table-header-group; border-collapse: collapse;padding-left:4;   }
+.dettable    { display:table-header-group; border-collapse: collapse;  }
+.fieldcaption{ border-bottom:1px solid #cccccc; font-size: 10px; border-left-width:1; border-right-width:1; border-top-width:1; }
+.tablehead	{ border:1px solid #808080; font-size: 10px; padding-left:4; padding-right:4; padding-top:1; padding-bottom:1; text-align:center; background-color:#CCCCCC;   }
+.tableheadr { border:1px solid #CCCCCC; font-size: 10px; padding-left:4; padding-right:4; padding-top:1; padding-bottom:1;    }
+.editfield   { border-bottom:1px solid #cccccc; background-color: #F5F5F5; font-size: 11px; text-transform: uppercase; border-left-width:1; border-right-width:1; border-top-width:1;  }
+.cell        { background-color:#FFFFFF; }
+
+
+.fieldcell   { border-bottom:1px solid #CCCCCC; font-size: 10px;  text-transform:uppercase; border-left-width:1; border-right-width:1; border-top-width:1; padding-left:4; padding-top:4;  }
+.tablecell   { border-bottom:1px solid #cccccc; font-size: 10px;  text-transform:uppercase; border-left-width:1; border-right-width:1; border-top-width:1;  }
+.tablecellsub   { border-left:1px solid #C0C0C0; font-size: 10px; text-transform:uppercase; border-right-width:1; border-top-width:1;  }
+.tablecell1   { border:1px solid #CCCCCC; font-size: 10px; padding-left:4; padding-right:4; padding-top:4; padding-bottom:1; text-transform:uppercase;    }
+.tablecell2   { border:1px solid #cccccc; font-size: 10px; padding-left:4; padding-right:4; padding-top:1; padding-bottom:1;    }
+.tableheader { display:table-header-group; border:1px solid #cccccc; background-color: #F9F9F9; font-size: 10px; padding-left:4; padding-right:4; padding-top:1; padding-bottom:1;    }
+.secheader   { font-size: 10pt; font-weight: bold; display:table-header-group; padding-left:0; padding-right:4; padding-top:1; padding-bottom:1; border-left-width:1; border-right-width:1; border-top-width:1; border-bottom-style:solid; border-bottom-width:1; letter-spacing:0pt; vertical-align:baseline;  }
+.secheaderrow   { font-size: 10px; font-weight: bold; border: 1px solid #000000;display:table-header-group;  }
+.secheadercell  { border-bottom:1px solid #FFFFFF; font-size: 10px; border-left-width:1; border-right-width:1; border-top-width:1;   }
+.seccell     { font-size: 10px;  display:table-header-group;border-bottom:1px solid #000000; padding-top:7;   }
+.sectitle     { font-size: 10px; font-weight: bold; display:table-header-group;border-bottom:1px solid #000000;   }
+.areahead   { font-size: 10pt; font-weight: bold; display:table-header-group; padding-left:0; padding-right:4; padding-top:1; padding-bottom:1; position:relative; top:-23;  }
+.isoform     { font-size: 10px; font-weight: bold; text-transform: none;}

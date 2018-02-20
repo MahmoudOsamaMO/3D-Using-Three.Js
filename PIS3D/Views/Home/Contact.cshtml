@@ -1,0 +1,101 @@
+﻿   
+
+@{
+    ViewBag.Title = "Contact";
+}
+<style>
+    #progress_bar {
+        margin: 10px 0;
+        padding: 3px;
+        border: 1px solid #000;
+        font-size: 14px;
+        clear: both;
+        opacity: 0;
+        -moz-transition: opacity 1s linear;
+        -o-transition: opacity 1s linear;
+        -webkit-transition: opacity 1s linear;
+    }
+
+        #progress_bar.loading {
+            opacity: 1.0;
+        }
+
+        #progress_bar .percent {
+            background-color: #99ccff;
+            height: auto;
+            width: 0;
+        }
+</style>
+
+<div  ng-controller="LoadingCtrl" class="row">
+    <div id="panel" class="panel panel-primary">
+        <div class="panel-heading">
+            <h4>Building Area Save Load</h4>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+
+                <div class="col-lg-offset-1">
+                    <label class="control-label">Select File</label>
+                    <input type="file" id="files" name="file" class="btn btn-default  btn-outline-info " />
+                    <div id="progress_bar"><div class="percent">0%</div></div>
+                </div>
+
+                <br />
+                <div class="col-lg-offset-1">
+                    @Html.ActionLink("Download File", "downloadFile", "Home")
+                </div>
+                <br />
+            </div>
+            <div class="container-fluid" id="ErrorDiv" ng-show="Errors">
+                <div class="col-lg-12 well table-responsive">
+                    <h4 class="text-danger"><u>Errors</u></h4>
+                    <table id="personDataTable" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                        <thead class="text-center text-danger">
+                            <tr>
+                                <th>ID</th>
+                                <th>Message</th>
+                                <th>Element</th>
+                                <th>Value</th>
+                                <th>Path</th>
+                                <th>Descreption</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in Errors track by $index">
+                                <th>{{$index+1}}</th>
+                                <th>{{x.Message}}</th>
+                                <th>{{x.Element}}</th>
+                                <th>{{x.Value}}</th>
+                                <th>{{x.Path}}</th>
+                                <th>{{x.Descreption}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    @*function SaveFile() {
+
+        var savedxml = "any 7amada";
+        jQuery.ajax({
+            type: "POST",
+            url: "@Url.Action("SaveXML")",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ xmlStr: savedxml }),
+            success: function (data) {
+                alert(data);
+            },
+            failure: function (errMsg) {
+                alert(errMsg);
+            }
+        });
+    }*@
+</script>
+<script src="~/Scripts/Site/Contact.js"></script>
+

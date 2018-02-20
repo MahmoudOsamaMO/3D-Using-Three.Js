@@ -1,0 +1,857 @@
+﻿   
+@{
+    ViewBag.Title = "Crane Systems";
+}
+<style>
+    .Marg {
+        margin-top: 10px;
+    }
+</style>
+
+<form ng-controller="CraneSystemsCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div>
+        <div id="foo" ng-show="Loading" style="margin-top:20%;">
+        </div>
+        <div ng-hide="Loading" id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Crane Systems</h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Summary</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="tab-pane active" id="5b">
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @*load*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well table-responsive" style="font-size:12px;">
+                                                    <h5 class="text-primary"><u>Crane Systems</u></h5>
+                                                    <table style="font-size:10px;" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                        <thead class="text-center text-info">
+                                                            <tr>
+                                                                <th>NO</th>
+                                                                <th>Crane ZS scope</th>
+                                                                <th>Crane Manufacturer</th>
+                                                                <th>Crane System And Rails By</th>
+                                                                <th>Crane Power Supply</th>
+                                                                <th>Type</th>
+                                                                <th>Operation</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="x in building.CraneSystems.CraneSystems track by $index">
+                                                                <td>
+                                                                    <div>{{x.ID = $index + 1}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.CraneZS_Scope}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.CraneManufacturer}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.CraneSystemAndRailsBy}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.CranePowerSupply}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Type}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Operation}}</div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <h5 class="text-primary"><u>Dimension details</u></h5>
+
+                                                    <table style="font-size:10px;" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                        <thead class="text-center text-info">
+                                                            <tr>
+                                                                <th rowspan="3">NO</th>
+
+                                                                <th colspan="3">Span</th>
+
+                                                                <th colspan="3">Run</th>
+
+                                                                <th rowspan="3">Hook Height H3 (m)</th>
+
+                                                                <th rowspan="3">Top of Crane Beam H1 (m)</th>
+
+                                                                <th colspan="2">Min Clr </th>
+
+                                                                <th colspan="2">Lift Capacity</th>
+
+                                                                <th rowspan="3">Wheel Base (m)</th>
+
+                                                                <th colspan="2">Weight</th>
+
+                                                                <th colspan="3">Speed </th>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <th rowspan="2">W1 (m)</th>
+
+                                                                <th colspan="2">Between</th>
+
+                                                                <th rowspan="2">Length  (m)</th>
+
+                                                                <th colspan="2">Between</th>
+
+                                                                <th rowspan="2">Vert H2 (mm)</th>
+                                                                <th rowspan="2">Horiz W2 (mm)</th>
+
+                                                                <th rowspan="2">Crane (MT) </th>
+                                                                <th rowspan="2">Hoist (MT) </th>
+
+                                                                <th rowspan="2">Bridge (kg) </th>
+                                                                <th rowspan="2">Trolley (kg) </th>
+
+                                                                <th rowspan="2">Hoist (m/s) </th>
+                                                                <th rowspan="2">Trolley (m/s) </th>
+                                                                <th rowspan="2">Bridge (m/s) </th>
+
+
+
+
+                                                            </tr>
+                                                            <tr>
+                                                                <th>From GL</th>
+                                                                <th>To GL</th>
+
+                                                                <th>From GL</th>
+                                                                <th>To GL</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="x in building.CraneSystems.CraneSystems track by $index">
+                                                                <td>
+                                                                    <div>{{x.ID = $index + 1}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Span.Width}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Span.FromGL}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Span.ToGL}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Run.Length}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Run.FromGL}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Run.ToGL}}</div>
+                                                                </td>
+
+                                                                <td>
+                                                                    <div>{{x.HookHeightH3}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.TopOfCraneBeamH1}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.MinClr.VertH2}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.MinClr.HorizW2}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.LiftCapacity.Crane}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.LiftCapacity.Hoist}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.WheelBase}}</div>
+                                                                </td>
+
+                                                                <td>
+                                                                    <div>{{x.Weight.Bridge}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Weight.Trolley}}</div>
+                                                                </td>
+
+                                                                <td>
+                                                                    <div>{{x.Speed.Hoist}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Speed.Trolley}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Speed.Bridge}}</div>
+                                                                </td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Crane Systems</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="1b">
+
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12 table-responsive">
+
+                                            <h5 class="text-primary"><u>Crane Systems</u></h5>
+                                            <table style="font-size:10px;" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-center text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Crane ZS scope</th>
+                                                        <th>Crane Manufacturer</th>
+                                                        <th>Crane System And Rails By</th>
+                                                        <th>Crane Power Supply</th>
+                                                        <th>Type</th>
+                                                        <th>Operation</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="x in building.CraneSystems.CraneSystems track by $index">
+                                                        <td>
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.CraneZS_Scope}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.CraneManufacturer}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.CraneSystemAndRailsBy}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.CranePowerSupply}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Type}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Operation}}</div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="AccUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <h5 class="text-primary"><u>Dimension details</u></h5>
+
+                                            <table style="font-size:10px;" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-center text-info">
+                                                    <tr>
+                                                        <th rowspan="3">NO</th>
+
+                                                        <th colspan="3">Span</th>
+
+                                                        <th colspan="3">Run</th>
+
+                                                        <th rowspan="3">Hook Height H3 (m)</th>
+
+                                                        <th rowspan="3">Top of Crane Beam H1 (m)</th>
+
+                                                        <th colspan="2">Min Clr </th>
+
+                                                        <th colspan="2">Lift Capacity</th>
+
+                                                        <th rowspan="3">Wheel Base (m)</th>
+
+                                                        <th colspan="2">Weight</th>
+
+                                                        <th colspan="3">Speed </th>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th rowspan="2">W1 (m)</th>
+
+                                                        <th colspan="2">Between</th>
+
+                                                        <th rowspan="2">Length  (m)</th>
+
+                                                        <th colspan="2">Between</th>
+
+                                                        <th rowspan="2">Vert H2 (mm)</th>
+                                                        <th rowspan="2">Horiz W2 (mm)</th>
+
+                                                        <th rowspan="2">Crane (MT) </th>
+                                                        <th rowspan="2">Hoist (MT) </th>
+
+                                                        <th rowspan="2">Bridge (kg) </th>
+                                                        <th rowspan="2">Trolley (kg) </th>
+
+                                                        <th rowspan="2">Hoist (m/s) </th>
+                                                        <th rowspan="2">Trolley (m/s) </th>
+                                                        <th rowspan="2">Bridge (m/s) </th>
+
+
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th>From GL</th>
+                                                        <th>To GL</th>
+
+                                                        <th>From GL</th>
+                                                        <th>To GL</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="x in building.CraneSystems.CraneSystems track by $index">
+                                                        <td>
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Span.Width}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Span.FromGL}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Span.ToGL}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Run.Length}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Run.FromGL}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Run.ToGL}}</div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div>{{x.HookHeightH3}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.TopOfCraneBeamH1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.MinClr.VertH2}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.MinClr.HorizW2}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.LiftCapacity.Crane}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.LiftCapacity.Hoist}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.WheelBase}}</div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div>{{x.Weight.Bridge}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Weight.Trolley}}</div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div>{{x.Speed.Hoist}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Speed.Trolley}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Speed.Bridge}}</div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="AccUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" ng-click="removeAcc($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetAcc()" class="btn btn-primary" data-toggle="modal" data-target="#AccModal">Add {{AccName}}</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Acchistory.length > 0" ng-click="UndoAcc()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="AccModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Accword}} {{AccName}}  {{newobj.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newobj">
+                                                            <div class="container-fluid">
+
+
+                                                                <ul class="nav nav-pills">
+                                                                    <li class="active"><a data-toggle="pill" href="#home">Crane System </a></li>
+                                                                    <li><a data-toggle="pill" href="#menu1">Runway</a></li>
+                                                                    <li><a data-toggle="pill" href="#menu2">Lift Info.</a></li>
+                                                                    <li><a data-toggle="pill" href="#menu3">Clearance</a></li>
+                                                                </ul>
+
+                                                                <div class="tab-content" style="padding: 5px 15px;border-radius: 0px 0px 10px 10px;border: 2px solid #337ab7;padding: 20px;">
+                                                                    <div id="home" class="tab-pane fade in active">
+                                                                        <div class="container-fluid">
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Crane ZS Scope </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" name="CraneZS_Scope" ng-model="newobj.CraneZS_Scope" ng-options="x for x in CraneZS_Scopes"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Crane Manufacturer </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" name="CraneManufacturer" ng-model="newobj.CraneManufacturer" ng-options="x for x in CraneManufacturer"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Crane System And Rails By</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" name="CraneSystemAndRailsBy" ng-model="newobj.CraneSystemAndRailsBy" ng-options="x for x in CraneSystemAndRailsBy"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Crane Power Supply</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <div class="input-group">
+                                                                                        <input class="form-control" name="CranePowerSupply" type="text" required ng-model="newobj.CranePowerSupply" />
+                                                                                        <span class="input-group-addon">
+                                                                                            <select class="col-xs-2" ng-model="newobj.CranePowerSupply" ng-options="x for x in CranePowerSupply"></select>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                    <span style="color:red" ng-show="myForm.CranePowerSupply.$dirty && myForm.CranePowerSupply.$invalid">
+                                                                                        <span ng-show="myForm.CranePowerSupply.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                    @*<select class="form-control" name="CranePowerSupply" ng-model="newobj.CranePowerSupply" ng-options="x for x in CranePowerSupply"></select>*@
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Operation</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" name="Operation" ng-model="newobj.Operation" ng-options="x for x in Operation"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Type</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" name="Type" ng-model="newobj.Type" ng-options="x for x in Type"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menu1" class="tab-pane fade">
+                                                                        <div class="container-fluid">
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-2">
+                                                                                    Width (m)
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    <input class="form-control" name="Width" type="number" min="0" required ng-model="newobj.Span.Width" />
+                                                                                    <span style="color:red" ng-show="myForm.Width.$dirty && myForm.Width.$invalid">
+                                                                                        <span ng-show="myForm.Width.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    From Gl : {{newobj.Span.FromGL}}
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    <select class="form-control" name="WidthFromG" ng-model="newobj.Span.FromGL" ng-options="x for x in building.GeneralData.Location.AlongBuildingWidth.Axes.split(',')"></select>
+                                                                                    <span style="color:red" ng-show="myForm.WidthFromG.$dirty && myForm.WidthFromG.$invalid">
+                                                                                        <span ng-show="myForm.WidthFromG.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    To Gl : {{newobj.Span.ToGL}}
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    <select class="form-control" name="WidthToGL" ng-model="newobj.Span.ToGL" ng-options="x for x in building.GeneralData.Location.AlongBuildingWidth.Axes.split(',')"></select>
+                                                                                    <span style="color:red" ng-show="myForm.WidthToGL.$dirty && myForm.WidthToGL.$invalid">
+                                                                                        <span ng-show="myForm.WidthToGL.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-2">
+                                                                                    Length (m)
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    <input class="form-control" name="Length" type="number" min="0" required ng-model="newobj.Run.Length" />
+                                                                                    <span style="color:red" ng-show="myForm.Length.$dirty && myForm.Length.$invalid">
+                                                                                        <span ng-show="myForm.Length.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    From Gl : {{newobj.Run.FromGL}}
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    <select class="form-control" name="WidthFromG" ng-model="newobj.Run.FromGL"
+                                                                                            ng-options="x for x in building.GeneralData.Location.AlongBuildingLength.Axes.split(',')"></select>
+                                                                                    <span style="color:red" ng-show="myForm.LengthFromG.$dirty && myForm.LengthFromG.$invalid">
+                                                                                        <span ng-show="myForm.LengthFromG.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    To Gl : {{newobj.Run.ToGL}}
+                                                                                </div>
+                                                                                <div class="col-xs-2">
+                                                                                    <select class="form-control" name="LengthToGL" ng-model="newobj.Length.ToGL" ng-options="x for x in building.GeneralData.Location.AlongBuildingLength.Axes.split(',')"></select>
+                                                                                    <span style="color:red" ng-show="myForm.LengthToGL.$dirty && myForm.LengthToGL.$invalid">
+                                                                                        <span ng-show="myForm.LengthToGL.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Hoo kHeight H3 (m)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="HookHeightH3" type="number" min="0" required ng-model="newobj.HookHeightH3" />
+                                                                                    <span style="color:red" ng-show="myForm.HookHeightH3.$dirty && myForm.HookHeightH3.$invalid">
+                                                                                        <span ng-show="myForm.HookHeightH3.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Top Of CraneBeam H1 (m)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="TopOfCraneBeamH1" type="number" min="0" required ng-model="newobj.TopOfCraneBeamH1" />
+                                                                                    <span style="color:red" ng-show="myForm.TopOfCraneBeamH1.$dirty && myForm.TopOfCraneBeamH1.$invalid">
+                                                                                        <span ng-show="myForm.TopOfCraneBeamH1.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menu2" class="tab-pane fade">
+                                                                        <div class="container-fluid">
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">Crane Capacity (m.tons)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="LiftCapacityCrane" type="number" min="0" required ng-model="newobj.LiftCapacity.Crane" />
+                                                                                    <span style="color:red" ng-show="myForm.LiftCapacityCrane.$dirty && myForm.LiftCapacityCrane.$invalid">
+                                                                                        <span ng-show="myForm.LiftCapacityCrane.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">Hoist Capacity (m.tons)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="LiftCapacityHoist" type="number" min="0" required ng-model="newobj.LiftCapacity.Hoist" />
+                                                                                    <span style="color:red" ng-show="myForm.LiftCapacityHoist.$dirty && myForm.LiftCapacityHoist.$invalid">
+                                                                                        <span ng-show="myForm.LiftCapacityHoist.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">Bridge Weight (Kg)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="BridgeWeight" type="number" min="0" required ng-model="newobj.Weight.Bridge" />
+                                                                                    <span style="color:red" ng-show="myForm.BridgeWeight.$dirty && myForm.BridgeWeight.$invalid">
+                                                                                        <span ng-show="myForm.BridgeWeight.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">Bridge Speed (m/s)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="BridgeSpeed" type="number" min="0" required ng-model="newobj.Speed.Bridge" />
+                                                                                    <span style="color:red" ng-show="myForm.BridgeSpeed.$dirty && myForm.BridgeSpeed.$invalid">
+                                                                                        <span ng-show="myForm.BridgeSpeed.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">Trolley Weight (Kg)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="TrolleyWeight" type="number" min="0" required ng-model="newobj.Weight.Trolley" />
+                                                                                    <span style="color:red" ng-show="myForm.TrolleyWeight.$dirty && myForm.TrolleyWeight.$invalid">
+                                                                                        <span ng-show="myForm.TrolleyWeight.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">Trolley Speed (m/s)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="TrolleySpeed" type="number" min="0" required ng-model="newobj.Speed.Trolley" />
+                                                                                    <span style="color:red" ng-show="myForm.TrolleySpeed.$dirty && myForm.TrolleySpeed.$invalid">
+                                                                                        <span ng-show="myForm.TrolleySpeed.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">Wheel Base (m)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="WheelBase" type="number" min="0" required ng-model="newobj.WheelBase" />
+                                                                                    <span style="color:red" ng-show="myForm.WheelBase.$dirty && myForm.WheelBase.$invalid">
+                                                                                        <span ng-show="myForm.WheelBase.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">Hoist Speed (m/s)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="HoistSpeed" type="number" min="0" required ng-model="newobj.Speed.Hoist" />
+                                                                                    <span style="color:red" ng-show="myForm.HoistSpeed.$dirty && myForm.HoistSpeed.$invalid">
+                                                                                        <span ng-show="myForm.HoistSpeed.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="menu3" class="tab-pane fade">
+                                                                        <div class="container-fluid">
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Vert H2 (mm)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="VertH2" type="number" min="0" required ng-model="newobj.MinClr.VertH2" />
+                                                                                    <span style="color:red" ng-show="myForm.VertH2.$dirty && myForm.VertH2.$invalid">
+                                                                                        <span ng-show="myForm.VertH2.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Horiz W2 (mm)</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="HorizW2" type="number" min="0" required ng-model="newobj.MinClr.HorizW2" />
+                                                                                    <span style="color:red" ng-show="myForm.HorizW2.$dirty && myForm.HorizW2.$invalid">
+                                                                                        <span ng-show="myForm.HorizW2.$error.required">Required.</span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateAcc()"
+                                                                            ng-disabled="myForm.Width.$dirty && myForm.Width.$invalid
+                                                                                       ||myForm.WidthFromG.$dirty && myForm.WidthFromG.$invalid
+                                                                                       ||myForm.HorizW2.$dirty && myForm.HorizW2.$invalid
+                                                                                       ||myForm.VertH2.$dirty && myForm.VertH2.$invalid
+                                                                                       ||myForm.BridgeSpeed.$dirty && myForm.BridgeSpeed.$invalid
+                                                                                       ||myForm.TrolleyWeight.$dirty && myForm.TrolleyWeight.$invalid
+                                                                                       ||myForm.TrolleySpeed.$dirty && myForm.TrolleySpeed.$invalid
+                                                                                       ||myForm.WheelBase.$dirty && myForm.WheelBase.$invalid
+                                                                                       ||myForm.HoistSpeed.$dirty && myForm.HoistSpeed.$invalid
+                                                                                       ||myForm.WidthToGL.$dirty && myForm.WidthToGL.$invalid
+                                                                                       ||myForm.Length.$dirty && myForm.Length.$invalid
+                                                                                       ||myForm.LengthFromG.$dirty && myForm.LengthFromG.$invalid
+                                                                                       ||myForm.CranePowerSupply.$dirty && myForm.CranePowerSupply.$invalid
+                                                                                       ||myForm.HookHeightH3.$dirty && myForm.HookHeightH3.$invalid
+                                                                                       ||myForm.TopOfCraneBeamH1.$dirty && myForm.TopOfCraneBeamH1.$invalid
+                                                                                       ||myForm.LiftCapacityCrane.$dirty && myForm.LiftCapacityCrane.$invalid
+                                                                                       ||myForm.LiftCapacityHoist.$dirty && myForm.LiftCapacityHoist.$invalid
+                                                                                       ||myForm.BridgeWeight.$dirty && myForm.BridgeWeight.$invalid
+                                                                                       ||myForm.LengthToGL.$dirty && myForm.LengthToGL.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Tab Remarks*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseR">Remarks </a>
+                            </h4>
+                        </div>
+                        <div id="collapseR" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4bR">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12  table-responsive">
+                                            Show Deleted: <input type="checkbox" ng-model="Deletedchecked" aria-label="Toggle ngShow"><br />
+                                            <table ng-show="building.CraneSystems.Remarks.Remark" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-left text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Remark</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: left;">
+                                                    <tr ng-repeat="x in building.CraneSystems.Remarks.Remark track by $index" ng-show="ShowDeleRemark(x.State)">
+                                                        <td style="width:50px;">
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-class="{'text-warning':(x.State == 'false') }" style="white-space:pre-line"><div ng-bind-html="x.Remark"></div></div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="RemarkUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button ng-show="(x.State == 'true')" type="button" ng-click="removeRemark($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetRemark()" class="btn btn-primary" data-toggle="modal" data-target="#RemarkModal">Add Remark</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Remarkhistory.length > 0" ng-click="UndoRemark()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="RemarkModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Remarkword}} Remark{{newRemark.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newRemark">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                <wysiwyg-edit content="newRemark.Remark" config="editorConfig"></wysiwyg-edit>
+                                                                                <span style="color:red" ng-show="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                                    <span ng-show="myForm.Remark.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-12">
+                                                                                {{512 - newRemark.Remark.length}} / 512
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateRemark()"
+                                                                            ng-disabled="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Remarks *@
+                    <br />
+                    <div class="container-fluid">
+                        <div class="text-center">
+                            <input id="submit" @*type="submit"*@ type="button" ng-click="SaveData()" value="Save" class="btn-default form-control"
+                                   ng-disabled="" />
+                        </div>
+                    </div>
+
+                </div> @*EndContainer*@
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<script src="~/Scripts/Site/CraneSystems.js"></script>
+<script src="~/Scripts/Site/spin.min.js"></script>
+
+<script>
+    var opts = {
+        lines: 15 // The number of lines to draw
+        , length: 28 // The length of each line
+        , width: 14 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 0.50 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000' // #rgb or #rrggbb or array of colors
+        , opacity: 0.25 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    }
+    var target = document.getElementById('foo')
+    var spinner = new Spinner(opts).spin(target);
+</script>

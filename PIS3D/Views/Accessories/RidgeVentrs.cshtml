@@ -1,0 +1,589 @@
+﻿   
+@{
+    ViewBag.Title = "Gravity Ridge Ventillator";
+}
+<style>
+    .Marg {
+        margin-top: 10px;
+    }
+</style>
+
+<form ng-controller="GravityRidgeVentillatorCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div>
+        <div id="foo" ng-show="Loading" style="margin-top:20%;">
+        </div>
+        <div ng-hide="Loading" id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Gravity Ridge Ventillator</h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Summary</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="tab-pane active" id="5b">
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @*load*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well table-responsive" style="font-size:12px;">
+                                                    <h4 class="text-primary"><u>Gravity Ridge Ventillator</u></h4>
+                                                    <table st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                        <thead class="text-center text-info">
+                                                            <tr>
+                                                                <th rowspan="2">NO</th>
+                                                                <th colspan="2">Size</th>
+                                                                <th colspan="2">Surface</th>
+                                                                <th colspan="3">Location</th>
+                                                                <th rowspan="2">Throat (mm)</th>
+                                                                <th rowspan="2">Ship As</th>
+                                                                <th rowspan="2">Demper</th>
+                                                                <th rowspan="2">Installation</th>
+                                                                <th rowspan="2">Material Description</th>
+                                                                <th rowspan="2">Remarks</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Width (m)</th>
+                                                                <th>Height (m)</th>
+                                                                <th>Assign To</th>
+                                                                <th>On Bay</th>
+                                                                <th>X</th>
+                                                                <th>Y</th>
+                                                                <th>Of</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="x in building.Openings.GravityRidgeVentillators.GravityRidgeVentillator track by $index">
+                                                                <td>
+                                                                    <div>{{x.ID = $index + 1}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Width}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Height}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.AssignTo}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.On}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.LocationX}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.LocationY}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.LocationFrom}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Throat}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.ShipAs}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Damper}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Installation}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.MaterialDescription}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Remarks.Remark[0].Remark}}</div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Gravity Ridge Ventillator</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="1b">
+
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12 table-responsive">
+                                            <table st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-center text-info">
+                                                    <tr>
+                                                        <th rowspan="2">NO</th>
+                                                        <th colspan="2">Size</th>
+                                                        <th colspan="2">Surface</th>
+                                                        <th colspan="3">Location</th>
+                                                        <th rowspan="2">Throat (mm)</th>
+                                                        <th rowspan="2">Ship As</th>
+                                                        <th rowspan="2">Demper</th>
+                                                        <th rowspan="2">Installation</th>
+                                                        <th rowspan="2">Material Description</th>
+                                                        <th rowspan="2">Remarks</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Width (m)</th>
+                                                        <th>Height (m)</th>
+                                                        <th>Assign To</th>
+                                                        <th>On Bay</th>
+                                                        <th>X</th>
+                                                        <th>Y</th>
+                                                        <th>Of</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="x in building.Openings.GravityRidgeVentillators.GravityRidgeVentillator track by $index">
+                                                        <td>
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Width}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Height}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.AssignTo}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.On}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.LocationX}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.LocationY}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.LocationFrom}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Throat}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.ShipAs}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Damper}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Installation}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.MaterialDescription}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Remarks.Remark[0].Remark}}</div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="AccUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" ng-click="removeAcc($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetAcc()" class="btn btn-primary" data-toggle="modal" data-target="#AccModal">Add {{AccName}}</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Acchistory.length > 0" ng-click="UndoAcc()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="AccModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Accword}} {{AccName}}  {{newobj.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newobj">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-6">
+                                                                    <div class="col-lg-12 well">
+                                                                        <h4>Surface</h4>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Assign To Surface:
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <select class="form-control" name="AssignTo" ng-model="newobj.AssignTo" ng-options="x for x in AssignTos" ng-change="AssignVhange()"></select>
+                                                                                <span style="color:red" ng-show="myForm.AssignTo.$dirty && myForm.AssignTo.$invalid">
+                                                                                    <span ng-show="myForm.AssignTo.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-lg-6">
+                                                                                <input type="radio" checked ng-model="myVar" ng-value="true" ng-change="changeRef()">{{BayOrSpan}}
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <input type="radio" ng-model="myVar" ng-value="false" ng-change="changeRef()">Surface
+                                                                            </div>
+                                                                        </div>
+                                                                        <div ng-switch="myVar">
+                                                                            <div ng-switch-when="true">
+                                                                                <div class="col-lg-12 Marg">
+                                                                                    <div class="col-xs-6">
+                                                                                        On {{newobj.ReferenceTo}}s :
+                                                                                    </div>
+                                                                                    <div class="col-xs-6" ng-if="newobj.ReferenceTo=='BAY'">
+                                                                                        <select class="form-control" ng-model="newobj.On">
+                                                                                            <option ng-repeat="x in building.GeneralData.Bays.Bay track by $index" value="{{x.ID}}">{{x.ID}}</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-xs-6" ng-if="newobj.ReferenceTo=='Span'">
+                                                                                        <select class="form-control" ng-model="newobj.On" ng-options="x for x in Spans"></select>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div ng-switch-when="false">
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-6">
+                                                                    <div class="col-lg-12 well">
+
+                                                                        <h4>Location</h4>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                X Coord (m):
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="LocationX" type="number" min="0" required ng-model="newobj.LocationX" />
+                                                                                <span style="color:red" ng-show="myForm.LocationX.$dirty && myForm.LocationX.$invalid">
+                                                                                    <span ng-show="myForm.LocationX.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Y Coord (m):
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="LocationY" type="number" min="0" required ng-model="newobj.LocationY" />
+                                                                                <span style="color:red" ng-show="myForm.LocationY.$dirty && myForm.LocationY.$invalid">
+                                                                                    <span ng-show="myForm.LocationY.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Of:
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <select class="form-control" ng-model="newobj.LocationFrom" ng-options="x for x in LocationFroms"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-6">
+                                                                    <div class="col-lg-12 well">
+                                                                        <h4>Size</h4>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Width (m):
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="Width" type="number" min="0" required ng-model="newobj.Width" />
+                                                                                <span style="color:red" ng-show="myForm.Width.$dirty && myForm.Width.$invalid">
+                                                                                    <span ng-show="myForm.Width.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Height (m):
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="Height" type="number" min="0" required ng-model="newobj.Height" />
+                                                                                <span style="color:red" ng-show="myForm.Height.$dirty && myForm.Height.$invalid">
+                                                                                    <span ng-show="myForm.Height.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Area (m2):
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                {{newobj.Height*newobj.Width}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-6">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                <textarea style="min-height:108px;max-height:108px;" class="form-control" ng-model="newobj.Remarks.Remark[0].Remark"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <h4>
+                                                                            Advanced
+                                                                            <span class="glyphicon glyphicon-circle-arrow-down" ng-click="showadv=true" ng-show="!showadv"></span>
+                                                                            <span class="glyphicon glyphicon-circle-arrow-up" ng-click="showadv=false" ng-show="showadv"></span>
+                                                                        </h4>
+                                                                        <div ng-if="showadv" ng-init="AdvancedFunc()">
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">
+                                                                                    Throat :
+                                                                                </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" ng-model="newobj.Throat" ng-options="x for x in Throats"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">
+                                                                                    Damper :
+                                                                                </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" ng-model="newobj.Damper" ng-options="x for x in Dampers"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">
+                                                                                    Installation :
+                                                                                </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" ng-model="newobj.Installation" ng-options="x for x in Installations"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 Marg">
+                                                                                <div class="col-xs-6">
+                                                                                    ShipAs :
+                                                                                </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" ng-model="newobj.ShipAs" ng-options="x for x in ShipAss"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-3">
+                                                                                    Material Description :
+                                                                                </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <textarea style="min-height:108px;max-height:108px;" class="form-control" ng-model="newobj.MaterialDescription"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div ng-if="!showadv">
+                                                                            {{newobj.Purpose=''}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateAcc()"
+                                                                            ng-disabled="myForm.AssignTo.$dirty && myForm.AssignTo.$invalid
+                                                                                       ||myForm.LocationX.$dirty && myForm.LocationX.$invalid
+                                                                                       ||myForm.LocationY.$dirty && myForm.LocationY.$invalid
+                                                                                       ||myForm.Width.$dirty && myForm.Width.$invalid
+                                                                                       ||myForm.Height.$dirty && myForm.Height.$invalid
+                                                                                       ||myForm.LocationFrom.$dirty && myForm.LocationFrom.$invalid
+                                                                                       ||myForm.CarryingWeight.$dirty && myForm.CarryingWeight.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*Tab Remarks*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseR">Remarks </a>
+                            </h4>
+                        </div>
+                        <div id="collapseR" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4bR">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12  table-responsive">
+                                            Show Deleted: <input type="checkbox" ng-model="Deletedchecked" aria-label="Toggle ngShow"><br />
+                                            <table ng-show="building.Openings.GravityRidgeVentillators.Remarks.Remark" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-left text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Remark</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: left;">
+                                                    <tr ng-repeat="x in building.Openings.GravityRidgeVentillators.Remarks.Remark track by $index" ng-show="ShowDeleRemark(x.State)">
+                                                        <td style="width:50px;">
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-class="{'text-warning':(x.State == 'false') }" style="white-space:pre-line"><div ng-bind-html="x.Remark"></div></div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="RemarkUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button ng-show="(x.State == 'true')" type="button" ng-click="removeRemark($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetRemark()" class="btn btn-primary" data-toggle="modal" data-target="#RemarkModal">Add Remark</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Remarkhistory.length > 0" ng-click="UndoRemark()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="RemarkModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Remarkword}} Remark{{newRemark.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newRemark">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                <wysiwyg-edit content="newRemark.Remark" config="editorConfig"></wysiwyg-edit>
+                                                                                <span style="color:red" ng-show="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                                    <span ng-show="myForm.Remark.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-12">
+                                                                                {{512 - newRemark.Remark.length}} / 512
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateRemark()"
+                                                                            ng-disabled="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Remarks *@
+                    <br />
+                    <div class="container-fluid">
+                        <div class="text-center">
+                            <input id="submit" @*type="submit"*@ type="button" ng-click="SaveData()" value="Save" class="btn-default form-control"
+                                   ng-disabled="" />
+                        </div>
+                    </div>
+
+                </div> @*EndContainer*@
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/Scripts/Site/Accessories/RidgeVentrs.js"></script>
+
+<script src="~/Scripts/Site/spin.min.js"></script>
+
+<script>
+    var opts = {
+        lines: 15 // The number of lines to draw
+        , length: 28 // The length of each line
+        , width: 14 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 0.50 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000' // #rgb or #rrggbb or array of colors
+        , opacity: 0.25 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    }
+    var target = document.getElementById('foo')
+    var spinner = new Spinner(opts).spin(target);
+</script>

@@ -1,0 +1,882 @@
+﻿   
+@{
+    ViewBag.Title = "Sub Systems";
+}
+<style>
+    .Marg {
+        margin-top: 10px;
+    }
+        .modalmportopen{
+        overflow-y:auto !important;
+    }
+</style>
+
+<form ng-controller="RoofMonitorsCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div>
+        <div id="foo" ng-show="Loading" style="margin-top:20%;">
+        </div>
+        <div ng-hide="Loading" id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Roof Monitors</h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Summary</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="tab-pane active" id="5b">
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @*load*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well table-responsive" style="font-size:12px;">
+                                                    <h4 class="text-primary"><u>Roof Monitors</u></h4>
+                                                    <table style="font-size:10px;" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                        <thead class="text-center text-info">
+                                                            <tr>
+                                                                <th rowspan="2">NO</th>
+                                                                <th rowspan="2">Type</th>
+                                                                <th colspan="8">Geometry</th>
+                                                                <th rowspan="2">Roof Panel Description</th>
+                                                                <th rowspan="2">Wall Panel Description</th>
+                                                                <th rowspan="2">Post</th>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Assign To</th>
+                                                                <th>Width (m)</th>
+                                                                <th>Throat Opening (mm)</th>
+                                                                <th>Start Bay</th>
+                                                                <th>End Bay</th>
+                                                                <th>Full Length</th>
+                                                                <th>Heavy Wind</th>
+                                                                <th>Bird Screen</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="x in building.Subsystems.RoofMonitors.RoofMonitors track by $index">
+                                                                <td>
+                                                                    <div>{{x.ID = $index + 1}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Type}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.AssignTo}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Width}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.ThroatOpening}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.StartBay}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.EndBay}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div><input type="checkbox" ng-disabled="true" ng-model="x.FullLength" /></div>
+                                                                </td>
+                                                                <td>
+                                                                    <div><input type="checkbox" ng-disabled="true" ng-model="x.HeavyWind" /></div>
+                                                                </td>
+                                                                <td>
+                                                                    <div><input type="checkbox" ng-disabled="true" ng-model="x.BirdScreen" /></div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.RoofPanel.Description}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.WallPanel.Description}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Post}}</div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                    
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Roof Monitors</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="1b">
+
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12 table-responsive">
+                                            <table style="font-size:10px;" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-center text-info">
+                                                    <tr>
+                                                        <th rowspan="2">NO</th>
+                                                        <th rowspan="2">Type</th>
+                                                        <th colspan="8">Geometry</th>
+                                                        <th rowspan="2">Roof Panel Description</th>
+                                                        <th rowspan="2">Wall Panel Description</th>
+                                                        <th rowspan="2">Post</th>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Assign To</th>
+                                                        <th>Width (m)</th>
+                                                        <th>Throat Opening (mm)</th>
+                                                        <th>Start Bay</th>
+                                                        <th>End Bay</th>
+                                                        <th>Full Length</th>
+                                                        <th>Heavy Wind</th>
+                                                        <th>Bird Screen</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="x in building.Subsystems.RoofMonitors.RoofMonitors track by $index">
+                                                        <td>
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Type}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.AssignTo}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Width}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.ThroatOpening}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.StartBay}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.EndBay}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div><input type="checkbox" ng-model="x.FullLength" /></div>
+                                                        </td>
+                                                        <td>
+                                                            <div><input type="checkbox" ng-model="x.HeavyWind" /></div>
+                                                        </td>
+                                                        <td>
+                                                            <div><input type="checkbox" ng-model="x.BirdScreen" /></div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.RoofPanel.Description}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.WallPanel.Description}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Post}}</div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="AccUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" ng-click="removeAcc($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetAcc()" class="btn btn-primary" data-toggle="modal" data-target="#AccModal">Add {{AccName}}</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Acchistory.length > 0" ng-click="UndoAcc()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="AccModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Accword}} {{AccName}}  {{newobj.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newobj">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    @*Geometry*@
+                                                                    <div class="col-lg-12 well">
+                                                                        <h4>Geometry</h4>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-3">
+                                                                                Assign To Gable NO 
+                                                                            </div>
+                                                                            <div class="col-xs-3">
+                                                                                <select class="form-control" name="AssignTo" ng-model="newobj.AssignTo" ng-options="item.ID as item.ID for item in building.GeneralData.Gables.Gable track by $index"></select>
+                                                                                <span style="color:red" ng-show="myForm.AssignTo.$dirty && myForm.AssignTo.$invalid">
+                                                                                    <span ng-show="myForm.AssignTo.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div> 
+                                                                            <div class="col-xs-3">
+                                                                                Type:
+                                                                            </div>
+                                                                            <div class="col-xs-3">
+                                                                                <select class="form-control" name="Type" ng-model="newobj.Type" ng-options="x for x in Type"></select>
+                                                                                <span style="color:red" ng-show="myForm.Type.$dirty && myForm.Type.$invalid">
+                                                                                    <span ng-show="myForm.Type.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-3">
+                                                                                Width (m)
+                                                                            </div>
+                                                                            <div class="col-xs-3">
+                                                                                <input class="form-control" name="Width" type="number" min="0" required ng-model="newobj.Width" />
+                                                                                <span style="color:red" ng-show="myForm.Width.$dirty && myForm.Width.$invalid">
+                                                                                    <span ng-show="myForm.Width.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-3">
+                                                                                ThroatOpening (mm)
+                                                                            </div>
+                                                                            <div class="col-xs-3">
+                                                                                <input class="form-control" name="ThroatOpening" type="number" min="0" required ng-model="newobj.ThroatOpening" />
+                                                                                <span style="color:red" ng-show="myForm.ThroatOpening.$dirty && myForm.ThroatOpening.$invalid">
+                                                                                    <span ng-show="myForm.ThroatOpening.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-12 Marg" style="margin-bottom: 10PX;">
+                                                                            <div class="col-xs-4">
+                                                                                <input type="checkbox" ng-model="newobj.HeavyWind" />  Heavy Wind
+                                                                            </div>
+                                                                            <div class="col-xs-4">
+                                                                                <input type="checkbox" ng-model="newobj.BirdScreen" />  Bird Screen
+                                                                            </div>
+                                                                            <div class="col-xs-4">
+                                                                                <input type="checkbox" ng-model="newobj.FullLength" />  Full Length
+                                                                            </div>
+                                                                        </div>
+
+                                                                        @*Start end*@
+                                                                        <div class="col-lg-12 Marg" ng-show="!newobj.FullLength">
+                                                                            <div class="col-xs-3">
+                                                                                Start Bay :  {{newobj.StartBay}}
+                                                                            </div>
+                                                                            <div class="col-xs-3">
+                                                                                <select class="form-control" ng-model="newobj.StartBay">
+                                                                                    <option ng-repeat="x in building.GeneralData.Bays.Bay track by $index" value="{{x.ID}}">{{x.ID}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="col-xs-3">
+                                                                                End Bay :  {{newobj.EndBay}}
+                                                                            </div>
+                                                                            <div class="col-xs-3">
+                                                                                <select class="form-control" ng-model="newobj.EndBay">
+                                                                                    <option ng-repeat="x in building.GeneralData.Bays.Bay track by $index" value="{{x.ID}}">{{x.ID}}</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                 
+                                                                    @*Palne*@
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-3">
+                                                                                Post
+                                                                            </div>
+                                                                            <div class="col-xs-3">
+                                                                                <select class="form-control" name="Post" ng-model="newobj.Post" ng-options="x for x in Post"></select>
+                                                                                <span style="color:red" ng-show="myForm.Post.$dirty && myForm.Post.$invalid">
+                                                                                    <span ng-show="myForm.Post.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        @*Planes*@
+                                                                        <h4>Cladding</h4>
+                                                                        <div class="col-lg-12">
+                                                                            <div class="row">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-6 Marg">Roof  Description</div>
+                                                                                    <div class="col-lg-6 Marg">
+                                                                                        <div class="col-xs-12">
+                                                                                            <h4> {{newobj.RoofPanel.Description}} </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-2 Marg">
+                                                                                        <button data-toggle="modal" data-target="#SingleModal" class="btn btn-primary" ng-click="RestSingleWallPanelNSW()">Single Skin</button>
+                                                                                    </div>
+                                                                                    <div class="col-lg-2 Marg">
+                                                                                        <button data-toggle="modal" data-target="#TempconModal" class="btn btn-primary" ng-click="RestTempconWallPanelNSW()">Tempcon</button>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-6 Marg">Wall Description</div>
+                                                                                    <div class="col-lg-6 Marg">
+                                                                                        <div class="col-xs-12">
+                                                                                            <h4> {{newobj.WallPanel.Description}} </h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-2 Marg">
+                                                                                        <button data-toggle="modal" data-target="#SingleModal" class="btn btn-primary" ng-click="RestSingleWallPanelNSW1()">Single Skin</button>
+                                                                                    </div>
+                                                                                    <div class="col-lg-2 Marg">
+                                                                                        <button data-toggle="modal" data-target="#TempconModal" class="btn btn-primary" ng-click="RestTempconWallPanelNSW1()">Tempcon</button>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateAcc()"
+                                                                            ng-disabled="myForm.AssignTo.$dirty && myForm.AssignTo.$invalid
+                                                                                       ||myForm.LocationX.$dirty && myForm.LocationX.$invalid
+                                                                                       ||myForm.LocationY.$dirty && myForm.LocationY.$invalid
+                                                                                       ||myForm.Width.$dirty && myForm.Width.$invalid
+                                                                                       ||myForm.Height.$dirty && myForm.Height.$invalid
+                                                                                       ||myForm.LocationFrom.$dirty && myForm.LocationFrom.$invalid
+                                                                                       ||myForm.CarryingWeight.$dirty && myForm.CarryingWeight.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+
+
+                                                                <div class="modal fade" role="dialog" id="SingleModal">
+                                                                    <div class="modal-dialog modal-md">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" ng-click="closesingle()">&times;</button>
+                                                                                <h4 class="modal-title">Single Skin</h4>
+                                                                            </div>
+                                                                            <div class="modal-body" ng-model="newSkinobj">
+                                                                                <div class="container-fluid">
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Profile:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <select class="form-control" ng-model="newSkinobj.Profile" ng-change="updateDisc()" ng-options="x for x in Profile"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Material:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            @*<select class="form-control" ng-model="newSkinobj.Material" ng-options="x for x in Material"></select>*@
+                                                                                            <select class="form-control" ng-model="newSkinobj.Material" ng-change="updateDisc()">
+                                                                                                <option ng-repeat="x in Material" value="{{x.tag}}">
+                                                                                                    <text>{{x.name}}</text>
+                                                                                                </option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Paint:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <select class="form-control" ng-model="newSkinobj.Paint" ng-change="updateDisc()" ng-options="x for x in Paint"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Thickness:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            @*<select class="form-control" ng-model="newSkinobj.Thickness" ng-change="updateDisc()" ng-options="x for x in Thickness"></select>*@
+                                                                                            <input class="form-control" type="number" name="newSkinobjThickness" ng-model="newSkinobj.Thickness" ng-change="updateDisc()" required />
+                                                                                            <span style="color:red" ng-show="myForm.newSkinobjThickness.$dirty && myForm.newSkinobjThickness.$invalid">
+                                                                                                <span ng-show="myForm.newSkinobjThickness.$error.required">Field is required.</span>
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Color:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <select class="form-control" ng-model="newSkinobj.Color" ng-change="changecolor()" style="color: black;font-size:large;font-weight:bolder;background-color:{{selectedcolor}} !important;">
+
+                                                                                                <option ng-repeat="x in Colors" value="{{x.tag}}" style="background-color:{{x.color}} !important;">
+                                                                                                    <text style="font-size:large;font-weight:bolder;">{{x.name}}</text>
+                                                                                                </option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="well col-lg-12 Marg">
+                                                                                        <h5 class="text-primary"><u>Description</u></h5>
+                                                                                        <div class="col-xs-12">
+                                                                                            <h4> {{newSkinobj.Description}}</h4>
+                                                                                        </div>
+                                                                                        <div class="col-xs-12">
+                                                                                            <select class="form-control" ng-model="newSkinobj.Description" ng-change="DescChange(newSkinobj.Description)">
+                                                                                                <option ng-repeat="x in building.PanelsAndInsulations.SingleSkinTypes.SingleSkin track by $index ">{{x.Description}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <div class="container-fluid">
+                                                                                    <div class="col-lg-6">
+                                                                                        <button class="form-control" ng-click="AddSingleSkin()" ng-disabled="myForm.newSkinobjThickness.$dirty && myForm.newSkinobjThickness.$invalid">
+                                                                                            Confirm
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="col-lg-6">
+                                                                                        <button ng-click="closesingle()" class="form-control">Close</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal fade" role="dialog" id="TempconModal">
+                                                                    <div class="modal-dialog modal-md">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" ng-click="closeTemcon()">&times;</button>
+                                                                                <h4 class="modal-title">Tempcon</h4>
+                                                                            </div>
+                                                                            <div class="modal-body" ng-model="newTempcon">
+                                                                                <div class="container-fluid">
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Type:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <select class="form-control" ng-model="newTempcon.SheetingType" ng-options="x for x in TempconType" ng-change="UpdateTempconDesc()"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Foem:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            @*<select class="form-control" ng-model="newobj.Material" ng-options="x for x in Material"></select>*@
+                                                                                            <select class="form-control" ng-model="newTempcon.Foam" ng-options="x for x in TempconFoem" ng-change="UpdateTempconDesc()"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Thickness:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <select class="form-control" type="number" ng-model="newTempcon.Thickness" ng-options="x for x in TempconThickness" ng-change="UpdateTempconDesc()"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Outer Panel:
+                                                                                            <h4>{{newTempcon.OuterPanel.Description}}</h4>
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <div class="col-lg-12 Marg">
+                                                                                                <div class="col-xs-4">
+                                                                                                    Material:
+                                                                                                </div>
+                                                                                                <div class="col-xs-8">
+                                                                                                    <select class="form-control" ng-model="newTempcon.OuterPanel.BaseMetal" ng-change="UpdateTempconDesc()">
+                                                                                                        <option ng-repeat="x in Material" value="{{x.name}}">
+                                                                                                            <text>{{x.name}}</text>
+                                                                                                        </option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-12 Marg">
+                                                                                                <div class="col-xs-4">
+                                                                                                    Paint:
+                                                                                                </div>
+                                                                                                <div class="col-xs-8">
+                                                                                                    <select class="form-control" ng-model="newTempcon.OuterPanel.PaintFinish" ng-change="UpdateTempconDesc()" ng-options="x for x in Paint"></select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-12 Marg">
+                                                                                                <div class="col-xs-4">
+                                                                                                    Thickness:
+                                                                                                </div>
+                                                                                                <div class="col-xs-8">
+                                                                                                    @*<select class="form-control" ng-model="newobj.Thickness" ng-change="updateDisc()" ng-options="x for x in Thickness"></select>*@
+                                                                                                    <input class="form-control" type="number" ng-model="newTempcon.OuterPanel.Thickness" ng-change="UpdateTempconDesc()" />
+                                                                                                    <span style="color:red" ng-show="myForm.RoofPanelWheight.$dirty && myForm.RoofPanelWheight.$invalid">
+                                                                                                        <span ng-show="myForm.RoofPanelWheight.$error.required">Field is required.</span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-12 Marg">
+                                                                                                <div class="col-xs-4">
+                                                                                                    Color:
+                                                                                                </div>
+                                                                                                <div class="col-xs-8">
+                                                                                                    <select class="form-control" ng-model="newTempcon.OuterPanel.Color" ng-change="changecolorOuter()" style="color: black;font-size:large;font-weight:bolder;background-color:{{selectedcolorOuter}} !important;">
+                                                                                                        <option ng-repeat="x in Colors" value="{{x.tag}}" style="background-color:{{x.color}} !important;">
+                                                                                                            <text style="font-size:large;font-weight:bolder;">{{x.name}}</text>
+                                                                                                        </option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            <div id="InnerPanel">
+                                                                                                Inner Panel:
+                                                                                                <div>
+                                                                                                    <h4>{{newTempcon.InnerPanel.Description}}</h4>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div id="InnerPanelF">
+                                                                                                Inner Panel:
+                                                                                                <div>
+                                                                                                    <h4>FRL</h4>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-xs-8" id="Inner">
+                                                                                            <div class="col-lg-12 Marg">
+                                                                                                <div class="col-xs-4">
+                                                                                                    Material:
+                                                                                                </div>
+                                                                                                <div class="col-xs-8">
+                                                                                                    <select class="form-control" ng-model="newTempcon.InnerPanel.BaseMetal" ng-change="UpdateTempconDesc()">
+                                                                                                        <option ng-repeat="x in Material" value="{{x.name}}">
+                                                                                                            <text>{{x.name}}</text>
+                                                                                                        </option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-12 Marg">
+                                                                                                <div class="col-xs-4">
+                                                                                                    Paint:
+                                                                                                </div>
+                                                                                                <div class="col-xs-8">
+                                                                                                    <select class="form-control" ng-model="newTempcon.InnerPanel.PaintFinish" ng-change="UpdateTempconDesc()" ng-options="x for x in Paint"></select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-12 Marg">
+                                                                                                <div class="col-xs-4">
+                                                                                                    Thickness:
+                                                                                                </div>
+                                                                                                <div class="col-xs-8">
+                                                                                                    @*<select class="form-control" ng-model="newobj.Thickness" ng-change="updateDisc()" ng-options="x for x in Thickness"></select>*@
+                                                                                                    <input class="form-control" type="number" ng-model="newTempcon.InnerPanel.Thickness" ng-change="UpdateTempconDesc()" />
+                                                                                                    <span style="color:red" ng-show="myForm.RoofPanelWheight.$dirty && myForm.RoofPanelWheight.$invalid">
+                                                                                                        <span ng-show="myForm.RoofPanelWheight.$error.required">Field is required.</span>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-lg-12 Marg">
+                                                                                                <div class="col-xs-4">
+                                                                                                    Color:
+                                                                                                </div>
+                                                                                                <div class="col-xs-8">
+                                                                                                    <select class="form-control" ng-model="newTempcon.InnerPanel.Color" ng-change="changecolorInner()" style="color: black;font-size:large;font-weight:bolder;background-color:{{selectedcolorInner}} !important;">
+
+                                                                                                        <option ng-repeat="x in Colors" value="{{x.tag}}" style="background-color:{{x.color}} !important;">
+                                                                                                            <text style="font-size:large;font-weight:bolder;">{{x.name}}</text>
+                                                                                                        </option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <div class="well col-lg-12 Marg">
+                                                                                        <h5 class="text-primary"><u>Description</u></h5>
+                                                                                        <div class="col-xs-12">
+                                                                                            <h4>{{newTempcon.Description}}</h4>
+                                                                                        </div>
+                                                                                        <div class="col-xs-12">
+                                                                                            <select class="form-control" ng-model="newTempconDes"
+                                                                                                    @*ng-options="item as item.Description for item in building.PanelsAndInsulations.TempconTypes.Tempcon track by $index "*@ ng-change="DescChangeTempcon(newTempconDes)">
+                                                                                                <option ng-repeat="x in building.PanelsAndInsulations.TempconTypes.Tempcon track by $index" value="{{x}}">{{x.Description}}</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <div class="container-fluid">
+                                                                                    <div class="col-lg-6">
+                                                                                        <button class="form-control" ng-click="AddTempcon()">
+                                                                                            Confirm
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="col-lg-6">
+                                                                                        <button ng-click="closeTemcon()" class="form-control">Close</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal fade" role="dialog" id="InsulationModal">
+                                                                    <div class="modal-dialog modal-md">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" ng-click="closeIns()">&times;</button>
+                                                                                <h4 class="modal-title">Insulation</h4>
+                                                                            </div>
+                                                                            <div class="modal-body" ng-model="newIns">
+                                                                                <div class="container-fluid">
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Type:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <select class="form-control" ng-model="newIns.Type" ng-change="UpdateInsulationType()" ng-options="x for x in InsType"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Density(Kg/m2):
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <select class="form-control" ng-model="newIns.Density" ng-change="UpdateInsulation()" ng-options="x for x in InsDensity"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Thickness(mm):
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <select class="form-control" ng-model="newIns.Thickness" ng-change="UpdateInsulation()" ng-options="x for x in InsThickness"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-lg-12 Marg">
+                                                                                        <div class="col-xs-4">
+                                                                                            Facing:
+                                                                                        </div>
+                                                                                        <div class="col-xs-8">
+                                                                                            <select class="form-control" ng-model="newIns.Facing" ng-change="UpdateInsulation()" ng-options="x for x in InsFacing"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="well col-lg-12 Marg">
+                                                                                        <h5 class="text-primary"><u>Description</u></h5>
+                                                                                        <div class="col-xs-12">
+                                                                                            <h4> {{newIns.Description}}</h4>
+                                                                                        </div>
+                                                                                        <select class="form-control" ng-model="newInsDes" ng-change="InsDescChange(newInsDes)">
+                                                                                            <option ng-repeat="x in building.PanelsAndInsulations.InsulationTypes.Insulation track by $index" value="{{x}}">{{x.Description}}</option>
+                                                                                        </select>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <div class="container-fluid">
+                                                                                    <div class="col-lg-6">
+                                                                                        <button class="form-control" ng-click="AddInsulation()">
+                                                                                            Confirm
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="col-lg-6">
+                                                                                        <button ng-click="closeIns()" class="form-control">Close</button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*Tab Remarks*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseR">Remarks </a>
+                            </h4>
+                        </div>
+                        <div id="collapseR" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4bR">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12  table-responsive">
+                                            Show Deleted: <input type="checkbox" ng-model="Deletedchecked" aria-label="Toggle ngShow"><br />
+                                            <table ng-show="building.Subsystems.RoofMonitors.Remarks.Remark" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-left text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Remark</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: left;">
+                                                    <tr ng-repeat="x in building.Subsystems.RoofMonitors.Remarks.Remark track by $index" ng-show="ShowDeleRemark(x.State)">
+                                                        <td style="width:50px;">
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-class="{'text-warning':(x.State == 'false') }" style="white-space:pre-line"><div ng-bind-html="x.Remark"></div></div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="RemarkUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button ng-show="(x.State == 'true')" type="button" ng-click="removeRemark($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetRemark()" class="btn btn-primary" data-toggle="modal" data-target="#RemarkModal">Add Remark</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Remarkhistory.length > 0" ng-click="UndoRemark()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="RemarkModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Remarkword}} Remark{{newRemark.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newRemark">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                <wysiwyg-edit content="newRemark.Remark" config="editorConfig"></wysiwyg-edit>
+                                                                                <span style="color:red" ng-show="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                                    <span ng-show="myForm.Remark.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-12">
+                                                                                {{512 - newRemark.Remark.length}} / 512
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateRemark()"
+                                                                            ng-disabled="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Remarks *@
+                    <br />
+                    <div class="container-fluid">
+                        <div class="text-center">
+                            <input id="submit" @*type="submit"*@ type="button" ng-click="SaveData()" value="Save" class="btn-default form-control"
+                                   ng-disabled="" />
+                        </div>
+                    </div>
+
+                </div> @*EndContainer*@
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/Scripts/Site/SubSystems/RoofMonitors.js"></script>
+<script src="~/Scripts/Site/spin.min.js"></script>
+
+<script>
+    var opts = {
+        lines: 15 // The number of lines to draw
+        , length: 28 // The length of each line
+        , width: 14 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 0.50 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000' // #rgb or #rrggbb or array of colors
+        , opacity: 0.25 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    }
+    var target = document.getElementById('foo')
+    var spinner = new Spinner(opts).spin(target);
+</script>

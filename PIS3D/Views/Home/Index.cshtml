@@ -1,0 +1,1431 @@
+﻿@model IEnumerable<PIS3D.Models.BuildingArea>
+@using PIS3D.Models
+
+@*   *@
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    body {
+        padding: 10px;
+    }
+
+    .Marg {
+        margin-top: 10px;
+    }
+
+    /* change border radius for the tab , apply corners on top*/
+
+    #exTab3 .nav-pills > li > a {
+        border-radius: 4px 4px 0 0;
+    }
+
+    #exTab3 .tab-content {
+        color: black;
+        padding: 5px 15px;
+        border-radius: 0px 0px 30px 30px;
+        border: 2px solid #5598D4;
+        padding: 20px;
+    }
+</style>
+@*<h2>Building Area</h2>*@
+
+<form ng-controller="validateCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div>
+        <div id="foo" ng-show="Loading" style="margin-top:20%;">
+        </div>
+        <div ng-hide="Loading" id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Building Parameters</h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Summary</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="tab-pane active" id="5b">
+
+                                    <div class="col-lg-12">
+                                        <div class="well" style="font-size:12px;">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <h6 class="text-primary">Information</h6>
+                                                    <div class="col-lg-6">
+                                                        ID : {{building.GeneralData.ID}}<br />
+                                                        Width Refrance : {{building.GeneralData.WidthReference}}<br />
+                                                        Length Reference : {{building.GeneralData.LengthReference}}<br />
+                                                        Height Reference : {{building.GeneralData.HeightReference}}<br />
+                                                        <h6> <strong>Lentgh = {{building.GeneralData.Length}}</strong></h6>
+                                                        <h6> <strong> Width  = {{building.GeneralData.Width}}</strong></h6>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        Frame Type : {{building.GeneralData.FrameType}}<br />
+                                                        Fixed Base Allowed : {{building.GeneralData.FixedBaseAllowed}}<br />
+                                                        <h6 class="text-primary">Future Extenssions</h6>
+                                                        Longitudinal Direction : {{building.GeneralData.FutureExtension.LongitudinalDirection}}<br />
+                                                        Transverse Direction : {{building.GeneralData.FutureExtension.TransverseDirection}}<br />
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <h6 class="text-primary">Location</h6>
+                                                        <div class="col-lg-6">
+                                                            <h6 class="text-primary">Along Building Width</h6>
+                                                            <div class="col-lg-6">
+                                                                From Gl : {{building.GeneralData.Location.AlongBuildingWidth.FromGL}}
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                To Gl : {{building.GeneralData.Location.AlongBuildingWidth.ToGL}}
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                Axes = {{building.GeneralData.Location.AlongBuildingWidth.Axes}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <h6 class="text-primary">Along Building Length</h6>
+                                                            <div class="col-lg-6">
+                                                                From Gl : {{building.GeneralData.Location.AlongBuildingLength.FromGL}}
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                To Gl : {{building.GeneralData.Location.AlongBuildingLength.ToGL}}
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                Axes = {{building.GeneralData.Location.AlongBuildingLength.Axes}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <h6 class="text-primary">Geometry </h6>
+                                            @*Bays*@
+
+                                            @*Bay Table*@
+                                            <div class="col-lg-3">
+                                                <h5 class="text-info">BAYS</h5>
+                                                <table st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                    <thead class="text-center text-info">
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Length (m)</th>
+                                                            <th>Bracing Available</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr id="BayRepeater" ng-repeat="x in building.GeneralData.Bays.Bay track by $index">
+                                                            <td>
+                                                                <div>{{x.ID}}</div>
+                                                            </td>
+                                                            <td>
+                                                                {{ x.Width }}
+                                                            </td>
+                                                            <td>
+                                                                <div><input ng-disabled="true" type="checkbox" ng-model="x.BracingAvailable" /></div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                @*Bay Spacing and Lengh*@
+                                                <div class="row">
+                                                    <div class="container-fluid">
+                                                        <br />
+                                                        <h6><strong> Bays Spacing :  {{GetBaysProfile()}} </strong></h6>
+                                                    </div>
+                                                </div>
+                                                @*End*@
+                                            </div>
+                                            @*End Bay*@
+
+                                            @*Frame*@
+                                            <div class="col-lg-3 table-responsive">
+                                                <h5 class="text-info">Frames</h5>
+                                                <table st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                    <thead class="text-center text-info">
+                                                        <tr>
+                                                            <th>Frame ID</th>
+                                                            <th>Profile ID</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="FrameRepeater">
+                                                        <tr ng-repeat="x in building.GeneralData.Frames.FrameProfile  track by $index">
+                                                            <td>
+                                                                <div>{{x.ID}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div>{{x.ProfileNo}}</div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            @*End Frame*@
+
+                                            @*Profiles*@
+                                            <div class="col-lg-6">
+                                                <h5 class="text-info">Profiles</h5>
+                                                <div class="container">
+                                                    <div class="row" ng-repeat="p in building.GeneralData.Profiles.Profile track by p.ID">
+                                                        <div class="container-fluid">
+                                                            <div class="col-lg-6">
+                                                                <div class="col-lg-12">
+                                                                    <h5 class="text-info">Profile No {{p.ID}} </h5>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-12" ng-repeat="g in p.GablesWidthModules.GableWidthModules track by g.GableNo">
+                                                                        <div class="container-fluid" style="margin-bottom: 7px;">
+                                                                            <div class="col-lg-3" ng-repeat="gn in g.GableNo">
+                                                                                Gable # : {{gn}}
+                                                                            </div>
+                                                                            <div class="col-lg-9" ng-repeat="wg in g.WidthModules track by wg.Width">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-8" style="word-wrap: break-word;">
+                                                                                        Width Module : {{wg.Width.toString()}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*End Profiles*@
+
+                                            @*End Bays*@
+
+                                            @*Gables*@
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <h5 class="text-info col-lg-12">Gables</h5>
+                                                    <div class="col-lg-12 table-responsive">
+                                                        <table st-table="rowCollection" class="table table-sm table-responsive table-bordered text-center">
+                                                            <thead class="text-center text-info">
+                                                                <tr>
+                                                                    <th>ID</th>
+                                                                    <th>Width (m)</th>
+                                                                    <th>Ridge Distance (m)</th>
+                                                                    <th>Left Col Base (m)</th>
+                                                                    <th>Left Height (m)</th>
+                                                                    <th>Left Slope (:10)</th>
+                                                                    <th>Right Col Base (m)</th>
+                                                                    <th>Right Height (m)</th>
+                                                                    <th>Right Slope (:10)</th>
+                                                                    <th>NS Eave Cond</th>
+                                                                    <th>NS Downspouts</th>
+                                                                    <th>Fs Eave Cond</th>
+                                                                    <th>FS Downspouts</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr id="GableRepeater" ng-repeat="x in building.GeneralData.Gables.Gable track by $index">
+                                                                    <td>
+                                                                        <div>{{x.ID}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.Width}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.RidgeDistance}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.LeftColBase}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.LeftHeight}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.LeftSlope}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.RightColBase}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.RightHeight}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.RightSlope}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.EaveCondition.NearSide.EaveConditionEnum}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.EaveCondition.NearSide.Downspouts}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.EaveCondition.FarSide.EaveConditionEnum}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.EaveCondition.FarSide.Downspouts}}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                    </div>
+                                                </div>
+                                                <br />
+                                            </div>
+                                            @*End Gables*@
+                                            <div class="container-fluid">
+                                                <h6 class="text-primary"> End Walls </h6>
+                                                <div class="col-lg-6">
+                                                    LEW<br />
+                                                    Type:{{building.GeneralData.EndWalls.LEW.Type}}
+                                                    <div class="container-fluid" ng-repeat="g in building.GeneralData.EndWalls.LEW.Profile.GablesWidthModules.GableWidthModules track by g.GableNo" style="margin-top:10px;">
+                                                        <div class="row">
+                                                            <div class="col-lg-3" ng-repeat="gn in g.GableNo">
+                                                                <strong> Gable # : </strong> {{gn}}
+                                                            </div>
+                                                            <div class="col-lg-9" ng-repeat="wg in g.WidthModules track by wg.Width">
+                                                                <div class="row">
+                                                                    <div class="col-lg-8" style="word-wrap: break-word;">
+                                                                        <strong> Width Module : </strong> {{wg.Width.toString()}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    REW<br />
+                                                    Type:{{building.GeneralData.EndWalls.REW.Type}}
+                                                    <div class="container-fluid" ng-repeat="g in building.GeneralData.EndWalls.REW.Profile.GablesWidthModules.GableWidthModules track by g.GableNo" style="margin-top:10px;">
+                                                        <div class="row">
+                                                            <div class="col-lg-3" ng-repeat="gn in g.GableNo">
+                                                                <strong> Gable # : </strong> {{gn}}
+                                                            </div>
+                                                            <div class="col-lg-9" ng-repeat="wg in g.WidthModules track by wg.Width">
+                                                                <div class="row">
+                                                                    <div class="col-lg-8" style="word-wrap: break-word;">
+                                                                        <strong> Width Module : </strong> {{wg.Width.toString()}}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    @*Info Tab*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Information</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="1b">
+                                    <div class="row">
+                                        <div class="col-lg-12 text-info">
+                                            ID :
+                                            {{building.GeneralData.ID}}
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            Width Refrance :
+                                            <select class="form-control" ng-model="building.GeneralData.WidthReference" ng-options="x for x in WidthReference"></select>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            Length Reference :
+                                            <select class="form-control" ng-model="building.GeneralData.LengthReference" ng-options="x for x in LengthReference"></select>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            Height Reference :
+                                            <select class="form-control" ng-model="building.GeneralData.HeightReference" ng-options="x for x in HeightReference"></select>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            Frame Type :
+                                            <select class="form-control" ng-model="building.GeneralData.FrameType" ng-options="x for x in FrameType"></select>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            Fixed Base Allowed :
+                                            <input ng-model="building.GeneralData.FixedBaseAllowed" type="checkbox">
+                                            <tt class="alert-success">{{building.GeneralData.FixedBaseAllowed}}</tt><br />
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-lg-12 text-info">Future Extenssions</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            Longitudinal Direction :
+                                            <input ng-model="building.GeneralData.FutureExtension.LongitudinalDirection" type="checkbox">
+                                            <tt class="alert-success"> {{building.GeneralData.FutureExtension.LongitudinalDirection}}</tt><br />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            Transverse Direction :
+                                            <input ng-model="building.GeneralData.FutureExtension.TransverseDirection" type="checkbox">
+                                            <tt class="alert-success"> {{building.GeneralData.FutureExtension.TransverseDirection}}</tt><br />
+                                        </div>
+                                    </div>
+
+                                </div> @*End Tab Info*@
+                            </div>
+                        </div>
+                    </div>
+
+                    @*tab for Location*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Location</a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="2b">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="col-lg-12 text-primary">Along Building Width</div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    From Gl:<br>
+                                                    <input type="text" class="form-control" name="WidthFromGL" ng-model="building.GeneralData.Location.AlongBuildingWidth.FromGL" required>
+                                                    <span style="color:red" ng-show="myForm.WidthFromGL.$dirty && myForm.WidthFromGL.$invalid">
+                                                        <span ng-show="myForm.WidthFromGL.$error.required">Field is required.</span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    To Gl:<br>
+                                                    <input type="text" class="form-control" name="WidthToGL" ng-model="building.GeneralData.Location.AlongBuildingWidth.ToGL" required>
+                                                    <span style="color:red" ng-show="myForm.WidthToGL.$dirty && myForm.WidthToGL.$invalid">
+                                                        <span ng-show="myForm.WidthToGL.$error.required">Field is required.</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <button class="form-control btn-primary" style="width:auto" ng-click="FillData()">Fill Axes</button>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <button type="button" ng-click="EditAxes()" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit Axes</button>
+                                                </div>
+                                                <div class="modal fade" role="dialog" id="myModal">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Axes</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item" ng-repeat="x in array">
+                                                                        {{x}}
+                                                                        <span ng-click="removeItem($index)" style="cursor:pointer;" class="badge">x</span>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="container-fluid">
+                                                                    <div class="">
+                                                                        <div class="col-lg-7">
+                                                                            <input ng-model="addMe" class="form-control">
+                                                                        </div>
+                                                                        <div class="col-lg-5">
+                                                                            <button ng-click="addItem()" class="btn btn-default">Add</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="text-danger">{{errortext}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" ng-click="ConfirmData()" class="btn btn-default" data-dismiss="modal">Confirm</button>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 nav-justified"><h4>Axes = {{building.GeneralData.Location.AlongBuildingWidth.Axes}}</h4></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="row">
+                                                <div class="col-lg-12 text-primary">Along Building Length</div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    From Gl:<br>
+                                                    <input type="text" class="form-control" name="LengthFromGL" ng-model="building.GeneralData.Location.AlongBuildingLength.FromGL" required>
+                                                    <span style="color:red" ng-show="myForm.LengthFromGL.$dirty && myForm.LengthFromGL.$invalid">
+                                                        <span ng-show="myForm.LengthFromGL.$error.required">Field is required.</span>
+                                                    </span>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    To Gl:<br>
+                                                    <input type="text" class="form-control" name="LengthToGL" ng-model="building.GeneralData.Location.AlongBuildingLength.ToGL" required>
+                                                    <span style="color:red" ng-show="myForm.LengthToGL.$dirty && myForm.LengthToGL.$invalid">
+                                                        <span ng-show="myForm.LengthToGL.$error.required">Field is required.</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <button class="form-control btn-primary" style="width:auto" ng-click="FillData2()">Fill Axes</button>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <button type="button" ng-click="EditAxes2()" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Edit Axes</button>
+                                                </div>
+                                                <div class="modal fade" role="dialog" id="myModal2">
+                                                    <div class="modal-dialog modal-sm">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">Axes</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item" ng-repeat="x in array2">
+                                                                        {{x}}
+                                                                        <span ng-click="removeItem2($index)" style="cursor:pointer;" class="badge">x</span>
+                                                                    </li>
+                                                                </ul>
+                                                                <div class="container-fluid">
+                                                                    <div class="">
+                                                                        <div class="col-lg-7">
+                                                                            <input ng-model="addMe2" class="form-control">
+                                                                        </div>
+                                                                        <div class="col-lg-5">
+                                                                            <button ng-click="addItem2()" class="btn btn-default">Add</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p class="text-danger">{{errortext}}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" ng-click="ConfirmData2()" class="btn btn-default" data-dismiss="modal">Confirm</button>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 nav-justified"><h4>Axes = {{building.GeneralData.Location.AlongBuildingLength.Axes}}</h4></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>@*End Tab Location *@
+
+                    @*Tab Geometry*@
+                    <div class="panel panel-primary" ng-controller="GeometryCtrl">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Geometry</a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="3b">
+                                    @*Bays*@
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                @*Bay Table*@
+                                                <div class="col-lg-3 table-responsive">
+                                                    <h4 class="text-info">BAYS</h4>
+                                                    <table st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                        <thead class="text-center text-info">
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>Length (m)</th>
+                                                                <th>Bracing Available</th>
+                                                                @*<th>Edit</th>*@
+                                                                @*<th>Delet</th>*@
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr id="BayRepeater" ng-repeat="x in building.GeneralData.Bays.Bay track by $index" ng-keypress="updateBay($event)" ng-keydown="update($event)">
+                                                                <td>
+                                                                    <div>{{x.ID}}</div>
+                                                                    @*<div ng-show="editingData[x.ID]"><input type="text" ng-model="x.ID" /></div>*@
+                                                                </td>
+                                                                <td>
+                                                                    @*{{ x.Width }}*@
+                                                                    <div ng-hide="editingData[x.ID]">{{x.Width}}</div>
+                                                                    <div ng-show="editingData[x.ID]"><input type="number" min="0" class="form-control input-sm" ng-model="x.Width" /></div>
+                                                                </td>
+                                                                <td>
+                                                                    @*<input type="checkbox" ng-model="x.BracingAvailable" />*@
+                                                                    <div><input type="checkbox" ng-model="x.BracingAvailable" /></div>
+                                                                </td>
+                                                                @*<td>
+                                                                    <button ng-hide="editingData[x.ID]" ng-click="modify(x)" class="btn btn-sm btn-primary">
+                                                                    <i class="glyphicon glyphicon-edit"></i>
+                                                                    </button>
+                                                                    <button class="btn btn-sm btn-primary" ng-show="editingData[x.ID]" ng-click="update(x)">Update</button>
+                                                                    </td>*@
+                                                                <td style="width:50px;">
+                                                                    <button type="button" ng-click="BAYmodify(x)" class="btn btn-sm">
+                                                                        <i class="glyphicon glyphicon-pencil">
+                                                                        </i>
+                                                                    </button>
+                                                                </td>
+                                                                <td>
+                                                                    <button ng-if="$last" type="button" ng-click="removeBay($index)" class="btn btn-sm btn-danger">
+                                                                        <i class="glyphicon glyphicon-remove">
+                                                                        </i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <button type="button" ng-click="ResetBay()" class="btn btn-primary" data-toggle="modal" data-target="#BayModal">Add Bay</button>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <button class="btn btn-warning" ng-show="Bayhistory.length > 0" ng-click="UndoBay()">Undo Delete</button>
+                                                        </div>
+                                                    </div>
+                                                    @*Bay Spacing and Lengh*@
+                                                    <div class="row">
+                                                        <div class="container-fluid">
+                                                            <br />
+                                                            <h4> <strong>Lentgh = {{building.GeneralData.Length}}</strong></h4>
+                                                            <h4><strong> Bays Spacing :  {{GetBaysProfile()}} </strong></h4>
+                                                        </div>
+                                                    </div>
+                                                    @*End*@
+                                                </div>
+                                                @*End Bay*@
+
+                                                @*Frame*@
+                                                <div class="col-lg-3 table-responsive">
+                                                    <h4 class="text-info">Frames</h4>
+                                                    <table st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                        <thead class="text-center text-info">
+                                                            <tr>
+                                                                <th>Frame ID</th>
+                                                                <th>Profile ID</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="FrameRepeater">
+                                                            <tr ng-repeat="x in building.GeneralData.Frames.FrameProfile  track by $index" ng-keypress="updateFrame($event)" ng-keydown="update($event)">
+                                                                <td>
+                                                                    <div>{{x.ID}}</div>
+                                                                </td>
+                                                                <td style="width:50px;">
+                                                                    <button type="button" ng-click="Framemodify(x)" class="btn btn-sm">
+                                                                        <i class="glyphicon glyphicon-pencil">
+                                                                        </i>
+                                                                    </button>
+                                                                </td>
+                                                                <td>
+                                                                    <div ng-hide="editingFrameData[x.ID]">{{x.ProfileNo}}</div>
+                                                                    <div ng-show="editingFrameData[x.ID]">
+                                                                        <select class="form-control" ng-model="x.ProfileNo" ng-value="x.ProfileNo" ng-options="ProfileNo.ID as ProfileNo.ID for ProfileNo in building.GeneralData.Profiles.Profile track by ProfileNo.ID"></select>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                @*End Frame*@
+
+
+                                                <div class="col-lg-6">
+                                                    @*Profiles*@
+                                                    <h4 class="text-info">Profiles</h4>
+                                                    <div class="container-fluid">
+                                                        <button class="btn btn-primary" ng-click="AddProfile()">Add Profile</button>
+                                                    </div>
+                                                    <div class="container">
+                                                        <div class="row" ng-repeat="p in building.GeneralData.Profiles.Profile track by p.ID">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="col-lg-11">
+                                                                            <h5 class="text-info">Profile No {{p.ID}} </h5>
+                                                                        </div>
+                                                                        <div class="col-lg-1">
+                                                                            <button class="btn-danger" ng-if="$last" ng-click="RemoveProfile($index)">x</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12" ng-repeat="g in p.GablesWidthModules.GableWidthModules track by g.GableNo">
+                                                                            <div class="container-fluid" style="margin-bottom: 7px;">
+                                                                                <div class="col-lg-3" ng-repeat="gn in g.GableNo">
+                                                                                    Gable # : {{gn}}
+                                                                                </div>
+                                                                                <div class="col-lg-9" ng-repeat="wg in g.WidthModules track by wg.Width">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-8" style="word-wrap: break-word;">
+                                                                                            Width Module : {{wg.Width.toString()}}
+                                                                                        </div>
+                                                                                        <div class="col-lg-4">
+                                                                                            <button class="btn btn-primary" data-toggle="modal" data-target="#ProfileModal" ng-click="EditWidth(wg.Width , p.ID , g.GableNo )">Edit Width</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <button class="btn btn-warning" ng-show="Profilehistory.length > 0" ng-click="UndoProfile()">Undo Delete</button>
+                                                    </div>
+
+                                                    <div class="modal fade" role="dialog" id="ProfileModal">
+                                                        <div class="modal-dialog modal-sm">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">Widt Module</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <ul class="list-group">
+                                                                        <li class="list-group-item" ng-repeat="x in ProfileArr track by $index">
+                                                                            {{x}}
+                                                                            <span ng-click="removeProfile($index)" style="cursor:pointer;" class="badge">x</span>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="container-fluid">
+                                                                        <div class="">
+                                                                            <div class="col-lg-12">
+                                                                                <input type="number" ng-model="addMeProfile" class="form-control">
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">
+                                                                                    Quantity
+                                                                                </div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input type="number" min="1" max="10" ng-model="QuantityProfile" class="form-control">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <button ng-click="addProfileArr()" class="btn btn-default">Add</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <p class="text-danger">{{errortext}}</p>
+                                                                        <div class="container-fluid">
+                                                                            <p class="text-warning"> Sum  = {{ProfileArrSum(ProfileArr)}}</p>
+                                                                            <p class="text-warning"> Gable Width =  {{GableWidthProfile()}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button data-dismiss="modal" type="button" ng-click="ConfirmProfile(ProfileArr)" class="btn btn-default"
+                                                                            ng-disabled="ProfileArrSum(ProfileArr) != GableWidthProfile()">
+                                                                        Confirm
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    @*End Profiles*@
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div class="modal fade" role="dialog" id="BayModal">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Axes</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container-fluid">
+                                                            <div class="col-xs-10">
+                                                                ID : {{BayNewID}}
+                                                            </div>
+                                                            <div class="col-xs-12"></div>
+                                                            <div class="col-xs-10">
+                                                                Width (m):
+                                                                <input class="form-control" type="number" min="0" name="BayNewWidth" ng-model="BayNewWidth" required />
+                                                                <span style="color:red" ng-show="myForm.BayNewWidth.$dirty && myForm.BayNewWidth.$invalid">
+                                                                    <span ng-show="myForm.BayNewWidth.$error.required">Width Required </span>
+                                                                </span>
+                                                            </div>
+                                                            <br />
+                                                            <div class="col-xs-10">
+                                                                Bracing Available :
+                                                                <input type="checkbox" ng-model="BayNewBracingAvailable" />
+                                                            </div>
+                                                            <div class="col-xs-10">
+                                                                Quantity :
+                                                                <input class="form-control" type="number" ng-init="1" min="1" max="10" name="Bayquantity" ng-model="Bayquantity" required />
+                                                                <span style="color:red" ng-show="myForm.Bayquantity.$dirty && myForm.Bayquantity.$invalid">
+                                                                    <span ng-show="myForm.Bayquantity.$error.required">Quantity Required </span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="container-fluid">
+                                                            <div class="col-lg-6">
+                                                                <button data-dismiss="modal" class="form-control" ng-click="AddBay()"
+                                                                        ng-disabled="myForm.BayNewWidth.$dirty && myForm.BayNewWidth.$invalid
+                                                                        || myForm.Bayquantity.$dirty && myForm.Bayquantity.$invalid">
+                                                                    Confirm
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <button data-dismiss="modal" class="form-control">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*End Bays*@
+                                    <hr />
+                                    @*Gables*@
+                                    <h4 class="text-info">Gables</h4>
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-12 table-responsive">
+                                                <table st-table="rowCollection" class="table table-sm table-responsive table-bordered text-center">
+                                                    <thead class="text-center text-info">
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Width (m)</th>
+                                                            <th>Ridge Distance (m)</th>
+                                                            <th>Left Col Base (m)</th>
+                                                            <th>Left Height (m)</th>
+                                                            <th>Left Slope (:10)</th>
+                                                            <th>Right Col Base (m)</th>
+                                                            <th>Right Height (m)</th>
+                                                            <th>Right Slope (:10)</th>
+                                                            <th>NS Eave Cond</th>
+                                                            <th>NS Downspouts</th>
+                                                            <th>Fs Eave Cond</th>
+                                                            <th>FS Downspouts</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr id="GableRepeater" ng-repeat="x in building.GeneralData.Gables.Gable track by $index" ng-keypress="updateGable($event)" ng-keydown="update($event)">
+                                                            <td>
+                                                                <div>{{x.ID}}</div>
+                                                                @*<div ng-show="editingData[x.ID]"><input type="text" ng-model="x.ID" /></div>*@
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.Width}}</div>
+                                                                <div ng-show="editingGableData[x.ID]"><input type="number" class="form-control input-sm" ng-model="x.Width" /></div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.RidgeDistance}}</div>
+                                                                <div ng-show="editingGableData[x.ID]"><input type="number" min="0" class="form-control input-sm" ng-model="x.RidgeDistance" /></div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.LeftColBase}}</div>
+                                                                <div ng-show="editingGableData[x.ID]"><input type="number" min="0" class="form-control input-sm" ng-model="x.LeftColBase" /></div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.LeftHeight}}</div>
+                                                                <div ng-show="editingGableData[x.ID]"><input type="number" min="0" class="form-control input-sm" ng-model="x.LeftHeight" /></div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.LeftSlope}}</div>
+                                                                <div ng-show="editingGableData[x.ID]"><input type="number" class="form-control input-sm" ng-model="x.LeftSlope" ng-change="x.RightSlope = -1*x.LeftSlope" /></div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.RightColBase}}</div>
+                                                                <div ng-show="editingGableData[x.ID]"><input type="number" min="0" class="form-control input-sm" ng-model="x.RightColBase" /></div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.RightHeight}}</div>
+                                                                <div ng-show="editingGableData[x.ID]"><input type="number" min="0" class="form-control input-sm" ng-model="x.RightHeight" /></div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.RightSlope}}</div>
+                                                                <div ng-show="editingGableData[x.ID]"><input type="number" class="form-control input-sm" ng-model="x.RightSlope" disabled /></div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.EaveCondition.NearSide.EaveConditionEnum}}</div>
+                                                                <div ng-show="editingGableData[x.ID]">
+                                                                    <select class="form-control" ng-model="x.EaveCondition.NearSide.EaveConditionEnum" ng-options="x for x in EaveCond"></select>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.EaveCondition.NearSide.Downspouts}}</div>
+                                                                <div ng-show="editingGableData[x.ID]">
+                                                                    <select class="form-control" ng-model="x.EaveCondition.NearSide.Downspouts" ng-options="x for x in DownspoutsCond"></select>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.EaveCondition.FarSide.EaveConditionEnum}}</div>
+                                                                <div ng-show="editingGableData[x.ID]">
+                                                                    <select class="form-control" ng-model="x.EaveCondition.FarSide.EaveConditionEnum" ng-options="x for x in EaveCond"></select>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingGableData[x.ID]">{{x.EaveCondition.FarSide.Downspouts}}</div>
+                                                                <div ng-show="editingGableData[x.ID]">
+                                                                    <select class="form-control" ng-model="x.EaveCondition.FarSide.Downspouts" ng-options="x for x in DownspoutsCond"></select>
+                                                                </div>
+                                                            </td>
+                                                            <td style="width:50px;">
+                                                                <button type="button" ng-click="Gablemodify(x)" class="btn btn-sm">
+                                                                    <i class="glyphicon glyphicon-pencil">
+                                                                    </i>
+                                                                </button>
+                                                            </td>
+                                                            <td>
+                                                                <button ng-if="$last" type="button" ng-click="removeGable($index)" class="btn btn-sm btn-danger">
+                                                                    <i class="glyphicon glyphicon-remove">
+                                                                    </i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <button class="btn btn-warning" ng-show="Gablehistory.length > 0" ng-click="UndoGable()">Undo Delete</button>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <button type="button" ng-click="ResetGable()" class="btn btn-primary" data-toggle="modal" data-target="#GableModal">Add Gable</button>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <h4> <strong> Width  = {{building.GeneralData.Width}}</strong></h4>
+                                            </div>
+                                        </div>
+
+                                        <br />
+                                        <div class="modal fade" role="dialog" id="GableModal">
+                                            <div class="modal-dialog modal-lg" style="width:1100px !important;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Gable</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container-fluid">
+                                                            <div class="col-lg-4" style="padding-left:0px !important;padding-right:0px !important;">
+                                                                <div class="col-lg-12" style="margin-top:10px;">
+                                                                    <div class="col-lg-12">
+                                                                        <strong> ID : {{GableNewID}}</strong>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-top:10px;">
+                                                                    <div class="col-lg-6">
+                                                                        <strong>Width (m)</strong>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <input class="form-control" type="number" min="0" ng-model="GableNewWidth" name="GableNewWidth" required />
+                                                                        <span style="color:red" ng-show="myForm.GableNewWidth.$dirty && myForm.GableNewWidth.$invalid">
+                                                                            <span ng-show="myForm.GableNewWidth.$error.required">Field is required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-top:10px;">
+                                                                    <div class="col-lg-6">
+                                                                        <strong> Ridge Distance (m) </strong>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <input class="form-control" type="number" min="0" ng-model="GableNewRidgeDistance" name="GableNewRidgeDistance" required />
+                                                                        <span style="color:red" ng-show="myForm.GableNewRidgeDistance.$dirty && myForm.GableNewRidgeDistance.$invalid">
+                                                                            <span ng-show="myForm.GableNewRidgeDistance.$error.required">Field is required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-top:10px;">
+                                                                    <div class="col-lg-6">
+                                                                        <strong> Left Col Base (m)</strong>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <input class="form-control" type="number" min="0" ng-model="GableNewLeftColBase" name="GableNewLeftColBase" required />
+                                                                        <span style="color:red" ng-show="myForm.GableNewLeftColBase.$dirty && myForm.GableNewLeftColBase.$invalid">
+                                                                            <span ng-show="myForm.GableNewLeftColBase.$error.required">Field is required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-top:10px;">
+                                                                    <div class="col-lg-6">
+                                                                        <strong>Left Height (m)</strong>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <input class="form-control" type="number" min="0" ng-model="GableNewLeftHeight" name="GableNewLeftHeight" required />
+                                                                        <span style="color:red" ng-show="myForm.GableNewLeftHeight.$dirty && myForm.GableNewLeftHeight.$invalid">
+                                                                            <span ng-show="myForm.GableNewLeftHeight.$error.required">Field is required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-top:10px;">
+                                                                    <div class="col-lg-6">
+                                                                        <strong>Left Slope (:10)</strong>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <input class="form-control" type="number" ng-model="GableNewLeftSlope" required name="GableNewLeftSlope" />
+                                                                        <span style="color:red" ng-show="myForm.GableNewLeftSlope.$dirty && myForm.GableNewLeftSlope.$invalid">
+                                                                            <span ng-show="myForm.GableNewLeftSlope.$error.required">Field is required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-top:10px;">
+                                                                    <div class="col-lg-6">
+                                                                        <strong>Right Col Base (m)</strong>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <input class="form-control" type="number" min="0" ng-model="GableNewRightColBase" required name="GableNewRightColBase" />
+                                                                        <span style="color:red" ng-show="myForm.GableNewRightColBase.$dirty && myForm.GableNewRightColBase.$invalid">
+                                                                            <span ng-show="myForm.GableNewRightColBase.$error.required">Field is required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-top:10px;">
+                                                                    <div class="col-lg-6">
+                                                                        <strong> Right Height (m)</strong>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <input class="form-control" type="number" min="0" name="GableNewRightHeight" ng-model="GableNewRightHeight" required />
+                                                                        <span style="color:red" ng-show="myForm.GableNewRightHeight.$dirty && myForm.GableNewRightHeight.$invalid">
+                                                                            <span ng-show="myForm.GableNewRightHeight.$error.required">Field is required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-12" style="margin-top:10px;">
+                                                                    <div class="col-lg-6">
+                                                                        <strong>Right Slope (:10)</strong>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <input class="form-control" disabled type="number" min="0" ng-model="-1* GableNewLeftSlope" required name="GableNewrightSlope" />
+                                                                        <span style="color:red" ng-show="myForm.GableNewrightSlope.$dirty && myForm.GableNewrightSlope.$invalid">
+                                                                            <span ng-show="myForm.GableNewrightSlope.$error.required">Field is required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <img class="img-responsive" src="~/Image/gab.png" />
+                                                            </div>
+                                                            <div class="col-lg-12" style="margin-top:10px;">
+                                                                <div class="panel panel-primary">
+                                                                    <div class="panel-heading">
+                                                                        Eave Condition
+                                                                    </div>
+                                                                    <div class="panel-body">
+                                                                        <div class="col-lg-6">
+                                                                            <div class="col-lg-6">
+                                                                                <strong>Near Side</strong>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <select class="form-control" ng-model="GableNewNearSide" ng-options="x for x in EaveCond"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6">
+                                                                            <div class="col-lg-6">
+                                                                                <strong>Downspouts</strong>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <select class="form-control" required ng-model="GableNewNearSideDownspouts" ng-options="x for x in DownspoutsCond"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6" style="margin-top:10px;">
+                                                                            <div class="col-lg-6">
+                                                                                <strong>Far Side</strong>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <select class="form-control" ng-model="GableNewFarSide" ng-options="x for x in EaveCond"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6" style="margin-top:10px;">
+                                                                            <div class="col-lg-6">
+                                                                                <strong>Downspouts</strong>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+                                                                                <select class="form-control" required ng-model="GableNewFarSideDownspouts" ng-options="x for x in DownspoutsCond"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class="container-fluid">
+                                                            <div class="col-lg-6">
+                                                                <button data-dismiss="modal" class="form-control" ng-click="AddGable()"
+                                                                        ng-disabled="myForm.GableNewRidgeDistance.$dirty && myForm.GableNewRidgeDistance.$invalid
+                                                                        || myForm.GableNewWidth.$dirty && myForm.GableNewWidth.$invalid
+                                                                        || myForm.GableNewLeftColBase.$dirty && myForm.GableNewLeftColBase.$invalid
+                                                                        || myForm.GableNewLeftHeight.$dirty && myForm.GableNewLeftHeight.$invalid
+                                                                        || myForm.GableNewRightHeight.$dirty && myForm.GableNewRightHeight.$invalid
+                                                                        || myForm.GableNewRightColBase.$dirty && myForm.GableNewRightColBase.$invalid
+                                                                        || myForm.GableNewLeftSlope.$dirty && myForm.GableNewLeftSlope.$invalid
+                                                                        || myForm.GableNewrightSlope.$dirty && myForm.GableNewrightSlope.$invalid">
+                                                                    Confirm
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <button data-dismiss="modal" class="form-control">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    @*End Gables*@
+                                    <hr />
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>@*End Tab Geometry *@
+
+
+                    @*Tab End Walls*@
+                    <div class="panel panel-primary" ng-controller="EndWallsCtrl">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">End Walls  </a>
+                            </h4>
+                        </div>
+                        <div id="collapse4" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4b">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <h3>LEW</h3>
+                                                <div class="col-lg-12">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-lg-1">
+                                                                <strong> Type</strong>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <select class="form-control" ng-model="building.GeneralData.EndWalls.LEW.Type" ng-options="x for x in EndWallsType"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10" style="margin-top:10px;">
+                                                    <div class="container-fluid" ng-repeat="g in building.GeneralData.EndWalls.LEW.Profile.GablesWidthModules.GableWidthModules track by g.GableNo" style="margin-top:10px;">
+                                                        <div class="row">
+                                                            <div class="col-lg-3" ng-repeat="gn in g.GableNo">
+                                                                <strong> Gable # : </strong> {{gn}}
+                                                            </div>
+                                                            <div class="col-lg-9" ng-repeat="wg in g.WidthModules track by wg.Width">
+                                                                <div class="row">
+                                                                    <div class="col-lg-8" style="word-wrap: break-word;">
+                                                                        <strong> Width Module : </strong> {{wg.Width.toString()}}
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#EWModal" ng-click="EditWidthEW(wg.Width , g.GableNo ,'LEW')">Edit Width</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <button class="btn-sm btn-primary" ng-click="SameAs('REW')">Same As REW</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <h3>REW</h3>
+                                                <div class="col-lg-12">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <div class="col-lg-1">
+                                                                <strong> Type</strong>
+                                                            </div>
+                                                            <div class="col-lg-8">
+                                                                <select class="form-control" ng-model="building.GeneralData.EndWalls.REW.Type" ng-options="x for x in EndWallsType"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-10" style="margin-top:10px;">
+                                                    <div class="container-fluid" ng-repeat="g in building.GeneralData.EndWalls.REW.Profile.GablesWidthModules.GableWidthModules track by g.GableNo" style="margin-top:10px;">
+                                                        <div class="row">
+                                                            <div class="col-lg-3" ng-repeat="gn in g.GableNo">
+                                                                <strong> Gable # : </strong> {{gn}}
+                                                            </div>
+                                                            <div class="col-lg-9" ng-repeat="wg in g.WidthModules track by wg.Width">
+                                                                <div class="row">
+                                                                    <div class="col-lg-8" style="word-wrap: break-word;">
+                                                                        <strong> width Module : </strong> {{wg.Width.toString()}}
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <button class="btn btn-primary" data-toggle="modal" data-target="#EWModal" ng-click="EditWidthEW(wg.Width , g.GableNo ,'REW')">Edit Width</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <button class="btn-sm btn-primary" ng-click="SameAs('LEW')">Same As LEW</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" role="dialog" id="EWModal">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Width Module</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item" ng-repeat="x in EWArr track by $index">
+                                                            {{x}}
+                                                            <span ng-click="removeEW($index)" style="cursor:pointer;" class="badge">x</span>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="container-fluid">
+                                                        <div class="">
+                                                            <div class="col-lg-12">
+                                                                <input type="number" ng-model="addMeEW" class="form-control">
+                                                            </div>
+                                                            <div class="col-lg-12 Marg">
+                                                                <div class="col-xs-6">
+                                                                    Quantity
+                                                                </div>
+                                                                <div class="col-xs-6">
+                                                                    <input type="number" min="1" max="10" ng-model="QuantityEW" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 Marg">
+                                                                <button ng-click="addEW()" class="btn btn-default">Add</button>
+                                                            </div>
+                                                        </div>
+                                                        <p class="text-danger">{{errortextEW}}</p>
+                                                        <div class="container-fluid">
+                                                            <p class="text-warning"> Sum  = {{EWArrSum(EWArr)}}</p>
+                                                            <p class="text-warning"> Gable Width =  {{GableWidthEw()}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button data-dismiss="modal" type="button" ng-click="ConfirmEW(EWArr)" class="btn btn-default"
+                                                            ng-disabled="EWArrSum(EWArr) != GableWidthEw()">
+                                                        Confirm
+                                                    </button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Tab End Walls *@
+
+                    @*Tab Remarks*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseR">Remarks </a>
+                            </h4>
+                        </div>
+                        <div id="collapseR" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4bR">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12  table-responsive">
+                                            Show Deleted: <input type="checkbox" ng-model="Deletedchecked" aria-label="Toggle ngShow"><br />
+                                            <table ng-show="building.GeneralData.Remarks.Remark" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-left text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Remark</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: left;">
+                                                    <tr ng-repeat="x in building.GeneralData.Remarks.Remark track by $index" ng-show="ShowDeleRemark(x.State)">
+                                                        <td style="width:50px;">
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-class="{'text-warning':(x.State == 'false') }" style="white-space:pre-line"><div ng-bind-html="x.Remark"></div></div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="RemarkUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button ng-show="(x.State == 'true')" type="button" ng-click="removeRemark($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetRemark()" class="btn btn-primary" data-toggle="modal" data-target="#RemarkModal">Add Remark</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Remarkhistory.length > 0" ng-click="UndoRemark()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="RemarkModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Remarkword}} Remark{{newRemark.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newRemark">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                @*<textarea id="RemarkText" ng-trim="false" maxlength="512" rows="4" name="Remark" style="min-height:108px;" class="form-control" ng-model="newRemark.Remark"></textarea>*@
+                                                                                <wysiwyg-edit content="newRemark.Remark" config="editorConfig"></wysiwyg-edit>
+                                                                                 <span style="color:red" ng-show="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                                    <span ng-show="myForm.Remark.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-12">
+                                                                                {{512 - newRemark.Remark.length}} / 512
+                                                                            </div>
+                                                                            <div class="alert alert-info">
+                                                                                {{content}}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateRemark()"
+                                                                            ng-disabled="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Remarks *@
+
+
+                    @*<div class="container-fluid" ng-controller="RemarksCtrl">
+                        <div class="row">
+                        <div class="col-lg-6">
+                        <div text-angular ng-model="htmlContent" name="demo-editor" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div>
+                        </div>
+                        <div class="col-lg-2">
+                        <button class="btn btn-primary" ng-click="ChangehtmlContent()">Change</button>
+                        <button class="btn btn-primary" ng-click="SaveHTMl()">SaveHtml</button>
+                        </div>
+                        </div>
+                        </div>*@
+
+
+                    <br />
+                    <div class="container-fluid">
+                        <div class="text-center">
+                            <input id="submit" type="submit" ng-click="SaveData()" value="Save" class="btn-default form-control"
+                                   ng-disabled="myForm.WidthFromGL.$dirty && myForm.WidthFromGL.$invalid
+                                                           || myForm.WidthToGL.$dirty && myForm.WidthToGL.$invalid
+                                                           || myForm.LengthFromGL.$dirty && myForm.LengthFromGL.$invalid
+                                                           || myForm.LengthToGL.$dirty && myForm.LengthToGL.$invalid" />
+                        </div>
+                    </div>
+
+                </div> @*EndContainer*@
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/Scripts/Site/Index.js"></script>
+<script src="~/Scripts/Site/spin.min.js"></script>
+
+<script>
+    var opts = {
+        lines: 15 // The number of lines to draw
+        , length: 28 // The length of each line
+        , width: 14 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 0.50 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000' // #rgb or #rrggbb or array of colors
+        , opacity: 0.25 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    }
+    var target = document.getElementById('foo')
+    var spinner = new Spinner(opts).spin(target);
+</script>

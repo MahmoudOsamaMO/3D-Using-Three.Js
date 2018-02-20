@@ -1,0 +1,440 @@
+﻿   
+
+@{
+    ViewBag.Title = "Bracing";
+}
+
+<style>
+    .Marg {
+        margin-top: 10px;
+    }
+</style>
+<form ng-controller="BracingCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div>
+        <div id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Bracing</h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Summary</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="tab-pane active" id="5b">
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @*load*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well" style="font-size:12px;">
+                                                    <div class="col-lg-12">
+                                                        <h5 class="text-primary"><u>Bracings</u></h5>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">FSW Bracing Type</div>
+                                                            <div class="col-lg-6">{{building.Bracings.FSW}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">NSW Bracing Type</div>
+                                                            <div class="col-lg-6">{{building.Bracings.NSW}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">LEW Bracing Type</div>
+                                                            <div class="col-lg-6">{{building.Bracings.LEW}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">REW Bracing Type</div>
+                                                            <div class="col-lg-6">{{building.Bracings.REW}}</div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div ng-show="building.Bracings.InteriorBracings.Bracing" class="col-lg-12 Marg table-responsive">
+                                                        <table style="font-size:10px;" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                            <thead class="text-center text-info">
+                                                                <tr>
+                                                                    <th rowspan="2">ID</th>
+                                                                    <th rowspan="2">Type</th>
+                                                                    <th rowspan="2">Height</th>
+                                                                    <th colspan="2">Location At Offset</th>
+                                                                    <th colspan="1">Location At GL</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Offset</th>
+                                                                    <th>From</th>
+                                                                    <th>AtGL</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr id="BracingsRepeater" ng-repeat="x in building.Bracings.InteriorBracings.Bracing track by $index">
+                                                                    <td>
+                                                                        <div>{{$index + 1}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div ng-hide="editingData[x.ID]">{{x.Type}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div ng-hide="editingData[x.ID]">{{x.PortalPartialHeight}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div ng-hide="editingData[x.ID]">{{x.Location.Item.Offset}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div ng-hide="editingData[x.ID]">{{x.Location.Item.From}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div ng-if="isNumber(x.Location.Item)" ng-hide="editingData[x.ID]">{{x.Location.Item}}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Bracings</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="1b">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @*Bracing*@
+                                            <div class="col-lg-12 well">
+                                                <h4 class="text-primary"><u>Bracings</u></h4>
+                                                <div class="row">
+                                                    <div class="col-lg-6 Marg">FSW Bracing Type</div>
+                                                    <div class="col-lg-6 Marg">
+                                                        <div class="col-xs-12">
+                                                            <select class="form-control" ng-model="building.Bracings.FSW" ng-options="x for x in BracingType"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6 Marg">NSW Bracing Type</div>
+                                                    <div class="col-lg-6 Marg">
+                                                        <div class="col-xs-12">
+                                                            <select class="form-control" ng-model="building.Bracings.NSW" ng-options="x for x in BracingType"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6 Marg">LEW Bracing Type</div>
+                                                    <div class="col-lg-6 Marg">
+                                                        <div class="col-xs-12">
+                                                            <select class="form-control" ng-model="building.Bracings.LEW" ng-options="x for x in BracingType"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6 Marg">REW Bracing Type</div>
+                                                    <div class="col-lg-6 Marg">
+                                                        <div class="col-xs-12">
+                                                            <select class="form-control" ng-model="building.Bracings.REW" ng-options="x for x in BracingType"></select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*Interior Bracing*@
+                                            <div class="col-lg-12 well table-responsive">
+                                                <h4 class="text-primary"><u>Interior Bracings</u></h4>
+
+                                                <table st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                    <thead class="text-center text-info">
+                                                        <tr>
+                                                            <th rowspan="2">ID</th>
+                                                            <th rowspan="2">Type</th>
+                                                            <th rowspan="2">Height</th>
+                                                            <th colspan="2">Location At Offset</th>
+                                                            <th colspan="1">Location At GL</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Offset</th>
+                                                            <th>From</th>
+                                                            <th>AtGL</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr id="BracingsRepeater" ng-repeat="x in building.Bracings.InteriorBracings.Bracing track by $index ">
+                                                            <td>
+                                                                <div>{{$index + 1}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingData[x.ID]">{{x.Type}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingData[x.ID]">{{x.PortalPartialHeight}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingData[x.ID]">{{x.Location.Item.Offset}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-hide="editingData[x.ID]">{{x.Location.Item.From}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div ng-if="isNumber(x.Location.Item)" ng-hide="editingData[x.ID]">{{x.Location.Item}}</div>
+                                                            </td>
+                                                            <td style="width:50px;">
+                                                                <button type="button" ng-click="BracingUpdate($index)" class="btn btn-sm">
+                                                                    <i class="glyphicon glyphicon-pencil">
+                                                                    </i>
+                                                                </button>
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" ng-click="removeBracing($index)" class="btn btn-sm btn-danger">
+                                                                    <i class="glyphicon glyphicon-remove">
+                                                                    </i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <button type="button" ng-click="ResetBracing()" class="btn btn-primary" data-toggle="modal" data-target="#BracingModal">Add Bracing</button>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <button class="btn btn-warning" ng-show="Bracinghistory.length > 0" ng-click="UndoBracing()">Undo Delete</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade" role="dialog" id="BracingModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{BracProcessword}} Bracing</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newobj">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6 Marg">
+                                                                    <div class="col-xs-2">
+                                                                        Type:
+                                                                    </div>
+                                                                    <div class="col-xs-10">
+                                                                        <select class="form-control" ng-model="newobj.NewType" ng-options="x for x in BracingType" ng-change="RestHeight()"></select>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-if="newobj.NewType=='PORTAL PARTIAL HEIGHT'">
+                                                                    <div class="col-lg-6 Marg">
+                                                                        <div class="col-xs-2">
+                                                                            Height:
+                                                                        </div>
+                                                                        <div class="col-xs-10">
+                                                                            <input type="number" min="0" class="form-control" name="NewHeight" ng-model="newobj.NewHeight" required>
+                                                                            <span style="color:red" ng-show="myForm.NewHeight.$dirty && myForm.NewHeight.$invalid">
+                                                                                <span ng-show="myForm.NewHeight.$error.required">Required.</span>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6 Marg">
+                                                                    <div class="col-xs-2">
+                                                                        Location:
+                                                                    </div>
+                                                                    <div class="col-xs-10">
+                                                                        <select class="form-control" ng-model="newobj.NewLocation" ng-options="x for x in Locations" ng-change="RestGLOffset()"></select>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-switch="newobj.NewLocation">
+                                                                    <div ng-switch-when="At GL">
+                                                                        <div class="col-lg-6 Marg">
+                                                                            <div class="col-xs-2">
+                                                                                At GL:
+                                                                            </div>
+                                                                            <div class="col-xs-10">
+                                                                                <input type="text" min="0" class="form-control" name="NewATGL" ng-model="newobj.NewATGL" required>
+                                                                                <span style="color:red" ng-show="myForm.NewATGL.$dirty && myForm.NewATGL.$invalid">
+                                                                                    <span ng-show="myForm.NewATGL.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div ng-switch-when="Offset">
+                                                                        <div class="col-lg-6 Marg">
+                                                                            <div class="col-xs-2">
+                                                                                Offset (m):
+                                                                            </div>
+                                                                            <div class="col-xs-10">
+                                                                                <input type="number" min="0" class="form-control" name="NewOffset" ng-model="newobj.NewOffset" required>
+                                                                                <span style="color:red" ng-show="myForm.NewOffset.$dirty && myForm.NewOffset.$invalid">
+                                                                                    <span ng-show="myForm.NewOffset.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6 Marg">
+                                                                            <div class="col-xs-2">
+                                                                                From:
+                                                                            </div>
+                                                                            <div class="col-xs-10">
+                                                                                <select class="form-control" ng-model="newobj.NewFrom" ng-options="x for x in FromWalls"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateBrac()"
+                                                                            ng-disabled="myForm.NewHeight.$dirty && myForm.NewHeight.$invalid
+                                                                        ||myForm.NewATGL.$dirty && myForm.NewATGL.$invalid
+                                                                        ||myForm.NewOffset.$dirty && myForm.NewOffset.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Tab Remarks*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseR">Remarks </a>
+                            </h4>
+                        </div>
+                        <div id="collapseR" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4bR">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12  table-responsive">
+                                            Show Deleted: <input type="checkbox" ng-model="Deletedchecked" aria-label="Toggle ngShow"><br />
+                                            <table ng-show="building.Bracings.Remarks.Remark" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-left text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Remark</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: left;">
+                                                    <tr ng-repeat="x in building.Bracings.Remarks.Remark track by $index" ng-show="ShowDeleRemark(x.State)">
+                                                        <td style="width:50px;">
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-class="{'text-warning':(x.State == 'false') }" style="white-space:pre-line"><div ng-bind-html="x.Remark"></div></div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="RemarkUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button ng-show="(x.State == 'true')" type="button" ng-click="removeRemark($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetRemark()" class="btn btn-primary" data-toggle="modal" data-target="#RemarkModal">Add Remark</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Remarkhistory.length > 0" ng-click="UndoRemark()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="RemarkModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Remarkword}} Remark{{newRemark.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newRemark">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                @*<textarea id="RemarkText" ng-trim="false" maxlength="512" rows="4" name="Remark" style="min-height:108px;" class="form-control" ng-model="newRemark.Remark"></textarea>*@
+                                                                                <wysiwyg-edit content="newRemark.Remark" config="editorConfig"></wysiwyg-edit>
+                                                                                <span style="color:red" ng-show="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                                    <span ng-show="myForm.Remark.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-12">
+                                                                                {{512 - newRemark.Remark.length}} / 512
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateRemark()"
+                                                                            ng-disabled="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Remarks *@
+
+                    <br />
+                    <div class="container-fluid">
+                        <div class="text-center">
+                            <input id="submit" @*type="submit"*@ type="button" ng-click="SaveData()" value="Save" class="btn-default form-control"
+                                   ng-disabled="myForm.LiveLoadOnRoof.$dirty && myForm.LiveLoadOnRoof.$invalid
+                                                           || myForm.Minus.$dirty && myForm.Minus.$invalid" />
+                        </div>
+                    </div>
+
+                </div> @*EndContainer*@
+            </div>
+        </div>
+    </div>
+</form>
+<script src="~/Scripts/Site/Bracing.js"></script>

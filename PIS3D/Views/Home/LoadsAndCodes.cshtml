@@ -1,0 +1,613 @@
+﻿   
+
+@{
+    ViewBag.Title = "LoadsAndCodes";
+}
+<style>
+    .Marg {
+        margin-top: 10px;
+    }
+</style>
+
+<form ng-controller="LoadCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div>
+        <div id="foo" ng-show="Loading" style="margin-top:20%;">
+        </div>
+        <div  ng-hide="Loading" id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Loads And Codes </h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Summary</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="tab-pane active" id="5b">
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @*load*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well" style="font-size:12px;">
+                                                    <div class="col-lg-12">
+                                                        <h5 class="text-primary"><u>Load</u></h5>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Dead Load (KN/m2)</div>
+                                                            <div class="col-lg-6">
+                                                                User Value <input type="checkbox" ng-disabled="true" name="AsPerDesign" ng-model="AsPerDesign" required>
+                                                                <div ng-if="!AsPerDesign">
+                                                                    <span ng-show="!AsPerDesign" class="text-warning">As Per Design</span>
+                                                                    {{building.DesignCode.DeadLoad.UserValue = ""}}
+                                                                </div>
+                                                                <div ng-if="AsPerDesign">{{building.DesignCode.DeadLoad.UserValue}}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Live Load on Roof (KN/m2)</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.LiveLoadOnRoof}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Live Load on Frame (KN/m2)</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.LiveLoadOnFrame}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Collateral Load (KN/m2)</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.CollateralLoad}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <h5 class="text-primary"><u>Wind</u></h5>
+                                                        <div ng-switch="myVar">
+                                                            <div ng-switch-when="true">
+                                                                <div class="col-lg-6">
+                                                                    <div class="col-lg-4">Wind Speed (Kph)</div>
+                                                                    <div class="col-lg-2">{{building.DesignCode.Wind.WindSpeed}}</div>
+                                                                    <div class="col-lg-4">{{building.DesignCode.Wind.WindSpeedEnum}}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-switch-when="false">
+                                                                <div class="col-lg-6">
+                                                                    <div class="col-lg-6">Wind Pressure (KN/m2)</div>
+                                                                    <div class="col-lg-6">{{building.DesignCode.Wind.WindPressure}}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Exposure Category</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.Wind.WindExposure}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <h5 class="text-primary"><u>Design Codes</u></h5>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Design Codes</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.DesignCodes}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Apply Loads Per</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.ApplyLoadsPer}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Cold Formed Design Codes</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.ColdFormedDesignCodes}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <h5 class="text-primary"><u>Seismic</u></h5>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Seismic</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.Seismic}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <h5 class="text-primary"><u>Snow</u></h5>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Ground Snow (KN/m2)</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.GroundSnowLoad}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Thickness Ground Snow (mm)</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.ThicknessGroundSnow}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <h5 class="text-primary"><u>Rain</u></h5>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">HeavyRainArea</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.RainFall.HeavyRainArea}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Rain Fall (mm/h)</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.RainFall.Intensity}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Return Period (Years)</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.RainFall.Years}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Duration (Minutes)</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.RainFall.Minutes}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <h5 class="text-primary"><u>Temperature (Deg)</u></h5>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Minus</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.Temperature.Minus}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Plus</div>
+                                                            <div class="col-lg-6">{{building.DesignCode.Temperature.Plus}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Loads And Codes</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="1b">
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @*load*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well">
+                                                    <h4 class="text-primary"><u>Load</u></h4>
+                                                    <div class="row Marg">
+                                                        <div class="col-lg-6 Marg">Dead Load (KN/m2)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-lg-6">
+                                                                User Value : <input type="checkbox" name="AsPerDesign" ng-model="AsPerDesign" required>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div ng-if="!AsPerDesign">
+                                                                    <span ng-show="!AsPerDesign" class="text-warning">As Per Design</span>
+                                                                    {{building.DesignCode.DeadLoad.UserValue = ""}}
+                                                                </div>
+                                                                <div ng-if="AsPerDesign" class="col-xs-12">
+                                                                    <input type="number" class="form-control" name="UserValue" ng-model="building.DesignCode.DeadLoad.UserValue" required>
+                                                                    <span style="color:red" ng-show="myForm.UserValue.$dirty && myForm.UserValue.$invalid">
+                                                                        <span ng-show="myForm.UserValue.$error.required">Required.</span>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row Marg">
+                                                        <div class="col-lg-6 Marg">Live Load on Roof (KN/m2)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="LiveLoadOnRoof" ng-model="building.DesignCode.LiveLoadOnRoof" required>
+                                                                <span style="color:red" ng-show="myForm.LiveLoadOnRoof.$dirty && myForm.LiveLoadOnRoof.$invalid">
+                                                                    <span ng-show="myForm.LiveLoadOnRoof.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Live Load on Frame (KN/m2)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="LiveLoadOnFrame" ng-model="building.DesignCode.LiveLoadOnFrame" required>
+                                                                <span style="color:red" ng-show="myForm.LiveLoadOnFrame.$dirty && myForm.LiveLoadOnFrame.$invalid">
+                                                                    <span ng-show="myForm.LiveLoadOnFrame.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Collateral Load (KN/m2)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="CollateralLoad" ng-model="building.DesignCode.CollateralLoad" required>
+                                                                <span style="color:red" ng-show="myForm.CollateralLoad.$dirty && myForm.CollateralLoad.$invalid">
+                                                                    <span ng-show="myForm.CollateralLoad.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @*Wind*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well">
+                                                    <h4 class="text-primary"><u>Wind</u></h4>
+                                                    <div class="row Marg">
+                                                        <div class="col-lg-6">
+                                                            {{myVarfun()}}
+                                                            <input type="radio" ng-model="myVar" ng-value="true" ng-change="logSpeed()">Wind Speed
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <input type="radio" ng-model="myVar" ng-value="false" ng-change="logPressure()">Wind Pressure
+                                                        </div>
+                                                    </div>
+                                                    <div ng-switch="myVar">
+                                                        <div ng-switch-when="true">
+                                                            <div class="row Marg">
+                                                                <div class="col-lg-6 Marg">Wind Speed (Kph)</div>
+                                                                <div class="col-lg-2 Marg">
+                                                                    <div class="col-xs-12">
+                                                                        <input type="number" class="form-control" name="WindSpeed" ng-model="building.DesignCode.Wind.WindSpeed" required>
+                                                                        <span style="color:red" ng-show="myForm.WindSpeed.$dirty && myForm.WindSpeed.$invalid">
+                                                                            <span ng-show="myForm.WindSpeed.$error.required">Required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-4 Marg">
+                                                                    <div class="col-xs-9">
+                                                                        <select class="form-control" ng-model="building.DesignCode.Wind.WindSpeedEnum" ng-options="x for x in WindSpeedEnum"></select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div ng-switch-when="false">
+                                                            <div class="row Marg">
+                                                                <div class="col-lg-6 Marg">Wind Pressure (KN/m2)</div>
+                                                                <div class="col-lg-6 Marg">
+                                                                    <div class="col-xs-5">
+                                                                        <input type="number" class="form-control" name="WindPressure" ng-model="building.DesignCode.Wind.WindPressure" required>
+                                                                        <span style="color:red" ng-show="myForm.WindPressure.$dirty && myForm.WindPressure.$invalid">
+                                                                            <span ng-show="myForm.WindPressure.$error.required">Required.</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Exposure Category</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <select class="form-control" ng-model="building.DesignCode.Wind.WindExposure" ng-options="x for x in WindExposure"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*Design Codes*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well">
+                                                    <h4 class="text-primary"><u>Design Codes</u></h4>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Design Codes</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-12">
+                                                                <select class="form-control" ng-model="building.DesignCode.DesignCodes" ng-options="x for x in DesignCodes"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Apply Loads Per</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-12">
+                                                                <select class="form-control" ng-model="building.DesignCode.ApplyLoadsPer" ng-options="x for x in ApplyLoadsPer"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Cold Formed Design Codes</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-12">
+                                                                <select class="form-control" ng-model="building.DesignCode.ColdFormedDesignCodes" ng-options="x for x in ColdFormedDesignCodes"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*Seismic*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well">
+                                                    <h4 class="text-primary"><u>Seismic</u></h4>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Seismic</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-6">
+                                                                <select class="form-control" ng-model="building.DesignCode.Seismic" ng-options="x for x in Seismic"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*Snow*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well">
+                                                    <h4 class="text-primary"><u>Snow</u></h4>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Ground Snow (KN/m2)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="GroundSnowLoad" ng-model="building.DesignCode.GroundSnowLoad" required>
+                                                                <span style="color:red" ng-show="myForm.GroundSnowLoad.$dirty && myForm.GroundSnowLoad.$invalid">
+                                                                    <span ng-show="myForm.GroundSnowLoad.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Thickness Ground Snow (mm)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="ThicknessGroundSnow" ng-model="building.DesignCode.ThicknessGroundSnow" required>
+                                                                <span style="color:red" ng-show="myForm.ThicknessGroundSnow.$dirty && myForm.ThicknessGroundSnow.$invalid">
+                                                                    <span ng-show="myForm.ThicknessGroundSnow.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*Rain*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well">
+                                                    <h4 class="text-primary"><u>Rain</u></h4>
+                                                    <div class="row ">
+                                                        <div class="col-lg-6 Marg">HeavyRainArea</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="checkbox" name="HeavyRainArea" ng-model="building.DesignCode.RainFall.HeavyRainArea" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row Marg">
+                                                        <div class="col-lg-6 Marg">Rain Fall (mm/h)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="Intensity" ng-model="building.DesignCode.RainFall.Intensity" required>
+                                                                <span style="color:red" ng-show="myForm.Intensity.$dirty && myForm.Intensity.$invalid">
+                                                                    <span ng-show="myForm.Intensity.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Return Period (Years)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="Years" ng-model="building.DesignCode.RainFall.Years" required>
+                                                                <span style="color:red" ng-show="myForm.Years.$dirty && myForm.Years.$invalid">
+                                                                    <span ng-show="myForm.Years.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Duration (Minutes)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="Minutes" ng-model="building.DesignCode.RainFall.Minutes" required>
+                                                                <span style="color:red" ng-show="myForm.Minutes.$dirty && myForm.Minutes.$invalid">
+                                                                    <span ng-show="myForm.Minutes.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*Temperature*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well">
+                                                    <h4 class="text-primary"><u>Temperature (Deg)</u></h4>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Minus</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="Minus" ng-model="building.DesignCode.Temperature.Minus" required>
+                                                                <span style="color:red" ng-show="myForm.Minus.$dirty && myForm.Minus.$invalid">
+                                                                    <span ng-show="myForm.Minus.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Plus</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-5">
+                                                                <input type="number" class="form-control" name="Plus" ng-model="building.DesignCode.Temperature.Plus" required>
+                                                                <span style="color:red" ng-show="myForm.Plus.$dirty && myForm.Plus.$invalid">
+                                                                    <span ng-show="myForm.Plus.$error.required">Required.</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Tab Remarks*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseR">Remarks </a>
+                            </h4>
+                        </div>
+                        <div id="collapseR" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4bR">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12  table-responsive">
+                                            Show Deleted: <input type="checkbox" ng-model="Deletedchecked" aria-label="Toggle ngShow"><br />
+                                            <table ng-show="building.DesignCode.Remarks.Remark" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-left text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Remark</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: left;">
+                                                    <tr ng-repeat="x in building.DesignCode.Remarks.Remark track by $index" ng-show="ShowDeleRemark(x.State)">
+                                                        <td style="width:50px;">
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-class="{'text-warning':(x.State == 'false') }" style="white-space:pre-line"><div ng-bind-html="x.Remark"></div></div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="RemarkUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button ng-show="(x.State == 'true')" type="button" ng-click="removeRemark($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetRemark()" class="btn btn-primary" data-toggle="modal" data-target="#RemarkModal">Add Remark</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Remarkhistory.length > 0" ng-click="UndoRemark()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="RemarkModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Remarkword}} Remark{{newRemark.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newRemark">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                @*<textarea id="RemarkText" ng-trim="false" maxlength="512" rows="4" name="Remark" style="min-height:108px;" class="form-control" ng-model="newRemark.Remark"></textarea>*@
+                                                                                <wysiwyg-edit content="newRemark.Remark" config="editorConfig"></wysiwyg-edit>
+
+                                                                                <span style="color:red" ng-show="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                                    <span ng-show="myForm.Remark.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-12">
+                                                                                {{512 - newRemark.Remark.length}} / 512
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateRemark()"
+                                                                            ng-disabled="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Remarks *@
+
+                    <br />
+                    <div class="container-fluid">
+                        <div class="text-center">
+                            <input id="submit" @*type="submit"*@ type="button" ng-click="SaveData()" value="Save" class="btn-default form-control"
+                                   ng-disabled="myForm.LiveLoadOnRoof.$dirty && myForm.LiveLoadOnRoof.$invalid
+                                                           || myForm.LiveLoadOnFrame.$dirty && myForm.LiveLoadOnFrame.$invalid
+                                                           || myForm.CollateralLoad.$dirty && myForm.CollateralLoad.$invalid
+                                                           || myForm.Intensity.$dirty && myForm.Intensity.$invalid
+                                                           || myForm.Years.$dirty && myForm.Years.$invalid
+                                                           || myForm.Minutes.$dirty && myForm.Minutes.$invalid
+                                                           || myForm.WindPressure.$dirty && myForm.WindPressure.$invalid
+                                                           || myForm.WindSpeed.$dirty && myForm.WindSpeed.$invalid
+                                                           || myForm.GroundSnowLoad.$dirty && myForm.GroundSnowLoad.$invalid
+                                                           || myForm.ThicknessGroundSnow.$dirty && myForm.ThicknessGroundSnow.$invalid
+                                                           || myForm.Plus.$dirty && myForm.Plus.$invalid
+                                                           || myForm.Minus.$dirty && myForm.Minus.$invalid" />
+                        </div>
+                    </div>
+
+                </div> @*EndContainer*@
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+<script src="~/Scripts/Site/LoadsAndCods.js"></script>
+
+<script src="~/Scripts/Site/spin.min.js"></script>
+
+<script>
+    var opts = {
+        lines: 15 // The number of lines to draw
+        , length: 28 // The length of each line
+        , width: 14 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 0.50 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000' // #rgb or #rrggbb or array of colors
+        , opacity: 0.25 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    }
+    var target = document.getElementById('foo')
+    var spinner = new Spinner(opts).spin(target);
+</script>

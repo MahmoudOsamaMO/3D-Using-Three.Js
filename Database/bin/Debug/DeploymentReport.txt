@@ -1,0 +1,27 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[ApplyLoadsPerTable] (Table)
+       [dbo].[ColdFormedDesignCodesTable] (Table)
+       [dbo].[DesignCodesTable] (Table)
+       [dbo].[Downspouts_Table] (Table)
+       [dbo].[EaveConditionEnum_Table] (Table)
+       [dbo].[EndWallTypeTypeTable] (Table)
+       [dbo].[FrameType_Table] (Table)
+       [dbo].[HeightReference_Table] (Table)
+       [dbo].[LengthReference_Table] (Table)
+       [dbo].[SeismicTable] (Table)
+       [dbo].[WidthReferenceTable] (Table)
+       [dbo].[WindExposureTable] (Table)
+       [dbo].[WindSpeedEnumTable] (Table)
+
+** Supporting actions

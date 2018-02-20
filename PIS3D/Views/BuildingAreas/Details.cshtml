@@ -1,0 +1,147 @@
+﻿@model PIS3D.Models.BuildingArea
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BuildingArea</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PISX_VER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PISX_VER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneralData)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneralData)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DesignCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DesignCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SurfaceTreatment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SurfaceTreatment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bracings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bracings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PanelsAndInsulations)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PanelsAndInsulations)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoofWallCladding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoofWallCladding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WallPanelAccessories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WallPanelAccessories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Openings)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Openings)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subsystems)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subsystems)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CraneSystems)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CraneSystems)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mezzanines)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mezzanines)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OldArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OldArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Width)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.height)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

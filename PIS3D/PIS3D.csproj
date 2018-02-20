@@ -1,0 +1,1382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{061209B3-2859-442A-A281-C6C563EA21A2}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PIS3D</RootNamespace>
+    <AssemblyName>PIS3D</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\PresentationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccessoriesController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BuildingAreasController.cs" />
+    <Compile Include="Controllers\EaveConditionEnum_TableController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PISUserController.cs" />
+    <Compile Include="Controllers\SubSystemsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AdminModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ApplyLoadsPerTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BracingTypeTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BuildingArea.cs" />
+    <Compile Include="Models\ColdFormedDesignCodesTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__RefactorLog.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DesignCodesTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Downspouts_Table.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EaveConditionEnum_Table.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EndWallTypeTypeTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ErrorsData.cs" />
+    <Compile Include="Models\ExceptionsHelper.cs" />
+    <Compile Include="Models\FrameType_Table.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HeightReference_Table.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LengthReference_Table.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PaintSystemTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SecondarySurfaceFinishTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SeismicTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SurfaceFinishTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SurfaceTreatmentTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WidthReferenceTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WindExposureTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WindSpeedEnumTable.cs">
+      <DependentUpon>AdminModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\XElementExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.aspx.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Report.aspx.designer.cs">
+      <DependentUpon>Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Defult.xml" />
+    <Content Include="bin\PresentationFramework.dll" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Cifp.css" />
+    <Content Include="Content\Defult.xml" />
+    <Content Include="Content\simple-sidebar.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="HtmlPage1.html" />
+    <Content Include="Image\gab.png" />
+    <Content Include="Image\PIC\33.png" />
+    <Content Include="Image\PIC\3d\blue_cube-icon.gif" />
+    <Content Include="Image\PIC\3d\cube-icon.gif" />
+    <Content Include="Image\PIC\3d\Double Door - Copy.jpeg" />
+    <Content Include="Image\PIC\3d\Gnome-Zoom-Fit-Best-64.png" />
+    <Content Include="Image\PIC\3d\imageedit_16_5659764461.png" />
+    <Content Include="Image\PIC\3d\imageedit_19_8885611977.png" />
+    <Content Include="Image\PIC\3d\imageedit_1_2826424494.png" />
+    <Content Include="Image\PIC\3d\imageedit_1_7158177386.png" />
+    <Content Include="Image\PIC\3d\imageedit_1_9094397071.png" />
+    <Content Include="Image\PIC\3d\imageedit_22_8438710220.png" />
+    <Content Include="Image\PIC\3d\imageedit_26_8387733299.png" />
+    <Content Include="Image\PIC\3d\imageedit_3_9025711402.png" />
+    <Content Include="Image\PIC\3d\imageedit_41_5893645878.png" />
+    <Content Include="Image\PIC\3d\imageedit_43_3913818839.png" />
+    <Content Include="Image\PIC\3d\imageedit_47_8025869723.png" />
+    <Content Include="Image\PIC\3d\imageedit_50_8911331135.png" />
+    <Content Include="Image\PIC\3d\imageedit_53_2986533276.png" />
+    <Content Include="Image\PIC\3d\imageedit_56_3750987224.png" />
+    <Content Include="Image\PIC\3d\imageedit_59_5840432442.png" />
+    <Content Include="Image\PIC\3d\imageedit_62_9684009652.png" />
+    <Content Include="Image\PIC\3d\imageedit_72_6286109756.png" />
+    <Content Include="Image\PIC\3d\imageedit_7_4252932630.png" />
+    <Content Include="Image\PIC\3d\Roof.PNG" />
+    <Content Include="Image\PIC\3d\screenshot_icon.png" />
+    <Content Include="Image\PIC\3d\SingleDoor.jpeg" />
+    <Content Include="Image\PIC\52.ico" />
+    <Content Include="Image\PIC\86.ico" />
+    <Content Include="Image\PIC\89.ico" />
+    <Content Include="Image\PIC\Accessories.bmp" />
+    <Content Include="Image\PIC\animation.gif" />
+    <Content Include="Image\PIC\as_LOGO.PNG" />
+    <Content Include="Image\PIC\black-exit-icon-md.png" />
+    <Content Include="Image\PIC\Bracing.bmp" />
+    <Content Include="Image\PIC\C.png" />
+    <Content Include="Image\PIC\c2.png" />
+    <Content Include="Image\PIC\coll.bmp" />
+    <Content Include="Image\PIC\copy.ico" />
+    <Content Include="Image\PIC\cr.png" />
+    <Content Include="Image\PIC\Danger.png" />
+    <Content Include="Image\PIC\Danger2.png" />
+    <Content Include="Image\PIC\Design Package.bmp" />
+    <Content Include="Image\PIC\download.jpg" />
+    <Content Include="Image\PIC\downloads folder.ico" />
+    <Content Include="Image\PIC\edit-button.png" />
+    <Content Include="Image\PIC\Equipment.png" />
+    <Content Include="Image\PIC\Error.png" />
+    <Content Include="Image\PIC\exit.ico" />
+    <Content Include="Image\PIC\expand.bmp" />
+    <Content Include="Image\PIC\f.png" />
+    <Content Include="Image\PIC\False.png" />
+    <Content Include="Image\PIC\favicon.ico" />
+    <Content Include="Image\PIC\Find.png" />
+    <Content Include="Image\PIC\fo.bmp" />
+    <Content Include="Image\PIC\folder.ico" />
+    <Content Include="Image\PIC\gab.png" />
+    <Content Include="Image\PIC\generate2.png" />
+    <Content Include="Image\PIC\Help book 3d.png" />
+    <Content Include="Image\PIC\Help book.png" />
+    <Content Include="Image\PIC\iconpis.png" />
+    <Content Include="Image\PIC\imageedit_9_9261233530.png" />
+    <Content Include="Image\PIC\images.jpg" />
+    <Content Include="Image\PIC\insertArea.bmp" />
+    <Content Include="Image\PIC\insertbuilding.bmp" />
+    <Content Include="Image\PIC\Interior CatWalks.ico" />
+    <Content Include="Image\PIC\l.png" />
+    <Content Include="Image\PIC\new document.ico" />
+    <Content Include="Image\PIC\oswicon.png" />
+    <Content Include="Image\PIC\ow.bmp" />
+    <Content Include="Image\PIC\partition.ico" />
+    <Content Include="Image\PIC\paste.ico" />
+    <Content Include="Image\PIC\pd.png" />
+    <Content Include="Image\PIC\Percent %281%29.png" />
+    <Content Include="Image\PIC\Picture2.ico" />
+    <Content Include="Image\PIC\PIS.PNG" />
+    <Content Include="Image\PIC\printarea.png" />
+    <Content Include="Image\PIC\printquick32.png" />
+    <Content Include="Image\PIC\problem.ico" />
+    <Content Include="Image\PIC\project_Tree.bmp" />
+    <Content Include="Image\PIC\project_Tree2.png" />
+    <Content Include="Image\PIC\pv.png" />
+    <Content Include="Image\PIC\rc.png" />
+    <Content Include="Image\PIC\rd.png" />
+    <Content Include="Image\PIC\Repeat.png" />
+    <Content Include="Image\PIC\rm.png" />
+    <Content Include="Image\PIC\Roof Platforms.ico" />
+    <Content Include="Image\PIC\Roof Walkways.ico" />
+    <Content Include="Image\PIC\Roof.ico" />
+    <Content Include="Image\PIC\rv.png" />
+    <Content Include="Image\PIC\save.ico" />
+    <Content Include="Image\PIC\sd.png" />
+    <Content Include="Image\PIC\Stairs_icon.png" />
+    <Content Include="Image\PIC\sub.png" />
+    <Content Include="Image\PIC\Surface Treatment.bmp" />
+    <Content Include="Image\PIC\tp.png" />
+    <Content Include="Image\PIC\transpanel.ico" />
+    <Content Include="Image\PIC\trial.gif" />
+    <Content Include="Image\PIC\True.png" />
+    <Content Include="Image\PIC\Turn off.png" />
+    <Content Include="Image\PIC\w.png" />
+    <Content Include="Image\PIC\word.png" />
+    <Content Include="Image\PIC\word2.png" />
+    <Content Include="Image\PIC\y.png" />
+    <Content Include="Image\PIC\y2.png" />
+    <Content Include="Image\Resources\1365521185_WBS-aluminum-bird-screen.jpg" />
+    <Content Include="Image\Resources\160400-2T.jpg" />
+    <Content Include="Image\Resources\201409qyphwjhcgz1.jpg" />
+    <Content Include="Image\Resources\31QML6cOrjL._SX425_.jpg" />
+    <Content Include="Image\Resources\571673113_o.jpg" />
+    <Content Include="Image\Resources\9e09bf70267b1cfa65314e94f2cba5ef.png" />
+    <Content Include="Image\Resources\adjustablelouver.jpg" />
+    <Content Include="Image\Resources\BlockWall.jpg" />
+    <Content Include="Image\Resources\BlockWall2.jpg" />
+    <Content Include="Image\Resources\Double Door - Copy.jpeg" />
+    <Content Include="Image\Resources\double-italian-sliding-door-hole-cutting-function_FF_Model_ID5521_1_double_italian_sliding_door_415x215_FMH_489.jpg" />
+    <Content Include="Image\Resources\DOUBLE_PD.jpg" />
+    <Content Include="Image\Resources\download - Copy.jpg" />
+    <Content Include="Image\Resources\download.jpg" />
+    <Content Include="Image\Resources\DSD.jpg" />
+    <Content Include="Image\Resources\ed343331f8dcaeb7a2af876a07b50f76.png" />
+    <Content Include="Image\Resources\fixedlouver.jpg" />
+    <Content Include="Image\Resources\GLASS.jpg" />
+    <Content Include="Image\Resources\GLASS2.jpg" />
+    <Content Include="Image\Resources\html.txt" />
+    <Content Include="Image\Resources\imageedit_2_6887236677.png" />
+    <Content Include="Image\Resources\imageedit_2_9007756464.png" />
+    <Content Include="Image\Resources\images.jpg" />
+    <Content Include="Image\Resources\img\Cycle12.png" />
+    <Content Include="Image\Resources\img\HierarchyArrow12.jpg" />
+    <Content Include="Image\Resources\img\Import12.gif" />
+    <Content Include="Image\Resources\img\Include12.gif" />
+    <Content Include="Image\Resources\img\Override12.gif" />
+    <Content Include="Image\Resources\img\Redefine12.gif" />
+    <Content Include="Image\Resources\MetalsCorrugatedSteel.jpg" />
+    <Content Include="Image\Resources\printarea.ico" />
+    <Content Include="Image\Resources\rollupdoor.jpg" />
+    <Content Include="Image\Resources\Roof Platforms.ico" />
+    <Content Include="Image\Resources\Single Door.jpeg" />
+    <Content Include="Image\Resources\SINGLE_PD.jpg" />
+    <Content Include="Image\Resources\sliding-patio-doors-shown-sizes-5ft-6ft-and_FF_Model_ID12713_2_6ftSlider.jpg" />
+    <Content Include="Image\Resources\SLIDUNGDOOR.jpg" />
+    <Content Include="Image\Resources\ventilationFan.jpg" />
+    <Content Include="Image\Resources\sundancesolar_2272_11082664__39372.1404688699.1280.1280.jpg" />
+    <Content Include="Image\Resources\white.jpg" />
+    <Content Include="Image\Resources\window.jpg" />
+    <Content Include="Image\Resources\cwindow.png" />
+    <Content Include="Image\Resources\zs_logo_splash1.gif" />
+    <Content Include="Image\ZamiLogo.png" />
+    <Content Include="Image\zs_logo_splash1.gif" />
+    <Content Include="Models\AdminModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdminModel.edmx</DependentUpon>
+      <LastGenOutput>AdminModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\AdminModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AdminModel.edmx</DependentUpon>
+      <LastGenOutput>AdminModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Report.aspx" />
+    <Content Include="Scripts\ai.0.22.19-build00125.js" />
+    <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="Scripts\angular-animate.js" />
+    <Content Include="Scripts\angular-animate.min.js" />
+    <Content Include="Scripts\angular-aria.js" />
+    <Content Include="Scripts\angular-aria.min.js" />
+    <Content Include="Scripts\angular-cookies.js" />
+    <Content Include="Scripts\angular-cookies.min.js" />
+    <Content Include="Scripts\angular-csp.css" />
+    <Content Include="Scripts\angular-loader.js" />
+    <Content Include="Scripts\angular-loader.min.js" />
+    <Content Include="Scripts\angular-message-format.js" />
+    <Content Include="Scripts\angular-message-format.min.js" />
+    <Content Include="Scripts\angular-messages.js" />
+    <Content Include="Scripts\angular-messages.min.js" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-parse-ext.js" />
+    <Content Include="Scripts\angular-parse-ext.min.js" />
+    <Content Include="Scripts\angular-resource.js" />
+    <Content Include="Scripts\angular-resource.min.js" />
+    <Content Include="Scripts\angular-route.js" />
+    <Content Include="Scripts\angular-route.min.js" />
+    <Content Include="Scripts\angular-sanitize.js" />
+    <Content Include="Scripts\angular-sanitize.min.js" />
+    <Content Include="Scripts\angular-scenario.js" />
+    <Content Include="Scripts\angular-touch.js" />
+    <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\errors.json" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular-route.min.js.map" />
+    <Content Include="Scripts\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular-parse-ext.min.js.map" />
+    <Content Include="Scripts\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular-message-format.min.js.map" />
+    <Content Include="Scripts\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Models\ClassDiagram1.cd" />
+    <Content Include="Scripts\i18n\angular-locale_ar-001.js" />
+    <Content Include="Scripts\i18n\angular-locale_en-001.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\AdminModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AdminModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\AdminModel.edmx.diagram">
+      <DependentUpon>AdminModel.edmx</DependentUpon>
+    </Content>
+    <None Include="App_Data\BuildingAreaSchema_17-11-2015.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Image\Resources\BuildingArea.pdf" />
+    <Content Include="fonts\helvetiker_regular.typeface.json" />
+    <None Include="Scripts\jquery-3.0.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.0.0.js" />
+    <Content Include="Scripts\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.js" />
+    <Content Include="Scripts\jquery-3.0.0.slim.min.map" />
+    <Content Include="Scripts\jquery-3.0.0.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\AnimationClipCreator.js" />
+    <Content Include="Scripts\js\animation\CCDIKSolver.js" />
+    <Content Include="Scripts\js\animation\MMDPhysics.js" />
+    <Content Include="Scripts\js\BlendCharacter.js" />
+    <Content Include="Scripts\js\BlendCharacterGui.js" />
+    <Content Include="Scripts\js\BufferGeometryUtils.js" />
+    <Content Include="Scripts\js\cameras\CinematicCamera.js" />
+    <Content Include="Scripts\js\cameras\CombinedCamera.js" />
+    <Content Include="Scripts\js\Car.js" />
+    <Content Include="Scripts\js\Cloth.js" />
+    <Content Include="Scripts\js\controls\DeviceOrientationControls.js" />
+    <Content Include="Scripts\js\controls\DragControls.js" />
+    <Content Include="Scripts\js\controls\EditorControls.js" />
+    <Content Include="Scripts\js\controls\FirstPersonControls.js" />
+    <Content Include="Scripts\js\controls\FlyControls.js" />
+    <Content Include="Scripts\js\controls\MouseControls.js" />
+    <Content Include="Scripts\js\controls\OrbitControls.js" />
+    <Content Include="Scripts\js\controls\OrthographicTrackballControls.js" />
+    <Content Include="Scripts\js\controls\PointerLockControls.js" />
+    <Content Include="Scripts\js\controls\TrackballControls.js" />
+    <Content Include="Scripts\js\controls\TransformControls.js" />
+    <Content Include="Scripts\js\controls\VRControls.js" />
+    <Content Include="Scripts\js\ConvexObjectBreaker.js" />
+    <Content Include="Scripts\js\crossfade\gui.js" />
+    <Content Include="Scripts\js\crossfade\scenes.js" />
+    <Content Include="Scripts\js\crossfade\transition.js" />
+    <Content Include="Scripts\js\CurveExtras.js" />
+    <Content Include="Scripts\js\curves\NURBSCurve.js" />
+    <Content Include="Scripts\js\curves\NURBSSurface.js" />
+    <Content Include="Scripts\js\curves\NURBSUtils.js" />
+    <Content Include="Scripts\js\Detector.js" />
+    <Content Include="Scripts\js\effects\AnaglyphEffect.js" />
+    <Content Include="Scripts\js\effects\AsciiEffect.js" />
+    <Content Include="Scripts\js\effects\ParallaxBarrierEffect.js" />
+    <Content Include="Scripts\js\effects\PeppersGhostEffect.js" />
+    <Content Include="Scripts\js\effects\StereoEffect.js" />
+    <Content Include="Scripts\js\effects\VREffect.js" />
+    <Content Include="Scripts\js\Encodings.js" />
+    <Content Include="Scripts\js\exporters\OBJExporter.js" />
+    <Content Include="Scripts\js\exporters\STLBinaryExporter.js" />
+    <Content Include="Scripts\js\exporters\STLExporter.js" />
+    <Content Include="Scripts\js\exporters\TypedGeometryExporter.js" />
+    <Content Include="Scripts\js\geometries\ConvexGeometry.js" />
+    <Content Include="Scripts\js\geometries\DecalGeometry.js" />
+    <Content Include="Scripts\js\geometries\hilbert2D.js" />
+    <Content Include="Scripts\js\geometries\hilbert3D.js" />
+    <Content Include="Scripts\js\geometries\TeapotBufferGeometry.js" />
+    <Content Include="Scripts\js\GPUComputationRenderer.js" />
+    <Content Include="Scripts\js\GPUParticleSystem.js" />
+    <Content Include="Scripts\js\Gyroscope.js" />
+    <Content Include="Scripts\js\Half.js" />
+    <Content Include="Scripts\js\ImprovedNoise.js" />
+    <Content Include="Scripts\js\libs\ammo.js" />
+    <Content Include="Scripts\js\libs\charsetencoder.min.js" />
+    <Content Include="Scripts\js\libs\dat.gui.min.js" />
+    <Content Include="Scripts\js\libs\earcut.js" />
+    <Content Include="Scripts\js\libs\inflate.min.js" />
+    <Content Include="Scripts\js\libs\jszip.min.js" />
+    <Content Include="Scripts\js\libs\msgpack-js.js" />
+    <Content Include="Scripts\js\libs\pnltri.min.js" />
+    <Content Include="Scripts\js\libs\stats.min.js" />
+    <Content Include="Scripts\js\libs\system.min.js" />
+    <Content Include="Scripts\js\libs\timeliner_gui.min.js" />
+    <Content Include="Scripts\js\libs\tween.min.js" />
+    <Content Include="Scripts\js\libs\zlib_and_gzip.min.js" />
+    <Content Include="Scripts\js\loaders\3MFLoader.js" />
+    <Content Include="Scripts\js\loaders\AMFLoader.js" />
+    <Content Include="Scripts\js\loaders\AssimpJSONLoader.js" />
+    <Content Include="Scripts\js\loaders\AWDLoader.js" />
+    <Content Include="Scripts\js\loaders\BabylonLoader.js" />
+    <Content Include="Scripts\js\loaders\BinaryLoader.js" />
+    <Content Include="Scripts\js\loaders\BVHLoader.js" />
+    <Content Include="Scripts\js\loaders\ColladaLoader.js" />
+    <Content Include="Scripts\js\loaders\ColladaLoader2.js" />
+    <Content Include="Scripts\js\loaders\collada\Animation.js" />
+    <Content Include="Scripts\js\loaders\collada\AnimationHandler.js" />
+    <Content Include="Scripts\js\loaders\collada\KeyFrameAnimation.js" />
+    <Content Include="Scripts\js\loaders\ctm\ctm.js" />
+    <Content Include="Scripts\js\loaders\ctm\CTMLoader.js" />
+    <Content Include="Scripts\js\loaders\ctm\CTMWorker.js" />
+    <Content Include="Scripts\js\loaders\ctm\license\js-lzma.txt" />
+    <Content Include="Scripts\js\loaders\ctm\license\js-openctm.txt" />
+    <Content Include="Scripts\js\loaders\ctm\license\OpenCTM.txt" />
+    <Content Include="Scripts\js\loaders\ctm\lzma.js" />
+    <Content Include="Scripts\js\loaders\DDSLoader.js" />
+    <Content Include="Scripts\js\loaders\deprecated\SceneLoader.js" />
+    <Content Include="Scripts\js\loaders\FBXLoader.js" />
+    <Content Include="Scripts\js\loaders\GLTFLoader.js" />
+    <Content Include="Scripts\js\loaders\gltf\glTF-parser.js" />
+    <Content Include="Scripts\js\loaders\gltf\glTFAnimation.js" />
+    <Content Include="Scripts\js\loaders\gltf\glTFLoader.js" />
+    <Content Include="Scripts\js\loaders\gltf\glTFLoaderUtils.js" />
+    <Content Include="Scripts\js\loaders\gltf\glTFShaders.js" />
+    <Content Include="Scripts\js\loaders\gltf\gltfUtilities.js" />
+    <Content Include="Scripts\js\loaders\HDRCubeTextureLoader.js" />
+    <Content Include="Scripts\js\loaders\KMZLoader.js" />
+    <Content Include="Scripts\js\loaders\MD2Loader.js" />
+    <Content Include="Scripts\js\loaders\MMDLoader.js" />
+    <Content Include="Scripts\js\loaders\MTLLoader.js" />
+    <Content Include="Scripts\js\loaders\NRRDLoader.js" />
+    <Content Include="Scripts\js\loaders\OBJLoader.js" />
+    <Content Include="Scripts\js\loaders\PCDLoader.js" />
+    <Content Include="Scripts\js\loaders\PDBLoader.js" />
+    <Content Include="Scripts\js\loaders\PlayCanvasLoader.js" />
+    <Content Include="Scripts\js\loaders\PLYLoader.js" />
+    <Content Include="Scripts\js\loaders\PVRLoader.js" />
+    <Content Include="Scripts\js\loaders\RGBELoader.js" />
+    <Content Include="Scripts\js\loaders\sea3d\SEA3D.js" />
+    <Content Include="Scripts\js\loaders\sea3d\SEA3DDeflate.js" />
+    <Content Include="Scripts\js\loaders\sea3d\SEA3DLegacy.js" />
+    <Content Include="Scripts\js\loaders\sea3d\SEA3DLoader.js" />
+    <Content Include="Scripts\js\loaders\sea3d\SEA3DLZMA.js" />
+    <Content Include="Scripts\js\loaders\STLLoader.js" />
+    <Content Include="Scripts\js\loaders\SVGLoader.js" />
+    <Content Include="Scripts\js\loaders\TGALoader.js" />
+    <Content Include="Scripts\js\loaders\UTF8Loader.js" />
+    <Content Include="Scripts\js\loaders\VRMLLoader.js" />
+    <Content Include="Scripts\js\loaders\VTKLoader.js" />
+    <Content Include="Scripts\js\MarchingCubes.js" />
+    <Content Include="Scripts\js\math\ColorConverter.js" />
+    <Content Include="Scripts\js\math\Lut.js" />
+    <Content Include="Scripts\js\MD2Character.js" />
+    <Content Include="Scripts\js\MD2CharacterComplex.js" />
+    <Content Include="Scripts\js\Mirror.js" />
+    <Content Include="Scripts\js\modifiers\BufferSubdivisionModifier.js" />
+    <Content Include="Scripts\js\modifiers\ExplodeModifier.js" />
+    <Content Include="Scripts\js\modifiers\SimplifyModifier.js" />
+    <Content Include="Scripts\js\modifiers\SubdivisionModifier.js" />
+    <Content Include="Scripts\js\modifiers\TessellateModifier.js" />
+    <Content Include="Scripts\js\MorphAnimation.js" />
+    <Content Include="Scripts\js\MorphAnimMesh.js" />
+    <Content Include="Scripts\js\nodes\accessors\CameraNode.js" />
+    <Content Include="Scripts\js\nodes\accessors\ColorsNode.js" />
+    <Content Include="Scripts\js\nodes\accessors\LightNode.js" />
+    <Content Include="Scripts\js\nodes\accessors\NormalNode.js" />
+    <Content Include="Scripts\js\nodes\accessors\PositionNode.js" />
+    <Content Include="Scripts\js\nodes\accessors\ReflectNode.js" />
+    <Content Include="Scripts\js\nodes\accessors\ScreenUVNode.js" />
+    <Content Include="Scripts\js\nodes\accessors\UVNode.js" />
+    <Content Include="Scripts\js\nodes\AttributeNode.js" />
+    <Content Include="Scripts\js\nodes\ConstNode.js" />
+    <Content Include="Scripts\js\nodes\FunctionCallNode.js" />
+    <Content Include="Scripts\js\nodes\FunctionNode.js" />
+    <Content Include="Scripts\js\nodes\GLNode.js" />
+    <Content Include="Scripts\js\nodes\InputNode.js" />
+    <Content Include="Scripts\js\nodes\inputs\ColorNode.js" />
+    <Content Include="Scripts\js\nodes\inputs\CubeTextureNode.js" />
+    <Content Include="Scripts\js\nodes\inputs\FloatNode.js" />
+    <Content Include="Scripts\js\nodes\inputs\IntNode.js" />
+    <Content Include="Scripts\js\nodes\inputs\Matrix4Node.js" />
+    <Content Include="Scripts\js\nodes\inputs\MirrorNode.js" />
+    <Content Include="Scripts\js\nodes\inputs\ScreenNode.js" />
+    <Content Include="Scripts\js\nodes\inputs\TextureNode.js" />
+    <Content Include="Scripts\js\nodes\inputs\Vector2Node.js" />
+    <Content Include="Scripts\js\nodes\inputs\Vector3Node.js" />
+    <Content Include="Scripts\js\nodes\inputs\Vector4Node.js" />
+    <Content Include="Scripts\js\nodes\materials\PhongNode.js" />
+    <Content Include="Scripts\js\nodes\materials\PhongNodeMaterial.js" />
+    <Content Include="Scripts\js\nodes\materials\StandardNode.js" />
+    <Content Include="Scripts\js\nodes\materials\StandardNodeMaterial.js" />
+    <Content Include="Scripts\js\nodes\math\Math1Node.js" />
+    <Content Include="Scripts\js\nodes\math\Math2Node.js" />
+    <Content Include="Scripts\js\nodes\math\Math3Node.js" />
+    <Content Include="Scripts\js\nodes\math\OperatorNode.js" />
+    <Content Include="Scripts\js\nodes\NodeBuilder.js" />
+    <Content Include="Scripts\js\nodes\NodeLib.js" />
+    <Content Include="Scripts\js\nodes\NodeMaterial.js" />
+    <Content Include="Scripts\js\nodes\postprocessing\NodePass.js" />
+    <Content Include="Scripts\js\nodes\RawNode.js" />
+    <Content Include="Scripts\js\nodes\TempNode.js" />
+    <Content Include="Scripts\js\nodes\utils\BlurNode.js" />
+    <Content Include="Scripts\js\nodes\utils\BumpNode.js" />
+    <Content Include="Scripts\js\nodes\utils\ColorAdjustmentNode.js" />
+    <Content Include="Scripts\js\nodes\utils\JoinNode.js" />
+    <Content Include="Scripts\js\nodes\utils\LuminanceNode.js" />
+    <Content Include="Scripts\js\nodes\utils\NoiseNode.js" />
+    <Content Include="Scripts\js\nodes\utils\NormalMapNode.js" />
+    <Content Include="Scripts\js\nodes\utils\ResolutionNode.js" />
+    <Content Include="Scripts\js\nodes\utils\RoughnessToBlinnExponentNode.js" />
+    <Content Include="Scripts\js\nodes\utils\SwitchNode.js" />
+    <Content Include="Scripts\js\nodes\utils\TimerNode.js" />
+    <Content Include="Scripts\js\nodes\utils\VelocityNode.js" />
+    <Content Include="Scripts\js\nodes\VarNode.js" />
+    <Content Include="Scripts\js\objects\ShadowMesh.js" />
+    <Content Include="Scripts\js\Ocean.js" />
+    <Content Include="Scripts\js\Octree.js" />
+    <Content Include="Scripts\js\ParametricGeometries.js" />
+    <Content Include="Scripts\js\pmrem\PMREMCubeUVPacker.js" />
+    <Content Include="Scripts\js\pmrem\PMREMGenerator.js" />
+    <Content Include="Scripts\js\postprocessing\AdaptiveToneMappingPass.js" />
+    <Content Include="Scripts\js\postprocessing\BloomPass.js" />
+    <Content Include="Scripts\js\postprocessing\BokehPass.js" />
+    <Content Include="Scripts\js\postprocessing\ClearPass.js" />
+    <Content Include="Scripts\js\postprocessing\CubeTexturePass.js" />
+    <Content Include="Scripts\js\postprocessing\DotScreenPass.js" />
+    <Content Include="Scripts\js\postprocessing\EffectComposer.js" />
+    <Content Include="Scripts\js\postprocessing\FilmPass.js" />
+    <Content Include="Scripts\js\postprocessing\GlitchPass.js" />
+    <Content Include="Scripts\js\postprocessing\ManualMSAARenderPass.js" />
+    <Content Include="Scripts\js\postprocessing\MaskPass.js" />
+    <Content Include="Scripts\js\postprocessing\OutlinePass.js" />
+    <Content Include="Scripts\js\postprocessing\RenderPass.js" />
+    <Content Include="Scripts\js\postprocessing\SavePass.js" />
+    <Content Include="Scripts\js\postprocessing\ShaderPass.js" />
+    <Content Include="Scripts\js\postprocessing\SMAAPass.js" />
+    <Content Include="Scripts\js\postprocessing\TAARenderPass.js" />
+    <Content Include="Scripts\js\postprocessing\TexturePass.js" />
+    <Content Include="Scripts\js\postprocessing\UnrealBloomPass.js" />
+    <Content Include="Scripts\js\PRNG.js" />
+    <Content Include="Scripts\js\renderers\CanvasRenderer.js" />
+    <Content Include="Scripts\js\renderers\CSS2DRenderer.js" />
+    <Content Include="Scripts\js\renderers\CSS3DRenderer.js" />
+    <Content Include="Scripts\js\renderers\Projector.js" />
+    <Content Include="Scripts\js\renderers\RaytracingRenderer.js" />
+    <Content Include="Scripts\js\renderers\RaytracingWorker.js" />
+    <Content Include="Scripts\js\renderers\SoftwareRenderer.js" />
+    <Content Include="Scripts\js\renderers\SVGRenderer.js" />
+    <Content Include="Scripts\js\RollerCoaster.js" />
+    <Content Include="Scripts\js\ShaderGodRays.js" />
+    <Content Include="Scripts\js\ShaderSkin.js" />
+    <Content Include="Scripts\js\shaders\BasicShader.js" />
+    <Content Include="Scripts\js\shaders\BleachBypassShader.js" />
+    <Content Include="Scripts\js\shaders\BlendShader.js" />
+    <Content Include="Scripts\js\shaders\BokehShader.js" />
+    <Content Include="Scripts\js\shaders\BokehShader2.js" />
+    <Content Include="Scripts\js\shaders\BrightnessContrastShader.js" />
+    <Content Include="Scripts\js\shaders\ColorCorrectionShader.js" />
+    <Content Include="Scripts\js\shaders\ColorifyShader.js" />
+    <Content Include="Scripts\js\shaders\ConvolutionShader.js" />
+    <Content Include="Scripts\js\shaders\CopyShader.js" />
+    <Content Include="Scripts\js\shaders\DigitalGlitch.js" />
+    <Content Include="Scripts\js\shaders\DOFMipMapShader.js" />
+    <Content Include="Scripts\js\shaders\DotScreenShader.js" />
+    <Content Include="Scripts\js\shaders\EdgeShader.js" />
+    <Content Include="Scripts\js\shaders\EdgeShader2.js" />
+    <Content Include="Scripts\js\shaders\FilmShader.js" />
+    <Content Include="Scripts\js\shaders\FocusShader.js" />
+    <Content Include="Scripts\js\shaders\FresnelShader.js" />
+    <Content Include="Scripts\js\shaders\FXAAShader.js" />
+    <Content Include="Scripts\js\shaders\GammaCorrectionShader.js" />
+    <Content Include="Scripts\js\shaders\HorizontalBlurShader.js" />
+    <Content Include="Scripts\js\shaders\HorizontalTiltShiftShader.js" />
+    <Content Include="Scripts\js\shaders\HueSaturationShader.js" />
+    <Content Include="Scripts\js\shaders\KaleidoShader.js" />
+    <Content Include="Scripts\js\shaders\LuminosityHighPassShader.js" />
+    <Content Include="Scripts\js\shaders\LuminosityShader.js" />
+    <Content Include="Scripts\js\shaders\MirrorShader.js" />
+    <Content Include="Scripts\js\shaders\NormalMapShader.js" />
+    <Content Include="Scripts\js\shaders\OceanShaders.js" />
+    <Content Include="Scripts\js\shaders\ParallaxShader.js" />
+    <Content Include="Scripts\js\shaders\RGBShiftShader.js" />
+    <Content Include="Scripts\js\shaders\SepiaShader.js" />
+    <Content Include="Scripts\js\shaders\SMAAShader.js" />
+    <Content Include="Scripts\js\shaders\SSAOShader.js" />
+    <Content Include="Scripts\js\shaders\TechnicolorShader.js" />
+    <Content Include="Scripts\js\shaders\ToneMapShader.js" />
+    <Content Include="Scripts\js\shaders\TriangleBlurShader.js" />
+    <Content Include="Scripts\js\shaders\UnpackDepthRGBAShader.js" />
+    <Content Include="Scripts\js\shaders\VerticalBlurShader.js" />
+    <Content Include="Scripts\js\shaders\VerticalTiltShiftShader.js" />
+    <Content Include="Scripts\js\shaders\VignetteShader.js" />
+    <Content Include="Scripts\js\ShaderTerrain.js" />
+    <Content Include="Scripts\js\ShaderToon.js" />
+    <Content Include="Scripts\js\SimplexNoise.js" />
+    <Content Include="Scripts\js\SkyShader.js" />
+    <Content Include="Scripts\js\textures\2294472375_24a3b8ef46_o.jpg" />
+    <Content Include="Scripts\js\textures\758px-Canestra_di_frutta_%28Caravaggio%29.jpg" />
+    <Content Include="Scripts\js\textures\brick_bump.jpg" />
+    <Content Include="Scripts\js\textures\brick_diffuse.jpg" />
+    <Content Include="Scripts\js\textures\brick_roughness.jpg" />
+    <Content Include="Scripts\js\textures\colors.png" />
+    <Content Include="Scripts\js\textures\compressed\disturb_argb_mip.dds" />
+    <Content Include="Scripts\js\textures\compressed\disturb_argb_nomip.dds" />
+    <Content Include="Scripts\js\textures\compressed\disturb_dxt1_mip.dds" />
+    <Content Include="Scripts\js\textures\compressed\disturb_dxt1_nomip.dds" />
+    <Content Include="Scripts\js\textures\compressed\explosion_dxt5_mip.dds" />
+    <Content Include="Scripts\js\textures\compressed\hepatica_dxt3_mip.dds" />
+    <Content Include="Scripts\js\textures\compressed\Mountains.dds" />
+    <Content Include="Scripts\js\textures\compressed\Mountains_argb_mip.dds" />
+    <Content Include="Scripts\js\textures\compressed\Mountains_argb_nomip.dds" />
+    <Content Include="Scripts\js\textures\crate.gif" />
+    <Content Include="Scripts\js\textures\cube\Bridge2\negx.jpg" />
+    <Content Include="Scripts\js\textures\cube\Bridge2\negy.jpg" />
+    <Content Include="Scripts\js\textures\cube\Bridge2\negz.jpg" />
+    <Content Include="Scripts\js\textures\cube\Bridge2\posx.jpg" />
+    <Content Include="Scripts\js\textures\cube\Bridge2\posy.jpg" />
+    <Content Include="Scripts\js\textures\cube\Bridge2\posz.jpg" />
+    <Content Include="Scripts\js\textures\cube\Bridge2\readme.txt" />
+    <Content Include="Scripts\js\textures\cube\MilkyWay\dark-s_nx.jpg" />
+    <Content Include="Scripts\js\textures\cube\MilkyWay\dark-s_ny.jpg" />
+    <Content Include="Scripts\js\textures\cube\MilkyWay\dark-s_nz.jpg" />
+    <Content Include="Scripts\js\textures\cube\MilkyWay\dark-s_px.jpg" />
+    <Content Include="Scripts\js\textures\cube\MilkyWay\dark-s_py.jpg" />
+    <Content Include="Scripts\js\textures\cube\MilkyWay\dark-s_pz.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park2\negx.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park2\negy.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park2\negz.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park2\posx.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park2\posy.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park2\posz.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park2\readme.txt" />
+    <Content Include="Scripts\js\textures\cube\Park3Med\nx.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park3Med\ny.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park3Med\nz.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park3Med\px.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park3Med\py.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park3Med\pz.jpg" />
+    <Content Include="Scripts\js\textures\cube\Park3Med\readme.txt" />
+    <Content Include="Scripts\js\textures\cube\pisaRGBM16\nx.png" />
+    <Content Include="Scripts\js\textures\cube\pisaRGBM16\ny.png" />
+    <Content Include="Scripts\js\textures\cube\pisaRGBM16\nz.png" />
+    <Content Include="Scripts\js\textures\cube\pisaRGBM16\px.png" />
+    <Content Include="Scripts\js\textures\cube\pisaRGBM16\py.png" />
+    <Content Include="Scripts\js\textures\cube\pisaRGBM16\pz.png" />
+    <Content Include="Scripts\js\textures\cube\pisa\nx.png" />
+    <Content Include="Scripts\js\textures\cube\pisa\ny.png" />
+    <Content Include="Scripts\js\textures\cube\pisa\nz.png" />
+    <Content Include="Scripts\js\textures\cube\pisa\px.png" />
+    <Content Include="Scripts\js\textures\cube\pisa\py.png" />
+    <Content Include="Scripts\js\textures\cube\pisa\pz.png" />
+    <Content Include="Scripts\js\textures\cube\skybox\nx.jpg" />
+    <Content Include="Scripts\js\textures\cube\skybox\ny.jpg" />
+    <Content Include="Scripts\js\textures\cube\skybox\nz.jpg" />
+    <Content Include="Scripts\js\textures\cube\skybox\px.jpg" />
+    <Content Include="Scripts\js\textures\cube\skybox\py.jpg" />
+    <Content Include="Scripts\js\textures\cube\skybox\pz.jpg" />
+    <Content Include="Scripts\js\textures\cube\sun_temple_stripe.jpg" />
+    <Content Include="Scripts\js\textures\cube\sun_temple_stripe_stereo.jpg" />
+    <Content Include="Scripts\js\textures\cube\SwedishRoyalCastle\nx.jpg" />
+    <Content Include="Scripts\js\textures\cube\SwedishRoyalCastle\ny.jpg" />
+    <Content Include="Scripts\js\textures\cube\SwedishRoyalCastle\nz.jpg" />
+    <Content Include="Scripts\js\textures\cube\SwedishRoyalCastle\px.jpg" />
+    <Content Include="Scripts\js\textures\cube\SwedishRoyalCastle\py.jpg" />
+    <Content Include="Scripts\js\textures\cube\SwedishRoyalCastle\pz.jpg" />
+    <Content Include="Scripts\js\textures\cube\SwedishRoyalCastle\readme.txt" />
+    <Content Include="Scripts\js\textures\decal\decal-diffuse.png" />
+    <Content Include="Scripts\js\textures\decal\decal-normal.jpg" />
+    <Content Include="Scripts\js\textures\decal\LICENSE.TXT" />
+    <Content Include="Scripts\js\textures\disturb.jpg" />
+    <Content Include="Scripts\js\textures\envmap.png" />
+    <Content Include="Scripts\js\textures\grid.png" />
+    <Content Include="Scripts\js\textures\hardwood2_bump.jpg" />
+    <Content Include="Scripts\js\textures\hardwood2_diffuse.jpg" />
+    <Content Include="Scripts\js\textures\hardwood2_roughness.jpg" />
+    <Content Include="Scripts\js\textures\land_ocean_ice_cloud_2048.jpg" />
+    <Content Include="Scripts\js\textures\lava\cloud.png" />
+    <Content Include="Scripts\js\textures\lava\lavatile.jpg" />
+    <Content Include="Scripts\js\textures\lensflare0.png" />
+    <Content Include="Scripts\js\textures\lensflare1.png" />
+    <Content Include="Scripts\js\textures\lensflare2.jpg" />
+    <Content Include="Scripts\js\textures\lensflare\hexangle.png" />
+    <Content Include="Scripts\js\textures\lensflare\lensflare0.png" />
+    <Content Include="Scripts\js\textures\lensflare\lensflare0_alpha.png" />
+    <Content Include="Scripts\js\textures\lensflare\lensflare1.png" />
+    <Content Include="Scripts\js\textures\lensflare\lensflare2.png" />
+    <Content Include="Scripts\js\textures\lensflare\lensflare3.png" />
+    <Content Include="Scripts\js\textures\lensflare\LICENSE.txt" />
+    <Content Include="Scripts\js\textures\memorial.png" />
+    <Content Include="Scripts\js\textures\metal.jpg" />
+    <Content Include="Scripts\js\textures\minecraft\atlas.png" />
+    <Content Include="Scripts\js\textures\minecraft\dirt.png" />
+    <Content Include="Scripts\js\textures\minecraft\grass.png" />
+    <Content Include="Scripts\js\textures\minecraft\grass_dirt.png" />
+    <Content Include="Scripts\js\textures\minecraft\painterlypack.txt" />
+    <Content Include="Scripts\js\textures\normal\ninja\ao.jpg" />
+    <Content Include="Scripts\js\textures\normal\ninja\displacement.jpg" />
+    <Content Include="Scripts\js\textures\normal\ninja\displacement.txt" />
+    <Content Include="Scripts\js\textures\normal\ninja\normal.jpg" />
+    <Content Include="Scripts\js\textures\particle2.png" />
+    <Content Include="Scripts\js\textures\patterns\bright_squares256.png" />
+    <Content Include="Scripts\js\textures\patterns\circuit_pattern.png" />
+    <Content Include="Scripts\js\textures\patterns\readme.txt" />
+    <Content Include="Scripts\js\textures\perlin-512.png" />
+    <Content Include="Scripts\js\textures\planets\earth_atmos_2048.jpg" />
+    <Content Include="Scripts\js\textures\planets\earth_atmos_4096.jpg" />
+    <Content Include="Scripts\js\textures\planets\earth_clouds_1024.png" />
+    <Content Include="Scripts\js\textures\planets\earth_clouds_2048.png" />
+    <Content Include="Scripts\js\textures\planets\earth_lights_2048.png" />
+    <Content Include="Scripts\js\textures\planets\earth_normal_2048.jpg" />
+    <Content Include="Scripts\js\textures\planets\earth_specular_2048.jpg" />
+    <Content Include="Scripts\js\textures\planets\moon_1024.jpg" />
+    <Content Include="Scripts\js\textures\ricoh_theta_s.jpg" />
+    <Content Include="Scripts\js\textures\roughness_map.jpg" />
+    <Content Include="Scripts\js\textures\sheeting.bmp" />
+    <Content Include="Scripts\js\textures\sheeting2.bmp" />
+    <Content Include="Scripts\js\textures\sheetwall.png" />
+    <Content Include="Scripts\js\textures\skyboxsun25degtest.png" />
+    <Content Include="Scripts\js\textures\skyboxsun25degtest.txt" />
+    <Content Include="Scripts\js\textures\SkyBox\sbox_nx.jpg" />
+    <Content Include="Scripts\js\textures\SkyBox\sbox_ny.jpg" />
+    <Content Include="Scripts\js\textures\SkyBox\sbox_nz.jpg" />
+    <Content Include="Scripts\js\textures\SkyBox\sbox_px.jpg" />
+    <Content Include="Scripts\js\textures\SkyBox\sbox_py.jpg" />
+    <Content Include="Scripts\js\textures\SkyBox\sbox_pz.jpg" />
+    <Content Include="Scripts\js\textures\SkyBox\TropicalSunnyDay\TropicalSunnyDayBack2048.png" />
+    <Content Include="Scripts\js\textures\SkyBox\TropicalSunnyDay\TropicalSunnyDayDown2048.png" />
+    <Content Include="Scripts\js\textures\SkyBox\TropicalSunnyDay\TropicalSunnyDayFront2048.png" />
+    <Content Include="Scripts\js\textures\SkyBox\TropicalSunnyDay\TropicalSunnyDayLeft2048.png" />
+    <Content Include="Scripts\js\textures\SkyBox\TropicalSunnyDay\TropicalSunnyDayRight2048.png" />
+    <Content Include="Scripts\js\textures\SkyBox\TropicalSunnyDay\TropicalSunnyDayUp2048.png" />
+    <Content Include="Scripts\js\textures\sprite.png" />
+    <Content Include="Scripts\js\textures\sprite0.jpg" />
+    <Content Include="Scripts\js\textures\sprite0.png" />
+    <Content Include="Scripts\js\textures\sprite1.jpg" />
+    <Content Include="Scripts\js\textures\sprite1.png" />
+    <Content Include="Scripts\js\textures\sprite2.png" />
+    <Content Include="Scripts\js\textures\sprites\ball.png" />
+    <Content Include="Scripts\js\textures\sprites\circle.png" />
+    <Content Include="Scripts\js\textures\sprites\disc.png" />
+    <Content Include="Scripts\js\textures\sprites\snowflake1.png" />
+    <Content Include="Scripts\js\textures\sprites\snowflake2.png" />
+    <Content Include="Scripts\js\textures\sprites\snowflake3.png" />
+    <Content Include="Scripts\js\textures\sprites\snowflake4.png" />
+    <Content Include="Scripts\js\textures\sprites\snowflake5.png" />
+    <Content Include="Scripts\js\textures\sprites\snowflake7_alpha.png" />
+    <Content Include="Scripts\js\textures\sprites\spark1.png" />
+    <Content Include="Scripts\js\textures\square-outline-textured.png" />
+    <Content Include="Scripts\js\textures\square-outline.png" />
+    <Content Include="Scripts\js\textures\terrain\1.jpg" />
+    <Content Include="Scripts\js\textures\terrain\2.jpg" />
+    <Content Include="Scripts\js\textures\terrain\3.jpg" />
+    <Content Include="Scripts\js\textures\terrain\4.jpg" />
+    <Content Include="Scripts\js\textures\terrain\5.jpg" />
+    <Content Include="Scripts\js\textures\terrain\6.jpg" />
+    <Content Include="Scripts\js\textures\terrain\7.jpg" />
+    <Content Include="Scripts\js\textures\terrain\backgrounddetailed6.jpg" />
+    <Content Include="Scripts\js\textures\terrain\grasslight-big-nm.jpg" />
+    <Content Include="Scripts\js\textures\terrain\grasslight-big.jpg" />
+    <Content Include="Scripts\js\textures\terrain\grasslight-thin.jpg" />
+    <Content Include="Scripts\js\textures\terrain\readme.txt" />
+    <Content Include="Scripts\js\textures\transition\transition1.png" />
+    <Content Include="Scripts\js\textures\transition\transition2.png" />
+    <Content Include="Scripts\js\textures\transition\transition3.png" />
+    <Content Include="Scripts\js\textures\transition\transition4.png" />
+    <Content Include="Scripts\js\textures\transition\transition5.png" />
+    <Content Include="Scripts\js\textures\transition\transition6.png" />
+    <Content Include="Scripts\js\textures\tri_pattern.jpg" />
+    <Content Include="Scripts\js\textures\UV_Grid_Sm.jpg" />
+    <Content Include="Scripts\js\textures\UV_Grid_Sm.txt" />
+    <Content Include="Scripts\js\textures\water.jpg" />
+    <Content Include="Scripts\js\textures\waternormals.jpg" />
+    <Content Include="Scripts\js\ThreeSrc\FBXHouse\AutodeskFBX\Char_UV_Texture.gif" />
+    <Content Include="Scripts\js\TimelinerController.js" />
+    <Content Include="Scripts\js\TypedArrayUtils.js" />
+    <Content Include="Scripts\js\UCSCharacter.js" />
+    <Content Include="Scripts\js\utils\GeometryUtils.js" />
+    <Content Include="Scripts\js\utils\ImageUtils.js" />
+    <Content Include="Scripts\js\utils\ShadowMapViewer.js" />
+    <Content Include="Scripts\js\utils\UVsDebug.js" />
+    <Content Include="Scripts\js\ViveController.js" />
+    <Content Include="Scripts\js\Volume.js" />
+    <Content Include="Scripts\js\VolumeSlice.js" />
+    <Content Include="Scripts\js\WaterShader.js" />
+    <Content Include="Scripts\js\WebVR.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\.gitignore" />
+    <Content Include="Scripts\ngWYSIWYG-master\dev\index.html" />
+    <Content Include="Scripts\ngWYSIWYG-master\dist\editor.min.css" />
+    <Content Include="Scripts\ngWYSIWYG-master\dist\images\header-bg.gif" />
+    <Content Include="Scripts\ngWYSIWYG-master\dist\images\header-bg.orig.gif" />
+    <Content Include="Scripts\ngWYSIWYG-master\dist\images\icons.old.png" />
+    <Content Include="Scripts\ngWYSIWYG-master\dist\images\icons.png" />
+    <Content Include="Scripts\ngWYSIWYG-master\dist\images\logo.png" />
+    <Content Include="Scripts\ngWYSIWYG-master\dist\images\resize.gif" />
+    <Content Include="Scripts\ngWYSIWYG-master\dist\wysiwyg.min.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\gulpfile.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\images\header-bg.gif" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\images\header-bg.orig.gif" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\images\icons.old.png" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\images\icons.png" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\images\logo.png" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\images\resize.gif" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\js\ngpColorsGrid.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\js\ngpContentFrame.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\js\ngpImageResizer.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\js\ngpResizable.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\js\ngpSymbolsGrid.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\js\ngpUtils.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\js\wysiwyg.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\js\wysiwygEdit.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\tests\conf.js" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\tests\load-spec.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Site\3D\FileSaver.min.js" />
+    <Content Include="Scripts\Site\3D\Openinings3D.js" />
+    <Content Include="Scripts\Site\3D\PersonalDoor.js" />
+    <Content Include="Scripts\Site\3D\STLExporter.js" />
+    <Content Include="Scripts\Site\3D\SubSysems3D.js" />
+    <Content Include="Scripts\Site\Accessories\ManageAccessories.js" />
+    <Content Include="Scripts\Site\Accessories\PipeFlashings.js" />
+    <Content Include="Scripts\Site\Accessories\OtherSBO.js" />
+    <Content Include="Scripts\Site\Accessories\RidgeVentrs.js" />
+    <Content Include="Scripts\Site\Accessories\TransPanels.js" />
+    <Content Include="Scripts\Site\Accessories\RoofCurbs.js" />
+    <Content Include="Scripts\Site\Accessories\PowerVentilators.js" />
+    <Content Include="Scripts\Site\Accessories\Louvers.js" />
+    <Content Include="Scripts\Site\Accessories\Windows.js" />
+    <Content Include="Scripts\Site\Accessories\RollupDoors.js" />
+    <Content Include="Scripts\Site\Accessories\SlidingDoors.js" />
+    <Content Include="Scripts\Site\Accessories\PersonalDoors.js" />
+    <Content Include="Scripts\Site\Accessories\OpenWalls.js" />
+    <Content Include="Scripts\Site\bootstrap-select.min.js" />
+    <Content Include="Scripts\Site\bootstrap.min.js" />
+    <Content Include="Scripts\Site\3D\BuildibArea3D.js" />
+    <Content Include="Scripts\Site\Accessories\FramedOpinings.js" />
+    <Content Include="Scripts\Site\Contact.js" />
+    <Content Include="Scripts\Site\CraneSystems.js" />
+    <None Include="Scripts\Site\LinqJs\JSLINQ-vsdoc.js" />
+    <Content Include="Scripts\Site\Layout.js" />
+    <Content Include="Scripts\Site\LinqJs\jquery.json2html.js" />
+    <Content Include="Scripts\Site\LinqJs\JSLINQ.js" />
+    <Content Include="Scripts\Site\LinqJs\json2html.js" />
+    <Content Include="Scripts\Site\LinqJs\Samples.js" />
+    <Content Include="Scripts\Site\Mezzanine.js" />
+    <Content Include="Scripts\Site\SecondaryMember.js" />
+    <Content Include="Scripts\Site\SubSystems\Staircases.js" />
+    <Content Include="Scripts\Site\SubSystems\RoofWalkways.js" />
+    <Content Include="Scripts\Site\SubSystems\RoofPlatforms.js" />
+    <Content Include="Scripts\Site\SubSystems\Partitions.js" />
+    <Content Include="Scripts\Site\SubSystems\Ladders.js" />
+    <Content Include="Scripts\Site\SubSystems\InteriorCatwalks.js" />
+    <Content Include="Scripts\Site\SubSystems\RoofMonitors.js" />
+    <Content Include="Scripts\Site\SubSystems\Fascias.js" />
+    <Content Include="Scripts\Site\SubSystems\RoofExtensions.js" />
+    <Content Include="Scripts\Site\SubSystems\Canopies.js" />
+    <Content Include="Scripts\Site\Summary - Copy.js" />
+    <Content Include="Scripts\Site\WallPanelAccessories.js" />
+    <Content Include="Scripts\Site\RoofAndWalls.js" />
+    <Content Include="Scripts\Site\Index.js" />
+    <Content Include="Scripts\Site\Bracing.js" />
+    <Content Include="Scripts\Site\PrimaryMember.js" />
+    <Content Include="Scripts\Site\LoadsAndCods.js" />
+    <Content Include="Scripts\Site\spin.min.js" />
+    <Content Include="Scripts\Site\Summary.js" />
+    <Content Include="Scripts\Site\Site.js" />
+    <Content Include="Scripts\Site\textAngular.min.js" />
+    <Content Include="Scripts\Site\3D\Viewer - Copy.js" />
+    <Content Include="Scripts\Site\3D\Viewer.js" />
+    <Content Include="Scripts\three.js" />
+    <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Scripts\tinymce\license.txt" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="Scripts\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\example\dialog.html" />
+    <Content Include="Scripts\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\toc\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\tinymce\themes\inlite\theme.min.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\.gitignore" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\demo\demo.html" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\demo\demo.js" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\dist\tinymce.min.js" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\gruntFile.js" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\src\tinymce.js" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\test\karma.conf.js" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\test\tinymce.spec.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\js\ThreeSrc\FBXHouse\Textures\Farmhouse Texture Bump Map .jpg" />
+    <Content Include="Scripts\js\ThreeSrc\FBXHouse\Textures\Farmhouse Texture.jpg" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Viewer.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Scripts\js\ThreeSrc\FBXHouse\AutodeskFBX\FarmhouseFBX.fbx" />
+    <Content Include="Scripts\js\ThreeSrc\FBXHouse\AutodeskFBX\xsi_man.fbx" />
+    <Content Include="Scripts\js\ThreeSrc\FBXHouse\AutodeskFBX\xsi_man_skinning.fbx" />
+    <Content Include="Views\BuildingAreas\Create.cshtml" />
+    <Content Include="Views\BuildingAreas\Delete.cshtml" />
+    <Content Include="Views\BuildingAreas\Details.cshtml" />
+    <Content Include="Views\BuildingAreas\Edit.cshtml" />
+    <Content Include="Views\BuildingAreas\Index.cshtml" />
+    <Content Include="Scripts\version.json" />
+    <Content Include="Scripts\js\libs\zlib_and_gzip.min.js.map" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\EaveConditionEnum_Table\Create.cshtml" />
+    <Content Include="Views\EaveConditionEnum_Table\Delete.cshtml" />
+    <Content Include="Views\EaveConditionEnum_Table\Details.cshtml" />
+    <Content Include="Views\EaveConditionEnum_Table\Edit.cshtml" />
+    <Content Include="Views\EaveConditionEnum_Table\Index.cshtml" />
+    <Content Include="Views\Home\LoadsAndCodes.cshtml" />
+    <Content Include="Views\Home\PrimaryMember.cshtml" />
+    <Content Include="Views\Home\Bracing.cshtml" />
+    <Content Include="Views\Home\RoofAndWalls.cshtml" />
+    <Content Include="Views\Home\Viewer - Copy.cshtml" />
+    <Content Include="Scripts\js\textures\compressed\disturb_2bpp_rgb.pvr" />
+    <Content Include="Scripts\js\textures\compressed\disturb_4bpp_rgb.pvr" />
+    <Content Include="Scripts\js\textures\compressed\disturb_4bpp_rgb_mips.pvr" />
+    <Content Include="Scripts\js\textures\compressed\disturb_4bpp_rgb_v3.pvr" />
+    <Content Include="Scripts\js\textures\compressed\flare_2bpp_rgba.pvr" />
+    <Content Include="Scripts\js\textures\compressed\flare_4bpp_rgba.pvr" />
+    <Content Include="Scripts\js\textures\compressed\park3_cube_mip_2bpp_rgb_v3.pvr" />
+    <Content Include="Scripts\js\textures\compressed\park3_cube_nomip_4bpp_rgb.pvr" />
+    <Content Include="Scripts\js\textures\crate_color8.tga" />
+    <Content Include="Scripts\js\textures\crate_grey8.tga" />
+    <Content Include="Scripts\js\textures\cube\pisaHDR\nx.hdr" />
+    <Content Include="Scripts\js\textures\cube\pisaHDR\ny.hdr" />
+    <Content Include="Scripts\js\textures\cube\pisaHDR\nz.hdr" />
+    <Content Include="Scripts\js\textures\cube\pisaHDR\px.hdr" />
+    <Content Include="Scripts\js\textures\cube\pisaHDR\py.hdr" />
+    <Content Include="Scripts\js\textures\cube\pisaHDR\pz.hdr" />
+    <Content Include="Scripts\js\textures\kinect.nfo" />
+    <Content Include="Scripts\js\textures\kinect.webm" />
+    <Content Include="Scripts\js\textures\MaryOculus.webm" />
+    <Content Include="Scripts\js\textures\MaryOculus.webm.nfo" />
+    <Content Include="Scripts\js\textures\miranda_uncropped.hdr" />
+    <Content Include="Scripts\js\textures\pano.webm" />
+    <Content Include="Scripts\js\textures\sintel.ogv" />
+    <Content Include="Views\Home\Viewer - Copy %282%29.cshtml" />
+    <Content Include="Views\Home\Viewer - Copy %283%29.cshtml" />
+    <Content Include="Views\Home\Summary.cshtml" />
+    <Content Include="Views\Home\WallPanelAccessories.cshtml" />
+    <Content Include="Views\Home\Mezzannine.cshtml" />
+    <Content Include="Views\Accessories\FramedOpinings.cshtml" />
+    <Content Include="Views\Accessories\OpenWalls.cshtml" />
+    <Content Include="Views\Accessories\TransPanels.cshtml" />
+    <Content Include="Views\Accessories\RoofCurbs.cshtml" />
+    <Content Include="Views\Accessories\PowerVentilators.cshtml" />
+    <Content Include="Views\Accessories\Louvers.cshtml" />
+    <Content Include="Views\Accessories\Windows.cshtml" />
+    <Content Include="Views\Accessories\RollupDoors.cshtml" />
+    <Content Include="Views\Accessories\SlidingDoors.cshtml" />
+    <Content Include="Views\Accessories\PersonalDoors.cshtml" />
+    <Content Include="Views\Accessories\ManageAccessories.cshtml" />
+    <Content Include="Views\Accessories\PipeFlashings.cshtml" />
+    <Content Include="Views\Accessories\OtherSBO.cshtml" />
+    <Content Include="Views\Accessories\RidgeVentrs.cshtml" />
+    <Content Include="Views\Home\CraneSystems.cshtml" />
+    <Content Include="Views\SubSystems\Canopies.cshtml" />
+    <Content Include="Views\SubSystems\RoofExtensions.cshtml" />
+    <Content Include="Views\SubSystems\Staircases.cshtml" />
+    <Content Include="Views\SubSystems\RoofWalkways.cshtml" />
+    <Content Include="Views\SubSystems\RoofPlatforms.cshtml" />
+    <Content Include="Views\SubSystems\Partitions.cshtml" />
+    <Content Include="Views\SubSystems\Ladders.cshtml" />
+    <Content Include="Views\SubSystems\InteriorCatwalks.cshtml" />
+    <Content Include="Views\SubSystems\RoofMonitors.cshtml" />
+    <Content Include="Views\SubSystems\Fascias.cshtml" />
+    <Content Include="Views\Home\SecondaryMember.cshtml" />
+    <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\.bowerrc" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\.travis.yml" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\bower.json" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\CONTRIBUTING.md" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\LICENSE" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\package.json" />
+    <Content Include="Scripts\tinymce\ui-tinymce-master\README.md" />
+    <Content Include="Scripts\ngWYSIWYG-master\bower.help" />
+    <Content Include="Scripts\ngWYSIWYG-master\bower.json" />
+    <Content Include="Scripts\ngWYSIWYG-master\CHANGELOG.md" />
+    <Content Include="Scripts\ngWYSIWYG-master\LICENSE.md" />
+    <Content Include="Scripts\ngWYSIWYG-master\package.json" />
+    <Content Include="Scripts\ngWYSIWYG-master\README.md" />
+    <Content Include="Scripts\ngWYSIWYG-master\src\css\editor.sass" />
+    <Content Include="Views\Home\Summary - Copy.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\BA\" />
+    <Folder Include="Views\PISUser\" />
+    <Folder Include="XamlRemark\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49488</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49488/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

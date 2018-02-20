@@ -1,0 +1,418 @@
+﻿
+@{
+    ViewBag.Title = "SecondaryMember";
+}
+   
+<style>
+    .Marg {
+        margin-top: 10px;
+    }
+</style>
+
+<form ng-controller="PrimaryCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div>
+        <div id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Secondary Members</h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Summary</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="tab-pane active" id="5b">
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            @*load*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well" style="font-size:12px;">
+                                                    <div class="col-lg-12">
+                                                        <h5 class="text-primary"><u>Secondery Members</u></h5>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Secondery Members</div>
+                                                            <div class="col-lg-6">{{building.SurfaceTreatment.SecondaryMembers.SurfaceFinish}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Secondery Surface Treatment</div>
+                                                            <div class="col-lg-6">{{building.SurfaceTreatment.SecondaryMembers.SurfaceTreatment}}</div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="col-lg-6">Secondery Paint System</div>
+                                                            <div class="col-lg-6">{{building.SurfaceTreatment.SecondaryMembers.PaintSystem}}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12  table-responsive">
+                                                        <table style="font-size:10px;" ng-show="building.SurfaceTreatment.SecondaryMembers.PaintSystem == 'SPECIAL' && building.SurfaceTreatment.PrimaryMembers.SurfaceFinish == 'PAINTED'" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                            <thead class="text-left text-info">
+                                                                <tr>
+                                                                    <th>NO</th>
+                                                                    <th>BY</th>
+                                                                    <th>Thickness</th>
+                                                                    <th>Manufacturer</th>
+                                                                    <th>Paint Code</th>
+                                                                    <th>Color</th>
+                                                                    <th>Description</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="x in building.SurfaceTreatment.SecondaryMembers.Coats.Coat track by $index">
+                                                                    <td>
+                                                                        <div>{{x.ID = $index + 1}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.By_Who}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.Thickness}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.Manufacturer}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.PaintCode}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.Color}}</div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>{{x.Description}}</div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Members</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="1b">
+
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+
+                                            @*Secondery*@
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well">
+                                                    <h4 class="text-primary"><u>Secondary Members</u></h4>
+                                                    <div class="row">
+                                                        <div class="col-lg-6 Marg">Secondary Members (purlins, eave struts, girts)</div>
+                                                        <div class="col-lg-6 Marg">
+                                                            <div class="col-xs-12">
+                                                                <select class="form-control" ng-model="building.SurfaceTreatment.SecondaryMembers.SurfaceFinish" ng-options="x for x in SecondarySurfaceFinish"></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="building.SurfaceTreatment.SecondaryMembers.SurfaceFinish=='PAINTED'">
+                                                        <div class="row">
+                                                            <div class="col-lg-6 Marg">Secondary Surface Treatment</div>
+                                                            <div class="col-lg-6 Marg">
+                                                                <div class="col-xs-12">
+                                                                    <select class="form-control" ng-model="building.SurfaceTreatment.SecondaryMembers.SurfaceTreatment" ng-options="x for x in SecondarySurfaceTreatment"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-6 Marg">Secondary Paint System</div>
+                                                            <div class="col-lg-6 Marg">
+                                                                <div class="col-xs-12">
+                                                                    <select class="form-control" ng-model="building.SurfaceTreatment.SecondaryMembers.PaintSystem" ng-options="x for x in PaintSystem"></select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-lg-12  table-responsive">
+                                                <table ng-show="building.SurfaceTreatment.SecondaryMembers.PaintSystem == 'SPECIAL' && building.SurfaceTreatment.SecondaryMembers.SurfaceFinish == 'PAINTED'" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                    <thead class="text-left text-info">
+                                                        <tr>
+                                                            <th>NO</th>
+                                                            <th>BY</th>
+                                                            <th>Thickness</th>
+                                                            <th>Manufacturer</th>
+                                                            <th>Paint Code</th>
+                                                            <th>Color</th>
+                                                            <th>Description</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="x in building.SurfaceTreatment.SecondaryMembers.Coats.Coat track by $index">
+                                                            <td>
+                                                                <div>{{x.ID = $index + 1}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div>{{x.By_Who}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div>{{x.Thickness}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div>{{x.Manufacturer}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div>{{x.PaintCode}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div>{{x.Color}}</div>
+                                                            </td>
+                                                            <td>
+                                                                <div>{{x.Description}}</div>
+                                                            </td>
+                                                            <td style="width:50px;">
+                                                                <button type="button" ng-click="CoatUpdate($index)" class="btn btn-sm">
+                                                                    <i class="glyphicon glyphicon-pencil">
+                                                                    </i>
+                                                                </button>
+                                                            </td>
+                                                            <td style="width:50px;">
+                                                                <button type="button" ng-click="removeCoat($index)" class="btn btn-sm btn-danger">
+                                                                    <i class="glyphicon glyphicon-remove">
+                                                                    </i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="row" ng-show="building.SurfaceTreatment.SecondaryMembers.PaintSystem == 'SPECIAL' && building.SurfaceTreatment.SecondaryMembers.SurfaceFinish == 'PAINTED'">
+                                                    <div class="col-lg-6">
+                                                        <button type="button" ng-click="ResetCoat()" class="btn btn-primary" data-toggle="modal" data-target="#CoatModal">Add Coat</button>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <button class="btn btn-warning" ng-show="Coathistory.length > 0" ng-click="UndoCoat()">Undo Delete</button>
+                                                    </div>
+                                                </div>
+                                                <div class="modal fade" role="dialog" id="CoatModal">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                <h4 class="modal-title">{{Coatkword}} Coat {{newCoat.ID}}</h4>
+                                                            </div>
+                                                            <div class="modal-body" ng-model="newCoat">
+                                                                <div class="container-fluid">
+                                                                    <div class="col-xs-12">
+                                                                        <div class="col-lg-12 well">
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">By_Who</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" name="CraneManufacturer" ng-model="newCoat.By_Who" ng-options="x for x in By_WhoCoat"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Thickness</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" type="number" ng-init="0" min="0" name="ThicknessCoat" ng-model="newCoat.Thickness" required />
+                                                                                    <span style="color:red" ng-show="myForm.ThicknessCoat.$dirty && myForm.ThicknessCoat.$invalid">
+                                                                                        <span ng-show="myForm.ThicknessCoat.$error.required"> Required </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Manufacturer</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <select class="form-control" name="Manufacturer" ng-model="newCoat.Manufacturer" ng-options="x for x in Manufacturer"></select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Paint Code</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="PaintCode" ng-model="newCoat.PaintCode" required />
+                                                                                    <span style="color:red" ng-show="myForm.PaintCode.$dirty && myForm.PaintCode.$invalid">
+                                                                                        <span ng-show="myForm.PaintCode.$error.required"> Required </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Color</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <input class="form-control" name="Color" ng-model="newCoat.Color" required />
+                                                                                    <span style="color:red" ng-show="myForm.Color.$dirty && myForm.Color.$invalid">
+                                                                                        <span ng-show="myForm.Color.$error.required">Quantity Required </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-12 Marg">
+                                                                                <div class="col-xs-6">Description</div>
+                                                                                <div class="col-xs-6">
+                                                                                    <textarea ng-trim="false" maxlength="512" rows="4" name="Description" style="min-height:108px;" class="form-control" ng-model="newCoat.Description"></textarea>
+                                                                                    <span style="color:red" ng-show="myForm.Description.$dirty && myForm.Description.$invalid">
+                                                                                        <span ng-show="myForm.Description.$error.required"> Required </span>
+                                                                                    </span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <div class="container-fluid">
+                                                                    <div class="col-lg-6">
+                                                                        <button data-dismiss="modal" class="form-control" ng-click="AddUpdateCoat()"
+                                                                                ng-disabled="myForm.ThicknessCoat.$dirty && myForm.ThicknessCoat.$invalid">
+                                                                            Confirm
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="col-lg-6">
+                                                                        <button data-dismiss="modal" class="form-control">Close</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Tab Remarks*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseR">Remarks </a>
+                            </h4>
+                        </div>
+                        <div id="collapseR" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4bR">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12  table-responsive">
+                                            Show Deleted: <input type="checkbox" ng-model="Deletedchecked" aria-label="Toggle ngShow"><br />
+                                            <table ng-show="building.SurfaceTreatment.SecondaryMembers.Remarks.Remark" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-left text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Remark</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: left;">
+                                                    <tr ng-repeat="x in building.SurfaceTreatment.SecondaryMembers.Remarks.Remark track by $index" ng-show="ShowDeleRemark(x.State)">
+                                                        <td style="width:50px;">
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-class="{'text-warning':(x.State == 'false') }" style="white-space:pre-line"><div ng-bind-html="x.Remark"></div></div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="RemarkUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button ng-show="(x.State == 'true')" type="button" ng-click="removeRemark($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetRemark()" class="btn btn-primary" data-toggle="modal" data-target="#RemarkModal">Add Remark</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Remarkhistory.length > 0" ng-click="UndoRemark()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="RemarkModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Remarkword}} Remark{{newRemark.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newRemark">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                <wysiwyg-edit content="newRemark.Remark" config="editorConfig"></wysiwyg-edit>
+                                                                                <span style="color:red" ng-show="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                                    <span ng-show="myForm.Remark.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-12">
+                                                                                {{512 - newRemark.Remark.length}} / 512
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateRemark()"
+                                                                            ng-disabled="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Remarks *@
+                    <br />
+                    <div class="container-fluid">
+                        <div class="text-center">
+                            <input id="submit" @*type="submit"*@ type="button" ng-click="SaveData()" value="Save" class="btn-default form-control"
+                                   ng-disabled="myForm.LiveLoadOnRoof.$dirty && myForm.LiveLoadOnRoof.$invalid
+                                                           || myForm.Minus.$dirty && myForm.Minus.$invalid" />
+                        </div>
+                    </div>
+
+                </div> @*EndContainer*@
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="~/Scripts/Site/SecondaryMember.js"></script>

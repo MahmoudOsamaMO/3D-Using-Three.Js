@@ -1,0 +1,124 @@
+﻿@model IEnumerable<PIS3D.Models.BuildingArea>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PISX_VER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeneralData)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DesignCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SurfaceTreatment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bracings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PanelsAndInsulations)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoofWallCladding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WallPanelAccessories)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Openings)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subsystems)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CraneSystems)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mezzanines)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OldArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Width)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.length)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.height)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PISX_VER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeneralData)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DesignCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SurfaceTreatment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bracings)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PanelsAndInsulations)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoofWallCladding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WallPanelAccessories)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Openings)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subsystems)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CraneSystems)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mezzanines)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OldArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Width)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.length)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.height)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

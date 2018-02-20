@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PISModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__RefactorLog">
+    <Key>
+      <PropertyRef Name="OperationKey" />
+    </Key>
+    <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApplyLoadsPerTable">
+    <Key>
+      <PropertyRef Name="ApplyLoadsPer_ID" />
+    </Key>
+    <Property Name="ApplyLoadsPer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplyLoadsPer" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="BracingTypeTable">
+    <Key>
+      <PropertyRef Name="BracingType_ID" />
+    </Key>
+    <Property Name="BracingType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BracingType" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ColdFormedDesignCodesTable">
+    <Key>
+      <PropertyRef Name="ColdFormedDesignCodes_ID" />
+    </Key>
+    <Property Name="ColdFormedDesignCodes_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ColdFormedDesignCodes" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="DesignCodesTable">
+    <Key>
+      <PropertyRef Name="DesignCodes_ID" />
+    </Key>
+    <Property Name="DesignCodes_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DesignCodes" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Downspouts_Table">
+    <Key>
+      <PropertyRef Name="ID_Downspouts" />
+    </Key>
+    <Property Name="ID_Downspouts" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Downspouts" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="EaveConditionEnum_Table">
+    <Key>
+      <PropertyRef Name="ID_EaveConditionEnum" />
+    </Key>
+    <Property Name="ID_EaveConditionEnum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EaveConditionEnum" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="EndWallTypeTypeTable">
+    <Key>
+      <PropertyRef Name="EndWallTypeType_ID" />
+    </Key>
+    <Property Name="EndWallTypeType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EndWallTypeType" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="FrameType_Table">
+    <Key>
+      <PropertyRef Name="ID_FrameType" />
+    </Key>
+    <Property Name="ID_FrameType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FrameType" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="HeightReference_Table">
+    <Key>
+      <PropertyRef Name="ID_HeightReference" />
+    </Key>
+    <Property Name="ID_HeightReference" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HeightReference" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="LengthReference_Table">
+    <Key>
+      <PropertyRef Name="ID_LengthReference" />
+    </Key>
+    <Property Name="ID_LengthReference" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LengthReference" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="PaintSystemTable">
+    <Key>
+      <PropertyRef Name="PaintSystem_ID" />
+    </Key>
+    <Property Name="PaintSystem_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaintSystem" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SecondarySurfaceFinishTable">
+    <Key>
+      <PropertyRef Name="SecondarySurfaceFinish_ID" />
+    </Key>
+    <Property Name="SecondarySurfaceFinish_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SecondarySurfaceFinish" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SeismicTable">
+    <Key>
+      <PropertyRef Name="Seismic_ID" />
+    </Key>
+    <Property Name="Seismic_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Seismic" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="SurfaceFinishTable">
+    <Key>
+      <PropertyRef Name="SurfaceFinish_ID" />
+    </Key>
+    <Property Name="SurfaceFinish_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SurfaceFinish" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SurfaceTreatmentTable">
+    <Key>
+      <PropertyRef Name="SurfaceTreatment_ID" />
+    </Key>
+    <Property Name="SurfaceTreatment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SurfaceTreatment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="WidthReferenceTable">
+    <Key>
+      <PropertyRef Name="ID_WidthReference" />
+    </Key>
+    <Property Name="ID_WidthReference" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WidthReference" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="WindExposureTable">
+    <Key>
+      <PropertyRef Name="WindExposure_ID" />
+    </Key>
+    <Property Name="WindExposure_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WindExposure" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="WindSpeedEnumTable">
+    <Key>
+      <PropertyRef Name="WindSpeedEnum_ID" />
+    </Key>
+    <Property Name="WindSpeedEnum_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WindSpeedEnum" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityContainer Name="PISModelStoreContainer">
+    <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplyLoadsPerTable" EntityType="Self.ApplyLoadsPerTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BracingTypeTable" EntityType="Self.BracingTypeTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ColdFormedDesignCodesTable" EntityType="Self.ColdFormedDesignCodesTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DesignCodesTable" EntityType="Self.DesignCodesTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Downspouts_Table" EntityType="Self.Downspouts_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EaveConditionEnum_Table" EntityType="Self.EaveConditionEnum_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EndWallTypeTypeTable" EntityType="Self.EndWallTypeTypeTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FrameType_Table" EntityType="Self.FrameType_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HeightReference_Table" EntityType="Self.HeightReference_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LengthReference_Table" EntityType="Self.LengthReference_Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaintSystemTable" EntityType="Self.PaintSystemTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SecondarySurfaceFinishTable" EntityType="Self.SecondarySurfaceFinishTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SeismicTable" EntityType="Self.SeismicTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SurfaceFinishTable" EntityType="Self.SurfaceFinishTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SurfaceTreatmentTable" EntityType="Self.SurfaceTreatmentTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WidthReferenceTable" EntityType="Self.WidthReferenceTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WindExposureTable" EntityType="Self.WindExposureTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WindSpeedEnumTable" EntityType="Self.WindSpeedEnumTable" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

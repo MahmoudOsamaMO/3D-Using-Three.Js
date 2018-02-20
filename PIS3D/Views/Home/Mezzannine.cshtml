@@ -1,0 +1,766 @@
+﻿   
+@{
+    ViewBag.Title = "Mezzanines";
+}
+<style>
+    .Marg {
+        margin-top: 10px;
+    }
+</style>
+
+<form ng-controller="MezzCtrl" ng-submit="submit()"
+      name="myForm" novalidate>
+    <hr />
+    <div>
+        <div id="foo" ng-show="Loading" style="margin-top:20%;">
+        </div>
+        <div ng-hide="Loading" id="panel" class="panel panel-primary">
+            <div class="panel-heading">
+                <h4>Mezzanines</h4>
+
+            </div>
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse5">Summary</a>
+                            </h4>
+                        </div>
+                        <div id="collapse5" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <div class="tab-pane active" id="5b">
+
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="col-lg-12 well table-responsive" style="font-size:12px;">
+                                                    <h4 class="text-primary"><u>Mezzanine</u></h4>
+                                                    <table style="font-size:10px;" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                        <thead class="text-center text-info">
+                                                            <tr>
+                                                                <th rowspan="3">NO</th>
+                                                                <th rowspan="3">Supply Scope</th>
+
+                                                                <th colspan="4">Load (kN/m2)</th>
+
+                                                                <th colspan="4">Mezzanines Floor</th>
+
+                                                                <th colspan="3">Handrail</th>
+
+                                                                <th colspan="2">Clear Height (m)</th>
+
+                                                                <th rowspan="3">Top of Mezz. Finish from FFL (m)</th>
+
+                                                                <th colspan="3">Width (m) </th>
+
+                                                                <th colspan="3">Length  (m) </th>
+
+                                                                <th rowspan="3">Area (m2)</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th rowspan="2">Live</th>
+                                                                <th rowspan="2">Dead </th>
+                                                                <th rowspan="2">Collatral </th>
+                                                                <th rowspan="2">Other </th>
+
+                                                                <th colspan="2">Decking</th>
+                                                                <th colspan="2">Floor</th>
+
+                                                                <th rowspan="2">By </th>
+                                                                <th rowspan="2">Type </th>
+                                                                <th rowspan="2">Length (m)</th>
+
+                                                                <th rowspan="2">Below Beam</th>
+                                                                <th rowspan="2">Above Joist</th>
+                                                                @*<th rowspan="2">Other </th>*@
+
+                                                                <th rowspan="2">W</th>
+                                                                <th rowspan="2">From GL</th>
+                                                                <th rowspan="2">To GL</th>
+
+                                                                <th rowspan="2">L</th>
+                                                                <th rowspan="2">From GL</th>
+                                                                <th rowspan="2">To GL</th>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <th>By</th>
+                                                                <th>Panel</th>
+
+                                                                <th>Type</th>
+                                                                <th>Thick (mm)</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="x in building.Mezzanines.Mezzanines track by $index">
+                                                                <td>
+                                                                    <div>{{x.ID = $index + 1}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.SupplyScope}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Loads.LiveLoad}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Loads.DeadLoad}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Loads.CollateralLoad}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Loads.OtherLoad}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.MezzanineFloor.Decking.By}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.MezzanineFloor.Decking.Panel}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.MezzanineFloor.Floor.Type}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.MezzanineFloor.Floor.Thickness}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Handrail.By}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Handrail.Type}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Handrail.Length}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.ClearHeightBelowBeam}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.ClearHeightAboveJoist}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.TopOfMezzFinishFromFFL}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Width.Width}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Width.FromGL}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Width.ToGL}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Length.Length}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Length.FromGL}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Length.ToGL}}</div>
+                                                                </td>
+                                                                <td>
+                                                                    <div>{{x.Area}}</div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="text-primary" data-toggle="collapse" data-parent="#accordion" href="#collapse1">Mezzanines</a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="1b">
+
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12 table-responsive">
+                                            <table style="font-size:10px;" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-center text-info">
+                                                    <tr>
+                                                        <th rowspan="3">NO</th>
+                                                        <th rowspan="3">Supply Scope</th>
+
+                                                        <th colspan="4">Load (kN/m2)</th>
+
+                                                        <th colspan="4">Mezzanines Floor</th>
+
+                                                        <th colspan="3">Handrail</th>
+
+                                                        <th colspan="2">Clear Height (m)</th>
+
+                                                        <th rowspan="3">Top of Mezz. Finish from FFL (m)</th>
+
+                                                        <th colspan="3">Width (m) </th>
+
+                                                        <th colspan="3">Length  (m) </th>
+
+                                                        <th rowspan="3">Area (m2)</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th rowspan="2">Live</th>
+                                                        <th rowspan="2">Dead </th>
+                                                        <th rowspan="2">Collatral </th>
+                                                        <th rowspan="2">Other </th>
+
+                                                        <th colspan="2">Decking</th>
+                                                        <th colspan="2">Floor</th>
+
+                                                        <th rowspan="2">By </th>
+                                                        <th rowspan="2">Type </th>
+                                                        <th rowspan="2">Length (m)</th>
+
+                                                        <th rowspan="2">Below Beam</th>
+                                                        <th rowspan="2">Above Joist</th>
+                                                        @*<th rowspan="2">Other </th>*@
+
+                                                        <th rowspan="2">W</th>
+                                                        <th rowspan="2">From GL</th>
+                                                        <th rowspan="2">To GL</th>
+
+                                                        <th rowspan="2">L</th>
+                                                        <th rowspan="2">From GL</th>
+                                                        <th rowspan="2">To GL</th>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <th>By</th>
+                                                        <th>Panel</th>
+
+                                                        <th>Type</th>
+                                                        <th>Thick (mm)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="x in building.Mezzanines.Mezzanines track by $index">
+                                                        <td>
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.SupplyScope}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Loads.LiveLoad}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Loads.DeadLoad}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Loads.CollateralLoad}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Loads.OtherLoad}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.MezzanineFloor.Decking.By}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.MezzanineFloor.Decking.Panel}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.MezzanineFloor.Floor.Type}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.MezzanineFloor.Floor.Thickness}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Handrail.By}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Handrail.Type}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Handrail.Length}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.ClearHeightBelowBeam}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.ClearHeightAboveJoist}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.TopOfMezzFinishFromFFL}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Width.Width}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Width.FromGL}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Width.ToGL}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Length.Length}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Length.FromGL}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Length.ToGL}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div>{{x.Area}}</div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="AccUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" ng-click="removeAcc($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            @*{{building.Mezzanines.Mezzanines["0"] | json}}*@
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetAcc()" class="btn btn-primary" data-toggle="modal" data-target="#AccModal">Add {{AccName}}</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Acchistory.length > 0" ng-click="UndoAcc()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="AccModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Accword}} {{AccName}}  {{newobj.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newobj">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-6 Marg">
+                                                                        <div class="col-xs-6">Area (m2)</div>
+                                                                        <div class="col-xs-6">
+                                                                            {{newobj.Area =newobj.Width.Width *newobj.Length.Length  }}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-6 Marg">
+                                                                        <div class="col-xs-6">Supply Scope : {{newobj.SupplyScope}}</div>
+                                                                        <div class="col-xs-6">
+                                                                            <select class="form-control" name="SupplyScope" ng-model="newobj.SupplyScope" ng-options="x for x in SupplyScopes"></select>
+                                                                            <span style="color:red" ng-show="myForm.SupplyScope.$dirty && myForm.SupplyScope.$invalid">
+                                                                                <span ng-show="myForm.SupplyScope.$error.required">Required.</span>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12 Marg">
+                                                                    <div class="col-lg-12 well">
+                                                                        <h4>Geometry</h4>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-2">
+                                                                                Width (m)
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                <input class="form-control" name="Width" type="number" min="0" required ng-model="newobj.Width.Width" />
+                                                                                <span style="color:red" ng-show="myForm.Width.$dirty && myForm.Width.$invalid">
+                                                                                    <span ng-show="myForm.Width.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                From Gl : {{newobj.Width.FromGL}}
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                <select class="form-control" name="WidthFromG" ng-model="newobj.Width.FromGL" ng-options="x for x in building.GeneralData.Location.AlongBuildingWidth.Axes.split(',')"></select>
+                                                                                <span style="color:red" ng-show="myForm.WidthFromG.$dirty && myForm.WidthFromG.$invalid">
+                                                                                    <span ng-show="myForm.WidthFromG.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                To Gl : {{newobj.Width.ToGL}}
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                <select class="form-control" name="WidthToGL" ng-model="newobj.Width.ToGL" ng-options="x for x in building.GeneralData.Location.AlongBuildingWidth.Axes.split(',')"></select>
+                                                                                <span style="color:red" ng-show="myForm.WidthToGL.$dirty && myForm.WidthToGL.$invalid">
+                                                                                    <span ng-show="myForm.WidthToGL.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-2">
+                                                                                Length (m)
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                <input class="form-control" name="Length" type="number" min="0" required ng-model="newobj.Length.Length" />
+                                                                                <span style="color:red" ng-show="myForm.Length.$dirty && myForm.Length.$invalid">
+                                                                                    <span ng-show="myForm.Length.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                From Gl : {{newobj.Length.FromGL}}
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                <select class="form-control" name="WidthFromG" ng-model="newobj.Length.FromGL"
+                                                                                        ng-options="x for x in building.GeneralData.Location.AlongBuildingLength.Axes.split(',')"></select>
+                                                                                <span style="color:red" ng-show="myForm.LengthFromG.$dirty && myForm.LengthFromG.$invalid">
+                                                                                    <span ng-show="myForm.LengthFromG.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                To Gl : {{newobj.Length.ToGL}}
+                                                                            </div>
+                                                                            <div class="col-xs-2">
+                                                                                <select class="form-control" name="LengthToGL" ng-model="newobj.Length.ToGL" ng-options="x for x in building.GeneralData.Location.AlongBuildingLength.Axes.split(',')"></select>
+                                                                                <span style="color:red" ng-show="myForm.LengthToGL.$dirty && myForm.LengthToGL.$invalid">
+                                                                                    <span ng-show="myForm.LengthToGL.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-3">Clear Height Below Beam (m)</div>
+                                                                            <div class="col-xs-3">
+                                                                                <input class="form-control" name="ClearHeightBelowBeam" type="number" min="0" required ng-model="newobj.ClearHeightBelowBeam" />
+                                                                                <span style="color:red" ng-show="myForm.ClearHeightBelowBeam.$dirty && myForm.ClearHeightBelowBeam.$invalid">
+                                                                                    <span ng-show="myForm.ClearHeightBelowBeam.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-3">Clear Height Above Joist (m)</div>
+                                                                            <div class="col-xs-3">
+                                                                                <input class="form-control" name="ClearHeightAboveJoist" type="number" min="0" required ng-model="newobj.ClearHeightAboveJoist" />
+                                                                                <span style="color:red" ng-show="myForm.ClearHeightAboveJoist.$dirty && myForm.ClearHeightAboveJoist.$invalid">
+                                                                                    <span ng-show="myForm.ClearHeightAboveJoist.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <h4>Loads</h4>
+                                                                        <div class="col-lg-6 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Live Load (KN/m2)
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="LiveLoad" type="number" min="0" required ng-model="newobj.Loads.LiveLoad" />
+                                                                                <span style="color:red" ng-show="myForm.LiveLoad.$dirty && myForm.LiveLoad.$invalid">
+                                                                                    <span ng-show="myForm.LiveLoad.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Dead Load (KN/m2)
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="DeadLoad" type="number" min="0" required ng-model="newobj.Loads.DeadLoad" />
+                                                                                <span style="color:red" ng-show="myForm.DeadLoad.$dirty && myForm.DeadLoad.$invalid">
+                                                                                    <span ng-show="myForm.DeadLoad.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Collateral Load (KN/m2)
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="CollateralLoad" type="number" min="0" required ng-model="newobj.Loads.CollateralLoad" />
+                                                                                <span style="color:red" ng-show="myForm.CollateralLoad.$dirty && myForm.CollateralLoad.$invalid">
+                                                                                    <span ng-show="myForm.CollateralLoad.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-6 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Other Load (KN/m2)
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="OtherLoad" type="number" min="0" required ng-model="newobj.Loads.OtherLoad" />
+                                                                                <span style="color:red" ng-show="myForm.OtherLoad.$dirty && myForm.OtherLoad.$invalid">
+                                                                                    <span ng-show="myForm.OtherLoad.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-6">
+                                                                    <div class="col-lg-12 well">
+                                                                        <h4>Floaring</h4>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Top Of FFL (m)
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="TopOfMezzFinishFromFFL" type="number" min="0" required ng-model="newobj.TopOfMezzFinishFromFFL" />
+                                                                                <span style="color:red" ng-show="myForm.TopOfMezzFinishFromFFL.$dirty && myForm.TopOfMezzFinishFromFFL.$invalid">
+                                                                                    <span ng-show="myForm.TopOfMezzFinishFromFFL.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Decking by
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <select class="form-control" name="Deckingby" ng-model="newobj.MezzanineFloor.Decking.By" ng-options="x for x in Deckingby"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Decking Panel
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <select class="form-control" name="Deckingby" ng-model="newobj.MezzanineFloor.Decking.Panel" ng-options="x for x in Deckingpanel"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Type
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <select class="form-control" name="Deckingby" ng-model="newobj.MezzanineFloor.Floor.Type" ng-options="x for x in FloorType"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Thickness (mm)
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="FloorThickness" type="number" min="0" required ng-model="newobj.MezzanineFloor.Floor.Thickness" />
+                                                                                <span style="color:red" ng-show="myForm.FloorThickness.$dirty && myForm.FloorThickness.$invalid">
+                                                                                    <span ng-show="myForm.FloorThickness.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-xs-6">
+                                                                    <div class="col-lg-12 well">
+                                                                        <h4>Handrail</h4>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                By 
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <select class="form-control" name="HandrailBy" ng-model="newobj.Handrail.By" ng-options="x for x in HandrailBy"></select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Type
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <select class="form-control" name="Deckingby" ng-model="newobj.Handrail.Type" ng-options="x for x in HandrailType"></select>
+                                                                            </div>
+                                                                        </div>                                                                        
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <div class="col-xs-6">
+                                                                                Length (m)
+                                                                            </div>
+                                                                            <div class="col-xs-6">
+                                                                                <input class="form-control" name="HandrailLength" type="number" min="0" required ng-model="newobj.Handrail.Length" />
+                                                                                <span style="color:red" ng-show="myForm.HandrailLength.$dirty && myForm.HandrailLength.$invalid">
+                                                                                    <span ng-show="myForm.HandrailLength.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateAcc()"
+                                                                            ng-disabled="myForm.Width.$dirty && myForm.Width.$invalid
+                                                                                       ||myForm.WidthFromG.$dirty && myForm.WidthFromG.$invalid
+                                                                                       ||myForm.WidthToGL.$dirty && myForm.WidthToGL.$invalid
+                                                                                       ||myForm.Length.$dirty && myForm.Length.$invalid
+                                                                                       ||myForm.LengthFromG.$dirty && myForm.LengthFromG.$invalid
+                                                                                       ||myForm.LengthToGL.$dirty && myForm.LengthToGL.$invalid
+                                                                                       ||myForm.ClearHeightAboveJoist.$dirty && myForm.ClearHeightAboveJoist.$invalid
+                                                                                       ||myForm.LiveLoad.$dirty && myForm.LiveLoad.$invalid
+                                                                                       ||myForm.DeadLoad.$dirty && myForm.DeadLoad.$invalid
+                                                                                       ||myForm.CollateralLoad.$dirty && myForm.CollateralLoad.$invalid
+                                                                                       ||myForm.OtherLoad.$dirty && myForm.OtherLoad.$invalid
+                                                                                       ||myForm.TopOfMezzFinishFromFFL.$dirty && myForm.TopOfMezzFinishFromFFL.$invalid
+                                                                                       ||myForm.FloorThickness.$dirty && myForm.FloorThickness.$invalid
+                                                                                       ||myForm.HandrailLength.$dirty && myForm.HandrailLength.$invalid
+                                                                                       ||myForm.ClearHeightBelowBeam.$dirty && myForm.ClearHeightBelowBeam.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*Tab Remarks*@
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseR">Remarks </a>
+                            </h4>
+                        </div>
+                        <div id="collapseR" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="tab-pane" id="4bR">
+                                    <div class="container-fluid">
+                                        <div class="col-lg-12  table-responsive">
+                                            Show Deleted: <input type="checkbox" ng-model="Deletedchecked" aria-label="Toggle ngShow"><br />
+                                            <table ng-show="building.Mezzanines.Remarks.Remark" st-table="rowCollection" class="table table-striped table-sm table-responsive table-bordered text-center">
+                                                <thead class="text-left text-info">
+                                                    <tr>
+                                                        <th>NO</th>
+                                                        <th>Remark</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody style="text-align: left;">
+                                                    <tr ng-repeat="x in building.Mezzanines.Remarks.Remark track by $index" ng-show="ShowDeleRemark(x.State)">
+                                                        <td style="width:50px;">
+                                                            <div>{{x.ID = $index + 1}}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div ng-class="{'text-warning':(x.State == 'false') }" style="white-space:pre-line"><div ng-bind-html="x.Remark"></div></div>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button type="button" ng-click="RemarkUpdate($index)" class="btn btn-sm">
+                                                                <i class="glyphicon glyphicon-pencil">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                        <td style="width:50px;">
+                                                            <button ng-show="(x.State == 'true')" type="button" ng-click="removeRemark($index)" class="btn btn-sm btn-danger">
+                                                                <i class="glyphicon glyphicon-remove">
+                                                                </i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <button type="button" ng-click="ResetRemark()" class="btn btn-primary" data-toggle="modal" data-target="#RemarkModal">Add Remark</button>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <button class="btn btn-warning" ng-show="Remarkhistory.length > 0" ng-click="UndoRemark()">Undo Delete</button>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" role="dialog" id="RemarkModal">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            <h4 class="modal-title">{{Remarkword}} Remark{{newRemark.ID}}</h4>
+                                                        </div>
+                                                        <div class="modal-body" ng-model="newRemark">
+                                                            <div class="container-fluid">
+                                                                <div class="col-xs-12">
+                                                                    <div class="col-lg-12 well">
+                                                                        <div class="col-lg-12 Marg">
+                                                                            <h4>Remarks</h4>
+                                                                            <div class="col-xs-12">
+                                                                                <wysiwyg-edit content="newRemark.Remark" config="editorConfig"></wysiwyg-edit>
+                                                                                <span style="color:red" ng-show="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                                    <span ng-show="myForm.Remark.$error.required">Required.</span>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="col-xs-12">
+                                                                                {{512 - newRemark.Remark.length}} / 512
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <div class="container-fluid">
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control" ng-click="AddUpdateRemark()"
+                                                                            ng-disabled="myForm.Remark.$dirty && myForm.Remark.$invalid">
+                                                                        Confirm
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <button data-dismiss="modal" class="form-control">Close</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*End Remarks *@
+                    <br />
+                    <div class="container-fluid">
+                        <div class="text-center">
+                            <input id="submit" @*type="submit"*@ type="button" ng-click="SaveData()" value="Save" class="btn-default form-control"
+                                   ng-disabled="" />
+                        </div>
+                    </div>
+
+                </div> @*EndContainer*@
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script src="~/Scripts/Site/Mezzanine.js"></script>
+
+<script src="~/Scripts/Site/spin.min.js"></script>
+
+<script>
+    var opts = {
+        lines: 15 // The number of lines to draw
+        , length: 28 // The length of each line
+        , width: 14 // The line thickness
+        , radius: 42 // The radius of the inner circle
+        , scale: 0.50 // Scales overall size of the spinner
+        , corners: 1 // Corner roundness (0..1)
+        , color: '#000' // #rgb or #rrggbb or array of colors
+        , opacity: 0.25 // Opacity of the lines
+        , rotate: 0 // The rotation offset
+        , direction: 1 // 1: clockwise, -1: counterclockwise
+        , speed: 1 // Rounds per second
+        , trail: 60 // Afterglow percentage
+        , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+        , zIndex: 2e9 // The z-index (defaults to 2000000000)
+        , className: 'spinner' // The CSS class to assign to the spinner
+        , top: '50%' // Top position relative to parent
+        , left: '50%' // Left position relative to parent
+        , shadow: false // Whether to render a shadow
+        , hwaccel: false // Whether to use hardware acceleration
+        , position: 'absolute' // Element positioning
+    }
+    var target = document.getElementById('foo')
+    var spinner = new Spinner(opts).spin(target);
+</script>

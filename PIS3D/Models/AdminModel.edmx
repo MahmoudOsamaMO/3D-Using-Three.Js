@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PISModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplyLoadsPerTable">
+          <Key>
+            <PropertyRef Name="ApplyLoadsPer_ID" />
+          </Key>
+          <Property Name="ApplyLoadsPer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplyLoadsPer" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="BracingTypeTable">
+          <Key>
+            <PropertyRef Name="BracingType_ID" />
+          </Key>
+          <Property Name="BracingType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BracingType" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ColdFormedDesignCodesTable">
+          <Key>
+            <PropertyRef Name="ColdFormedDesignCodes_ID" />
+          </Key>
+          <Property Name="ColdFormedDesignCodes_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColdFormedDesignCodes" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="DesignCodesTable">
+          <Key>
+            <PropertyRef Name="DesignCodes_ID" />
+          </Key>
+          <Property Name="DesignCodes_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DesignCodes" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Downspouts_Table">
+          <Key>
+            <PropertyRef Name="ID_Downspouts" />
+          </Key>
+          <Property Name="ID_Downspouts" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Downspouts" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="EaveConditionEnum_Table">
+          <Key>
+            <PropertyRef Name="ID_EaveConditionEnum" />
+          </Key>
+          <Property Name="ID_EaveConditionEnum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EaveConditionEnum" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="EndWallTypeTypeTable">
+          <Key>
+            <PropertyRef Name="EndWallTypeType_ID" />
+          </Key>
+          <Property Name="EndWallTypeType_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EndWallTypeType" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="FrameType_Table">
+          <Key>
+            <PropertyRef Name="ID_FrameType" />
+          </Key>
+          <Property Name="ID_FrameType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FrameType" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="HeightReference_Table">
+          <Key>
+            <PropertyRef Name="ID_HeightReference" />
+          </Key>
+          <Property Name="ID_HeightReference" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HeightReference" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="LengthReference_Table">
+          <Key>
+            <PropertyRef Name="ID_LengthReference" />
+          </Key>
+          <Property Name="ID_LengthReference" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LengthReference" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="PaintSystemTable">
+          <Key>
+            <PropertyRef Name="PaintSystem_ID" />
+          </Key>
+          <Property Name="PaintSystem_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaintSystem" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SecondarySurfaceFinishTable">
+          <Key>
+            <PropertyRef Name="SecondarySurfaceFinish_ID" />
+          </Key>
+          <Property Name="SecondarySurfaceFinish_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SecondarySurfaceFinish" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SeismicTable">
+          <Key>
+            <PropertyRef Name="Seismic_ID" />
+          </Key>
+          <Property Name="Seismic_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Seismic" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="SurfaceFinishTable">
+          <Key>
+            <PropertyRef Name="SurfaceFinish_ID" />
+          </Key>
+          <Property Name="SurfaceFinish_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurfaceFinish" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SurfaceTreatmentTable">
+          <Key>
+            <PropertyRef Name="SurfaceTreatment_ID" />
+          </Key>
+          <Property Name="SurfaceTreatment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurfaceTreatment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="WidthReferenceTable">
+          <Key>
+            <PropertyRef Name="ID_WidthReference" />
+          </Key>
+          <Property Name="ID_WidthReference" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WidthReference" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="WindExposureTable">
+          <Key>
+            <PropertyRef Name="WindExposure_ID" />
+          </Key>
+          <Property Name="WindExposure_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WindExposure" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="WindSpeedEnumTable">
+          <Key>
+            <PropertyRef Name="WindSpeedEnum_ID" />
+          </Key>
+          <Property Name="WindSpeedEnum_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WindSpeedEnum" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityContainer Name="PISModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplyLoadsPerTable" EntityType="Self.ApplyLoadsPerTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BracingTypeTable" EntityType="Self.BracingTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColdFormedDesignCodesTable" EntityType="Self.ColdFormedDesignCodesTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DesignCodesTable" EntityType="Self.DesignCodesTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Downspouts_Table" EntityType="Self.Downspouts_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EaveConditionEnum_Table" EntityType="Self.EaveConditionEnum_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EndWallTypeTypeTable" EntityType="Self.EndWallTypeTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FrameType_Table" EntityType="Self.FrameType_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HeightReference_Table" EntityType="Self.HeightReference_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LengthReference_Table" EntityType="Self.LengthReference_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaintSystemTable" EntityType="Self.PaintSystemTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecondarySurfaceFinishTable" EntityType="Self.SecondarySurfaceFinishTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeismicTable" EntityType="Self.SeismicTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurfaceFinishTable" EntityType="Self.SurfaceFinishTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurfaceTreatmentTable" EntityType="Self.SurfaceTreatmentTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WidthReferenceTable" EntityType="Self.WidthReferenceTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WindExposureTable" EntityType="Self.WindExposureTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WindSpeedEnumTable" EntityType="Self.WindSpeedEnumTable" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Downspouts_Table">
+          <Key>
+            <PropertyRef Name="ID_Downspouts" />
+          </Key>
+          <Property Name="ID_Downspouts" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Downspouts" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EaveConditionEnum_Table">
+          <Key>
+            <PropertyRef Name="ID_EaveConditionEnum" />
+          </Key>
+          <Property Name="ID_EaveConditionEnum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EaveConditionEnum" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FrameType_Table">
+          <Key>
+            <PropertyRef Name="ID_FrameType" />
+          </Key>
+          <Property Name="ID_FrameType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FrameType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HeightReference_Table">
+          <Key>
+            <PropertyRef Name="ID_HeightReference" />
+          </Key>
+          <Property Name="ID_HeightReference" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HeightReference" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LengthReference_Table">
+          <Key>
+            <PropertyRef Name="ID_LengthReference" />
+          </Key>
+          <Property Name="ID_LengthReference" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LengthReference" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WidthReferenceTable">
+          <Key>
+            <PropertyRef Name="ID_WidthReference" />
+          </Key>
+          <Property Name="ID_WidthReference" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WidthReference" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="PISEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Downspouts_Table" EntityType="Self.Downspouts_Table" />
+          <EntitySet Name="EaveConditionEnum_Table" EntityType="Self.EaveConditionEnum_Table" />
+          <EntitySet Name="FrameType_Table" EntityType="Self.FrameType_Table" />
+          <EntitySet Name="HeightReference_Table" EntityType="Self.HeightReference_Table" />
+          <EntitySet Name="LengthReference_Table" EntityType="Self.LengthReference_Table" />
+          <EntitySet Name="WidthReferenceTables" EntityType="Self.WidthReferenceTable" />
+          <EntitySet Name="EndWallTypeTypeTables" EntityType="PISModel.EndWallTypeTypeTable" />
+          <EntitySet Name="WindExposureTables" EntityType="PISModel.WindExposureTable" />
+          <EntitySet Name="ApplyLoadsPerTables" EntityType="PISModel.ApplyLoadsPerTable" />
+          <EntitySet Name="ColdFormedDesignCodesTables" EntityType="PISModel.ColdFormedDesignCodesTable" />
+          <EntitySet Name="DesignCodesTables" EntityType="PISModel.DesignCodesTable" />
+          <EntitySet Name="SeismicTables" EntityType="PISModel.SeismicTable" />
+          <EntitySet Name="WindSpeedEnumTables" EntityType="PISModel.WindSpeedEnumTable" />
+          <EntitySet Name="C__RefactorLog" EntityType="PISModel.C__RefactorLog" />
+          <EntitySet Name="PaintSystemTables" EntityType="PISModel.PaintSystemTable" />
+          <EntitySet Name="SecondarySurfaceFinishTables" EntityType="PISModel.SecondarySurfaceFinishTable" />
+          <EntitySet Name="SurfaceFinishTables" EntityType="PISModel.SurfaceFinishTable" />
+          <EntitySet Name="SurfaceTreatmentTables" EntityType="PISModel.SurfaceTreatmentTable" />
+          <EntitySet Name="BracingTypeTables" EntityType="PISModel.BracingTypeTable" />
+        </EntityContainer>
+        <EntityType Name="EndWallTypeTypeTable">
+          <Key>
+            <PropertyRef Name="EndWallTypeType_ID" />
+          </Key>
+          <Property Name="EndWallTypeType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EndWallTypeType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WindExposureTable">
+          <Key>
+            <PropertyRef Name="WindExposure_ID" />
+          </Key>
+          <Property Name="WindExposure_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WindExposure" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ApplyLoadsPerTable">
+          <Key>
+            <PropertyRef Name="ApplyLoadsPer_ID" />
+          </Key>
+          <Property Name="ApplyLoadsPer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplyLoadsPer" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ColdFormedDesignCodesTable">
+          <Key>
+            <PropertyRef Name="ColdFormedDesignCodes_ID" />
+          </Key>
+          <Property Name="ColdFormedDesignCodes_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColdFormedDesignCodes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DesignCodesTable">
+          <Key>
+            <PropertyRef Name="DesignCodes_ID" />
+          </Key>
+          <Property Name="DesignCodes_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DesignCodes" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SeismicTable">
+          <Key>
+            <PropertyRef Name="Seismic_ID" />
+          </Key>
+          <Property Name="Seismic_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seismic" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WindSpeedEnumTable">
+          <Key>
+            <PropertyRef Name="WindSpeedEnum_ID" />
+          </Key>
+          <Property Name="WindSpeedEnum_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WindSpeedEnum" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaintSystemTable">
+          <Key>
+            <PropertyRef Name="PaintSystem_ID" />
+          </Key>
+          <Property Name="PaintSystem_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaintSystem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SecondarySurfaceFinishTable">
+          <Key>
+            <PropertyRef Name="SecondarySurfaceFinish_ID" />
+          </Key>
+          <Property Name="SecondarySurfaceFinish_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SecondarySurfaceFinish" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SurfaceFinishTable">
+          <Key>
+            <PropertyRef Name="SurfaceFinish_ID" />
+          </Key>
+          <Property Name="SurfaceFinish_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurfaceFinish" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SurfaceTreatmentTable">
+          <Key>
+            <PropertyRef Name="SurfaceTreatment_ID" />
+          </Key>
+          <Property Name="SurfaceTreatment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurfaceTreatment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BracingTypeTable">
+          <Key>
+            <PropertyRef Name="BracingType_ID" />
+          </Key>
+          <Property Name="BracingType_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BracingType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PISModelStoreContainer" CdmEntityContainer="PISEntities">
+          <EntitySetMapping Name="Downspouts_Table">
+            <EntityTypeMapping TypeName="PISModel.Downspouts_Table">
+              <MappingFragment StoreEntitySet="Downspouts_Table">
+                <ScalarProperty Name="ID_Downspouts" ColumnName="ID_Downspouts" />
+                <ScalarProperty Name="Downspouts" ColumnName="Downspouts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EaveConditionEnum_Table">
+            <EntityTypeMapping TypeName="PISModel.EaveConditionEnum_Table">
+              <MappingFragment StoreEntitySet="EaveConditionEnum_Table">
+                <ScalarProperty Name="ID_EaveConditionEnum" ColumnName="ID_EaveConditionEnum" />
+                <ScalarProperty Name="EaveConditionEnum" ColumnName="EaveConditionEnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FrameType_Table">
+            <EntityTypeMapping TypeName="PISModel.FrameType_Table">
+              <MappingFragment StoreEntitySet="FrameType_Table">
+                <ScalarProperty Name="ID_FrameType" ColumnName="ID_FrameType" />
+                <ScalarProperty Name="FrameType" ColumnName="FrameType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HeightReference_Table">
+            <EntityTypeMapping TypeName="PISModel.HeightReference_Table">
+              <MappingFragment StoreEntitySet="HeightReference_Table">
+                <ScalarProperty Name="ID_HeightReference" ColumnName="ID_HeightReference" />
+                <ScalarProperty Name="HeightReference" ColumnName="HeightReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LengthReference_Table">
+            <EntityTypeMapping TypeName="PISModel.LengthReference_Table">
+              <MappingFragment StoreEntitySet="LengthReference_Table">
+                <ScalarProperty Name="ID_LengthReference" ColumnName="ID_LengthReference" />
+                <ScalarProperty Name="LengthReference" ColumnName="LengthReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WidthReferenceTables">
+            <EntityTypeMapping TypeName="PISModel.WidthReferenceTable">
+              <MappingFragment StoreEntitySet="WidthReferenceTable">
+                <ScalarProperty Name="ID_WidthReference" ColumnName="ID_WidthReference" />
+                <ScalarProperty Name="WidthReference" ColumnName="WidthReference" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EndWallTypeTypeTables">
+            <EntityTypeMapping TypeName="PISModel.EndWallTypeTypeTable">
+              <MappingFragment StoreEntitySet="EndWallTypeTypeTable">
+                <ScalarProperty Name="EndWallTypeType" ColumnName="EndWallTypeType" />
+                <ScalarProperty Name="EndWallTypeType_ID" ColumnName="EndWallTypeType_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WindExposureTables">
+            <EntityTypeMapping TypeName="PISModel.WindExposureTable">
+              <MappingFragment StoreEntitySet="WindExposureTable">
+                <ScalarProperty Name="WindExposure" ColumnName="WindExposure" />
+                <ScalarProperty Name="WindExposure_ID" ColumnName="WindExposure_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyLoadsPerTables">
+            <EntityTypeMapping TypeName="PISModel.ApplyLoadsPerTable">
+              <MappingFragment StoreEntitySet="ApplyLoadsPerTable">
+                <ScalarProperty Name="ApplyLoadsPer" ColumnName="ApplyLoadsPer" />
+                <ScalarProperty Name="ApplyLoadsPer_ID" ColumnName="ApplyLoadsPer_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColdFormedDesignCodesTables">
+            <EntityTypeMapping TypeName="PISModel.ColdFormedDesignCodesTable">
+              <MappingFragment StoreEntitySet="ColdFormedDesignCodesTable">
+                <ScalarProperty Name="ColdFormedDesignCodes" ColumnName="ColdFormedDesignCodes" />
+                <ScalarProperty Name="ColdFormedDesignCodes_ID" ColumnName="ColdFormedDesignCodes_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DesignCodesTables">
+            <EntityTypeMapping TypeName="PISModel.DesignCodesTable">
+              <MappingFragment StoreEntitySet="DesignCodesTable">
+                <ScalarProperty Name="DesignCodes" ColumnName="DesignCodes" />
+                <ScalarProperty Name="DesignCodes_ID" ColumnName="DesignCodes_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeismicTables">
+            <EntityTypeMapping TypeName="PISModel.SeismicTable">
+              <MappingFragment StoreEntitySet="SeismicTable">
+                <ScalarProperty Name="Seismic" ColumnName="Seismic" />
+                <ScalarProperty Name="Seismic_ID" ColumnName="Seismic_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WindSpeedEnumTables">
+            <EntityTypeMapping TypeName="PISModel.WindSpeedEnumTable">
+              <MappingFragment StoreEntitySet="WindSpeedEnumTable">
+                <ScalarProperty Name="WindSpeedEnum" ColumnName="WindSpeedEnum" />
+                <ScalarProperty Name="WindSpeedEnum_ID" ColumnName="WindSpeedEnum_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="PISModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaintSystemTables">
+            <EntityTypeMapping TypeName="PISModel.PaintSystemTable">
+              <MappingFragment StoreEntitySet="PaintSystemTable">
+                <ScalarProperty Name="PaintSystem" ColumnName="PaintSystem" />
+                <ScalarProperty Name="PaintSystem_ID" ColumnName="PaintSystem_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecondarySurfaceFinishTables">
+            <EntityTypeMapping TypeName="PISModel.SecondarySurfaceFinishTable">
+              <MappingFragment StoreEntitySet="SecondarySurfaceFinishTable">
+                <ScalarProperty Name="SecondarySurfaceFinish" ColumnName="SecondarySurfaceFinish" />
+                <ScalarProperty Name="SecondarySurfaceFinish_ID" ColumnName="SecondarySurfaceFinish_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurfaceFinishTables">
+            <EntityTypeMapping TypeName="PISModel.SurfaceFinishTable">
+              <MappingFragment StoreEntitySet="SurfaceFinishTable">
+                <ScalarProperty Name="SurfaceFinish" ColumnName="SurfaceFinish" />
+                <ScalarProperty Name="SurfaceFinish_ID" ColumnName="SurfaceFinish_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurfaceTreatmentTables">
+            <EntityTypeMapping TypeName="PISModel.SurfaceTreatmentTable">
+              <MappingFragment StoreEntitySet="SurfaceTreatmentTable">
+                <ScalarProperty Name="SurfaceTreatment" ColumnName="SurfaceTreatment" />
+                <ScalarProperty Name="SurfaceTreatment_ID" ColumnName="SurfaceTreatment_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BracingTypeTables">
+            <EntityTypeMapping TypeName="PISModel.BracingTypeTable">
+              <MappingFragment StoreEntitySet="BracingTypeTable">
+                <ScalarProperty Name="BracingType" ColumnName="BracingType" />
+                <ScalarProperty Name="BracingType_ID" ColumnName="BracingType_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

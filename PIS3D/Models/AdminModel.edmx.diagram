@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2fadae584733462c8b3324a2bba90842" Name="Diagram1">
+        <EntityTypeShape EntityType="PISModel.Downspouts_Table" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PISModel.EaveConditionEnum_Table" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PISModel.FrameType_Table" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PISModel.HeightReference_Table" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PISModel.LengthReference_Table" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PISModel.WidthReferenceTable" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PISModel.EndWallTypeTypeTable" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PISModel.WindExposureTable" Width="1.5" PointX="3.375" PointY="6.75" />
+        <EntityTypeShape EntityType="PISModel.ApplyLoadsPerTable" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="PISModel.ColdFormedDesignCodesTable" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PISModel.DesignCodesTable" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="PISModel.SeismicTable" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="PISModel.WindSpeedEnumTable" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PISModel.C__RefactorLog" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PISModel.PaintSystemTable" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PISModel.SecondarySurfaceFinishTable" Width="1.5" PointX="9.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PISModel.SurfaceFinishTable" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="PISModel.SurfaceTreatmentTable" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PISModel.BracingTypeTable" Width="1.5" PointX="7.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

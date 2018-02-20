@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html ng-app>
+<head>
+    <title>Add / List Data (AngularJS)</title>
+    <style>
+        .list_data {
+            margin-bottom: 2rem;
+        }
+
+        table, th, td {
+            border: 1px solid #AAA;
+        }
+
+        th {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body ng-controller="RecordCtrl">
+    <div class="list_data">
+        <h1>List Data</h1>
+        <table>
+            <tr>
+                <th ng-click="type = 'include'; reverse = !reverse">Status</th>
+                <th ng-click="type = 'state'; reverse = !reverse">State</th>
+                <th ng-click="type = 'price'; reverse = !reverse">Price</th>
+                <th ng-click="type = 'tax'; reverse = !reverse">Tax</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="record in records | orderBy:type:reverse">
+                <td><input type="checkbox" ng-model="record.include"></td>
+                <td>{{record.state | uppercase}}</td>
+                <td>{{record.price | currency}}</td>
+                <td>{{record.tax | currency}}</td>
+                <td><button ng-click="Delete($index)">Delete</button></td>
+            </tr>
+            <tr>
+                <td colspan="2">Total</td>
+                <td>{{Totals().price | currency}}</td>
+                <td>{{Totals().tax | currency}}</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <button ng-show="history.length > 0" ng-click="Undo()">Undo Delete</button>
+    </div>
+
+    <div class="add_data">
+        <h1>Add Data</h1>
+        <form ng-submit="Add()">
+            <div class="field">
+                <label for="state">State: </label>
+                <input id="state" type="text" placeholder="State" maxlength="2" ng-model="newState">
+            </div>
+            <div class="field">
+                <label for="price">Price: </label>
+                <input id="price" type="number" placeholder="Price" min="0" ng-model="newPrice">
+            </div>
+            <div class="field">
+                <label for="tax">Tax: </label>
+                <input id="tax" type="number" placeholder="Tax" min="0" ng-model="newTax">
+            </div>
+            <div class="action">
+                <button type="submit">Add</button>
+                <button ng-click="Reset()">Reset</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="card">
+            <div class="card-header" role="tab" id="headingOne">
+                <h5 class="mb-0">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Collapsible Group Item #1
+                    </a>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" role="tab" id="headingTwo">
+                <h5 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Collapsible Group Item #2
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                <div class="card-block">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" role="tab" id="headingThree">
+                <h5 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Collapsible Group Item #3
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                <div class="card-block">
+                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.11/angular.min.js"></script>
+    <script>
+	function RecordCtrl ($scope) {
+        // Historical data
+        $scope.history = [];
+
+        // Default data (can be loaded from a database)
+		$scope.records = [
+			{ state: 'CA', price: 22, tax: 5, include: false },
+			{ state: 'MA', price: 32, tax: 8, include: false }
+		];
+
+        // Total prices
+		$scope.Totals = function () {
+			var priceTotal = 0;
+            var taxTotal = 0;
+
+            // Loop through main records and calculate aggregate prices and taxes if include is true
+			angular.forEach($scope.records, function (record) {
+		        if (record.include) {
+					priceTotal += record.price;
+		            taxTotal += record.tax;
+		        }
+			});
+
+            // Return aggregate data
+            return { price: priceTotal , tax: taxTotal };
+		};
+
+        // Delete data
+        $scope.Delete = function (index) {
+            // Remove first / oldest element from history if it reaches maximum capacity of 10 records
+            if ($scope.history.length === 10)
+                $scope.history.shift();
+            // Add deleted record to historical records
+            $scope.history.push($scope.records[index]);
+
+            // Remove from main records (using index)
+            $scope.records.splice(index, 1);
+        };
+
+        // Reset new data model
+        $scope.Reset = function () {
+            $scope.newState = '';
+            $scope.newPrice = 0;
+            $scope.newTax = 0;
+        }
+        $scope.Reset();
+
+        // Add new data
+        $scope.Add = function () {
+            // Do nothing if no state is entered (blank)
+            if (!$scope.newState)
+                return;
+
+            // Add to main records
+            $scope.records.push({
+                state: $scope.newState,
+                price: $scope.newPrice,
+                tax: $scope.newTax,
+                include: false
+            });
+
+            // See $Scope.Reset...
+            $scope.Reset();
+        }
+
+        // Undo action (delete)
+        $scope.Undo = function () {
+            // Add last / most recent historical record to the main records
+            $scope.records.push($scope.history[ $scope.history.length - 1 ]);
+
+            // Remove last / most recent historical record
+            $scope.history.pop();
+        }
+	}
+    </script>
+
+
+
+
+
+
+    <div class="container">
+        <h2>Accordion Example</h2>
+        <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Collapsible Group 3</a>
+                    </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

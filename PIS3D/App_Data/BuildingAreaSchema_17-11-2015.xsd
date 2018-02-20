@@ -1,0 +1,2770 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+attributeFormDefault="unqualified">
+
+
+  <xs:annotation>
+    <xs:documentation xml:lang="en">
+      Building Area Schema
+      Copyright 2013, GETS Zamil Steel. All rights reserved
+    </xs:documentation>
+  </xs:annotation>
+
+  <xs:element name="BuildingArea">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="GeneralData" type="BuildingAreaParametersType"/>
+        <xs:element name="DesignCode" type="DesignCodesType"/>
+        <xs:element name="SurfaceTreatment" type="SurfaceTreatmentType"/>
+        <xs:element name="Bracings">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="NSW" type="BracingType"/>
+              <xs:element name="NSWHeight" type="xs:double" default="0"/>
+              <xs:element name="FSW" type="BracingType"/>
+              <xs:element name="FSWHeight" type="xs:double" default="0"/>
+              <xs:element name="LEW" type="BracingType"/>
+              <xs:element name="LEWHeight" type="xs:double" default="0"/>
+              <xs:element name="REW" type="BracingType"/>
+              <xs:element name="REWHeight" type="xs:double" default="0"/>
+              <xs:element name="InteriorBracings">
+                <xs:complexType>
+                  <xs:all minOccurs="0">
+                    <xs:element name="Bracing" type="BracingTypeLocation"/>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Remarks" type="RemarksType"> </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PanelsAndInsulations">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="SingleSkinTypes">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="SingleSkin" type="CladdSkin"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="TempconTypes">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="Tempcon" type="CladdTempcon"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="InsulationTypes">
+                <xs:complexType>
+                  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                    <xs:element name="Insulation" type="Insulation"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RoofWallCladding" type="RoofWallCladdingType"/>
+        <xs:element name="WallPanelAccessories" type="WallPanelAccessoriesType"/>
+        <xs:element name="Openings" type="OpeningsType"/>
+        <xs:element name="Subsystems" type="StructuralSubsystemsType"/>
+        <xs:element name="CraneSystems" type="CraneSystemsType"/>
+        <xs:element name="Mezzanines" type="MezzaninesType"/>
+      <xs:element name="OldArea" type="xs:string"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="OpeningsType">
+    <xs:sequence>
+
+      <xs:element name="Louvers" type="LouversType"/>
+      <xs:element name="Windows" type="WindowsType"/>
+      <xs:element name="FiberglassRoofCurbs" type="FiberglassRoofCurbsType"/>
+      <xs:element name="GravityRidgeVentillators" type="GravityRidgeVentillatorsType"/>
+      <xs:element name="OtherSBO" type="OtherSBOType"/>
+      <xs:element name="PersonnelDoors" type="PersonnelDoorsType"/>
+      <xs:element name="PipeFlashings" type="PipeFlashingsType"/>
+      <xs:element name="PowerVentilators" type="PowerVentilatorsType"/>
+      <xs:element name="RollupDoors" type="RollupDoorsType"/>
+      <xs:element name="SlidingDoors" type="SlidingDoorsType"/>
+      <xs:element name="FramedOpenings" type="FramedOpeningsType"/>
+      <xs:element name="OpenWalls" type="OpenWallsType"/>
+      <xs:element name="TranslucentPanels" type="TranslucentPanelsType"/>
+
+
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ByEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ZS"/>
+      <xs:enumeration value="OTHER"/>
+      <xs:enumeration value="NONE"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="RemarkType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0" />
+      <xs:element name="Remark" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="RemarksType">
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="Remark" type="RemarkType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:simpleType name="SurfaceEnum">
+    <xs:restriction base="xs:string">
+
+      <xs:enumeration value="NSW"/>
+      <xs:enumeration value="FSW"/>
+      <xs:enumeration value="LEW"/>
+      <xs:enumeration value="REW"/>
+      <xs:enumeration value="ROOF"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="EaveConditionType">
+    <xs:all>
+      <xs:element name="EaveConditionEnum" type="EaveConditionEnumType" default="NONE"/>
+      <xs:element name="Downspouts" minOccurs="0" default="NONE">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="STANDARD"/>
+            <xs:enumeration value="PVC"/>
+            <xs:enumeration value="FG OUTLET ONLY"/>
+            <xs:enumeration value="BY OTHERS"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="EaveConditionEnumType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NO EAVE"/>
+      <xs:enumeration value="EAVE GUTTER"/>
+      <xs:enumeration value="EAVE TRIM"/>
+      <xs:enumeration value="CURVED W/O PROJ"/>
+      <xs:enumeration value="CURVED W/O PROJ WITH V.G"/>
+      <xs:enumeration value="CURVED WITH PROJ"/>
+      <xs:enumeration value="CURVED WITH PROJ WITH V.G"/>
+      <xs:enumeration value="VALLEY GUTTER"/>
+      <xs:enumeration value="NONE"/>
+
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="BuildingAreaParametersType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="01"/>
+      <xs:element name="Location">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="AlongBuildingWidth" type="WidthType"/>
+            <xs:element name="AlongBuildingLength" type="WidthType"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="Width" type="xs:double" default="20"/>
+      <xs:element name="WidthReference" default="OUT TO OUT OF STEEL LINE (O/O OF EAVE STRUTS)">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="OUT TO OUT OF STEEL LINE (O/O OF EAVE STRUTS)"/>
+            <xs:enumeration value="OUT TO OUT OF COLUMN FLANGES"/>
+            <xs:enumeration value="CENTERLINE TO CENTERLINE OF COLUMN BASES"/>
+            <xs:enumeration value="INSIDE TO INSIDE OF COLUMN INNER FLANGES AT KNEES"/>
+            <xs:enumeration value="OUT TO OUT OF BLOCK WALLS"/>
+            <xs:enumeration value="OTHER (See Remarks)"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Length" type="xs:double" default="8"/>
+      <xs:element name="LengthReference" default="OUT TO OUT OF STEEL LINE (O/O ENDWALL GIRTS)">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="OUT TO OUT OF STEEL LINE (O/O ENDWALL GIRTS)"/>
+            <xs:enumeration value="OUT TO OUT OF COLUMN FLANGES"/>
+            <xs:enumeration value="CENTERLINE TO CENTERLINE OF COLUMN BASES"/>
+            <xs:enumeration value="INSIDE TO INSIDE OF ENDWALL COLUMN INNER FLANGES AT KNEES"/>
+            <xs:enumeration value="OTHER (See Remarks)"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="HeightReference" default="EAVE HEIGHT">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="EAVE HEIGHT"/>
+            <xs:enumeration value="CLEAR HEIGHT"/>
+            <xs:enumeration value="RIDGE HEIGHT"/>
+            <xs:enumeration value="OTHER (See Remarks)"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="FrameType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="CLEAR SPAN"/>
+            <xs:enumeration value="MULTI SPAN"/>
+            <xs:enumeration value="LEAN TO"/>
+            <xs:enumeration value="MULTI GABLE"/>
+            <xs:enumeration value="ROOF SYSTEM"/>
+            <xs:enumeration value="FLAT ROOF"/>
+            <xs:enumeration value="SINGLE SLOPE"/>
+            <xs:enumeration value="CAR CANOPY: FALCON"/>
+            <xs:enumeration value="CAR CANOPY: BUTTERFLY"/>
+            <xs:enumeration value="CAR CANOPY: CARACAL"/>
+            <xs:enumeration value="CAR CANOPY: CHEETAH"/>
+            <xs:enumeration value="CAR CANOPY: GAZELLE"/>
+            <xs:enumeration value="OTHER (See Remarks)"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="FixedBaseAllowed" type="xs:boolean" default="true"/>
+      <xs:element name="Gables">
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="Gable" type="GableType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="Bays">
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="Bay" type="BayType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="EndWalls">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="LEW" type="EndWallType"/>
+            <xs:element name="REW" type="EndWallType"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Profiles">
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="Profile" type="ProfileType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Frames">
+        <xs:complexType>
+          <xs:sequence minOccurs="2" maxOccurs="unbounded">
+            <xs:element name="FrameProfile" type="FrameProfileType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="BaysProfile" type="xs:string" minOccurs="0"/>
+      <xs:element name="FramesProfile" type="xs:string" minOccurs="0"/>
+      <xs:element name="FutureExtension">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="TransverseDirection" type="xs:boolean"/>
+            <xs:element name="LongitudinalDirection" type="xs:boolean"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Remarks" type="RemarksType"> </xs:element>
+
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="ProfileType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0" />
+
+      <xs:element name="GablesWidthModules">
+        <xs:complexType>
+          <xs:sequence maxOccurs="unbounded" minOccurs="1">
+
+            <xs:element name="GableWidthModules">
+              <xs:complexType>
+                <xs:sequence maxOccurs="unbounded">
+                  <xs:element name="GableNo" type="xs:integer"  default="1"> </xs:element>
+                  <xs:element name="WidthModules">
+                    <xs:complexType>
+                      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                        <xs:element name="Width" type="xs:double" default="20.000"> </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="EndWallType">
+    <xs:all>
+
+      <xs:element name="Type" default="POST AND BEAM">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="POST AND BEAM"/>
+            <xs:enumeration value="RIGID FRAME"/>
+            <xs:enumeration value="RIGID FRAME WITH HALF BAY LOADING"/>
+            <xs:enumeration value="COMMON FRAME IN OTHER AREA"/>
+            <xs:enumeration value="FALSE RAFTER"/>
+            <xs:enumeration value="PART. RIGID FRAME PART. P AND B"/>
+            <xs:enumeration value="OTHER"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Profile" type="ProfileType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="GableType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="1" />
+
+      <xs:element name="LeftSlope" type="xs:double" default="0.1"/>
+      <xs:element name="RightSlope" type="xs:double" default="-0.1"/>
+      <xs:element name="Width" type="xs:double" default="20"/>
+      <xs:element name="RidgeDistance" type="xs:double" default="10"/>
+      <xs:element name="LeftHeight" type="xs:double" default="6"/>
+      <xs:element name="LeftColBase" type="xs:double" default="0.0"/>
+      <xs:element name="RightHeight" type="xs:double" default="6"/>
+      <xs:element name="RightColBase" type="xs:double" default="0.0"/>
+      <xs:element name="EaveCondition">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="NearSide" type="EaveConditionType"/>
+            <xs:element name="FarSide" type="EaveConditionType"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="BayType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer"
+      default="01"/>
+      <xs:element name="Width" type="xs:double" default="8"/>
+      <xs:element name="BracingAvailable" type="xs:boolean" default="true"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="FrameProfileType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer"  default="01"/>
+      <xs:element name="ProfileNo" type="xs:integer" default="0"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="WidthType">
+    <xs:all>
+      <xs:element name="FromGL" type="xs:string"/>
+      <xs:element name="ToGL" type="xs:string"/>
+      <xs:element name="Axes" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="DesignCodesType">
+    <xs:all>
+      <xs:element name="DeadLoad">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="AsPerDesign" type="xs:string"/>
+            <xs:element name="UserValue" type="xs:double" default="0.7"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LiveLoadOnRoof" type="xs:double" default="1.00"> </xs:element>
+      <xs:element name="LiveLoadOnFrame" type="xs:double" default="0.57"/>
+      <xs:element name="ThicknessGroundSnow" type="xs:double" default="0"/>
+      <xs:element name="GroundSnowLoad" type="xs:double" default="0">
+        <xs:annotation>
+          <xs:documentation xml:lang="en">
+            Roof Snow Load = ( Ground Snow Load x Reduction Factor )
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CollateralLoad" type="xs:double" default="0"/>
+      <xs:element name="RainFall">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Intensity" type="xs:double" default="150"/>
+            <xs:element name="HeavyRainArea" type="xs:boolean"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Temperature">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Plus" type="xs:double" default="0"/>
+            <xs:element name="Minus" type="xs:double" default="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Wind">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="WindPressure" type="xs:double" default="1.0" minOccurs="0"/>
+            <xs:element name="WindSpeedEnum" minOccurs="0" default="3 SECOND GUST SPEED">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="FASTEST MILE"/>
+                  <xs:enumeration value="3 SECOND GUST SPEED"/>
+                  <xs:enumeration value="10 MINUTES"/>
+                  <xs:enumeration value="NONE"/>
+                  <xs:enumeration value="OTHER"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="WindSpeed" type="xs:double" default="144" minOccurs="0"/>
+            <xs:element name="WindExposure"  default="B" >
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="B"/>
+                  <xs:enumeration value="C"/>
+                  <xs:enumeration value="D"/>
+                  <xs:enumeration value="NONE"/>
+                  <xs:enumeration value="OTHER"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Seismic">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="OTHER"/>
+            <xs:enumeration value="Zone 1"/>
+            <xs:enumeration value="Zone 2"/>
+            <xs:enumeration value="Zone 3"/>
+            <xs:enumeration value="Zone 4"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="DesignCodes">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="AISC"/>
+            <xs:enumeration value="AISC 1989"/>
+            <xs:enumeration value="BS-5950-1990"/>
+            <xs:enumeration value="BS-5950-2000"/>
+            <xs:enumeration value="ECP97"/>
+            <xs:enumeration value="ECP01"/>
+            <xs:enumeration value="EURO CODE 3"/>
+            <xs:enumeration value="AISC05-ASD"/>
+            <xs:enumeration value="AISC05-LRFD"/>
+            <xs:enumeration value="AISC10-ASD"/>
+            <xs:enumeration value="AISC10-LRFD"/>
+            <xs:enumeration value="IS800-1984"/>
+            <xs:enumeration value="IS800-2007"/>
+            <xs:enumeration value="OTHER (See Remarks)"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+
+      <xs:element name="ApplyLoadsPer">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="MBMA 2002"/>
+            <xs:enumeration value="MBMA 2006"/>
+            <xs:enumeration value="IBC 2003"/>
+            <xs:enumeration value="IBC 2006"/>
+            <xs:enumeration value="UBC 91"/>
+            <xs:enumeration value="UBC 97"/>
+            <xs:enumeration value="ASCE-7 2002"/>
+            <xs:enumeration value="ASCE-7 2005"/>
+            <xs:enumeration value="SAUDI ROYAL COMMISSION: YANBU"/>
+            <xs:enumeration value="SAUDI ROYAL COMMISSION: JUBAIL"/>
+            <xs:enumeration value="BS 6399-CP3"/>
+            <xs:enumeration value="ECP 93"/>
+            <xs:enumeration value="IS875"/>
+            <xs:enumeration value="OTHER (See Remarks)"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ColdFormedDesignCodes">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="AISI 01"/>
+            <xs:enumeration value="AISI 80"/>
+            <xs:enumeration value="AISI 86"/>
+            <xs:enumeration value="IS 801"/>
+            <xs:enumeration value="OTHER (See Remarks)"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Remarks" type="RemarksType"> </xs:element>
+
+    </xs:all>
+  </xs:complexType>
+  <xs:simpleType name="BracingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DIAGONAL"/>
+      <xs:enumeration value="PORTAL"/>
+      <xs:enumeration value="PORTAL PARTIAL HEIGHT"/>
+      <xs:enumeration value="MINOR AXIS"/>
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="OTHER"/>
+
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="BracingTypeLocation">
+    <xs:all>
+      <xs:element name="Location">
+        <xs:complexType>
+          <xs:choice>
+            <xs:element name="Offset">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="Offset" type="xs:double" default="0"/>
+                  <xs:element name="From">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="NSW"/>
+                        <xs:enumeration value="LEW"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="AtGL" type="xs:string"/>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Type" type="BracingType"/>
+      <xs:element name="PortalPartialHeight" minOccurs="0" type="xs:double" default="0"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="SurfaceTreatmentType">
+    <xs:all>
+      <xs:element name="PrimaryMembers" type="PrimarySurfaceTreatment"/>
+      <xs:element name="SecondaryMembers" type="SecondarySurfaceTreatment">
+        <xs:annotation xml:lang="en">
+          <xs:documentation>
+            Secondary members are Purlins, Eave Struts, Girts, Gable Angle and Base Angle
+            Other secondary members such as : Endwall Posts, Post And Beam members, Rod And Angle bracing, Portal Frames will be painted with the same paint system as primary members
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="PrimarySurfaceTreatment">
+    <xs:all>
+      <xs:element name="SurfaceFinish">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PAINTED"/>
+            <xs:enumeration value="HOT DIP GALVANIZED"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="SurfaceTreatment">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="SHOT BLAST 2.5"/>
+            <xs:enumeration value="STANDARD"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="PaintSystem">
+
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="RED OXIDE PRIMER ONLY"/>
+            <xs:enumeration value="ALUM OXIDE PRIMER ONLY"/>
+            <xs:enumeration value="GREY OXIDE PRIMER ONLY"/>
+            <xs:enumeration value="SPECIAL"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Coats">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element type="CoatDataType" name="Coat"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Remarks" type="RemarksType"> </xs:element>
+
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="SecondarySurfaceTreatment">
+    <xs:all>
+      <xs:element name="SurfaceFinish">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PAINTED"/>
+
+            <xs:enumeration value="PRE GALVANIZED"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="SurfaceTreatment">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="STANDARD"/>
+            <xs:enumeration value="SWEEP BLAST"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="PaintSystem">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="RED OXIDE PRIMER ONLY"/>
+            <xs:enumeration value="ALUM OXIDE PRIMER ONLY"/>
+            <xs:enumeration value="GREY OXIDE PRIMER ONLY"/>
+            <xs:enumeration value="SPECIAL"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Coats">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element type="CoatDataType" name="Coat"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Remarks" type="RemarksType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="CoatDataType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="By_Who">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="ZS AT SHOP"/>
+            <xs:enumeration value="ZS AT SITE"/>
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="NOT BY ZS"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Thickness" type="xs:double" default="0"/>
+      <xs:element name="Manufacturer">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SIGMA"/>
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="HEMPEL"/>
+            <xs:enumeration value="AMERON"/>
+            <xs:enumeration value="INTERNATIONAL"/>
+            <xs:enumeration value="SIPCO"/>
+            <xs:enumeration value="RED SEA"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="PaintCode" type="xs:string"/>
+      <xs:element name="Color" type="xs:string"/>
+      <xs:element name="Description" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="CladdSkin">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="ProfileType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="D"/>
+            <xs:enumeration value="E"/>
+            <xs:enumeration value="S"/>
+            <xs:enumeration value="ZW"/>
+            <xs:enumeration value="Z"/>
+            <xs:enumeration value="Q"/>
+            <xs:enumeration value="N"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="H"/>
+            <xs:enumeration value="U"/>
+            <xs:enumeration value="V"/>
+            <xs:enumeration value="P"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="BaseMetal">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+
+            <xs:enumeration value="ZA-Steel"/>
+            <xs:enumeration value="GA-Steel"/>
+            <xs:enumeration value="ALUMINIUM"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="PaintFinish">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+
+            <xs:enumeration value="UNP"/>
+            <xs:enumeration value="ZSP"/>
+            <xs:enumeration value="XMA"/>
+            <xs:enumeration value="ZPF"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Thickness">
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+
+            <xs:enumeration value="0.5"/>
+            <xs:enumeration value="0.6"/>
+            <xs:enumeration value="0.7"/>
+
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Color" type="xs:string"/>
+      <xs:element name="Description" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="CladdTempcon">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="SheetingType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="TCSQ"/>
+            <xs:enumeration value="TCSO"/>
+            <xs:enumeration value="TAUQ"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="OuterPanel" type="CladdSkin"/>
+      <xs:element name="InnerPanel" type="CladdSkin"/>
+      <xs:element name="Thickness">
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+            <xs:enumeration value="30"/>
+            <xs:enumeration value="40"/>
+            <xs:enumeration value="50"/>
+            <xs:enumeration value="60"/>
+            <xs:enumeration value="75"/>
+            <xs:enumeration value="100"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Foam">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PUR"/>
+            <xs:enumeration value="PIR"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Description" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Insulation">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="FIBREGLASS"/>
+            <xs:enumeration value="ROCKWOOL-BLANKET"/>
+            <xs:enumeration value="ROCKWOOL-QUILTED"/>
+            <xs:enumeration value="ROCKWOOL-PANEL"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Density">
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+            <xs:enumeration value="10"/>
+            <xs:enumeration value="12"/>
+            <xs:enumeration value="16"/>
+            <xs:enumeration value="20"/>
+            <xs:enumeration value="24"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="Thickness">
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+            <xs:enumeration value="50"/>
+            <xs:enumeration value="75"/>
+            <xs:enumeration value="100"/>
+            <xs:enumeration value="125"/>
+            <xs:enumeration value="150"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Facing">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="WMSK"/>
+            <xs:enumeration value="VINYL"/>
+            <xs:enumeration value="ALUM"/>
+            <xs:enumeration value="UNFACED"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="Description" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Cladding">
+    <xs:all>
+      <xs:element name="Panel" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ByWho" type="ByEnum"/>
+            <xs:choice>
+              <xs:element name="Weight"/>
+              <xs:element name="PanelProfile" type="PanelProfileType"> </xs:element>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Insulation" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ByWho" type="ByEnum"/>
+            <xs:choice minOccurs="0">
+              <xs:element name="Others">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="Thickness" type="xs:double" default="0"/>
+                    <xs:element name="Note" type="xs:string"/>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Insulation" type="PanelProfileType"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Liner" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="ByWho" type="ByEnum"/>
+            <xs:choice minOccurs="0">
+              <xs:element name="Liner" type="PanelProfileType"/>
+              <xs:element name="Weight" type="xs:double" default="0"/>
+            </xs:choice>
+            <xs:choice minOccurs="0">
+              <xs:element name="Location" type="xs:string"/>
+              <xs:element name="RemoveFlangeBrace" type="xs:boolean"/>
+            </xs:choice>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="RoofWallCladdingType">
+    <xs:all>
+      <xs:element name="RoofPanel" type="Cladding"/>
+      <xs:element name="WallPanel">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="NSW" type="WallConditionType"/>
+            <xs:element name="FSW" type="WallConditionType"/>
+            <xs:element name="LEW" type="WallConditionType"/>
+            <xs:element name="REW" type="WallConditionType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Remarks" type="RemarksType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="WallConditionType">
+    <xs:all>
+      <xs:element name="Condition">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="FULLY BLOCKED"/>
+            <xs:enumeration value="FULLY OPEN"/>
+            <xs:enumeration value="FULLY SHEETED"/>
+            <xs:enumeration value="PARTIALLY OPEN"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Cladding" type="Cladding" minOccurs="0"/>
+      <xs:element name="GirtCondition" minOccurs="0" nillable="true">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="FLUSH"/>
+            <xs:enumeration value="BY PASS"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="PanelProfileType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="Description" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="WallPanelAccessoriesType">
+    <xs:all>
+      <xs:element name="WallPanelRelatedAccessories">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="SPECIAL"/>
+            <xs:enumeration value="STANDARD"/>
+            <xs:enumeration value="OTHER"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="WallAccessories" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element type="WallAccessoryType" name="WallAccessory"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Remarks" type="RemarksType"> </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="WallAccessoryType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="Component" default="NONE">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="GUTTER/CURVED EAVE"/>
+            <xs:enumeration value="DOWNSPOUTS"/>
+            <xs:enumeration value="GABLE TRIM"/>
+            <xs:enumeration value="CORNER TRIM"/>
+            <xs:enumeration value="DRIP TRIM"/>
+            <xs:enumeration value="ACCESSORY TRIM"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="BaseMetal" default="NONE">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="ALUMINIUM"/>
+            <xs:enumeration value="STEEL"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Thickness" default="0.50">
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+            <xs:enumeration value="0.50"/>
+            <xs:enumeration value="0.60"/>
+            <xs:enumeration value="0.70"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="PaintFinish" default="NONE">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="ZSP"/>
+            <xs:enumeration value="ZPF"/>
+            <xs:enumeration value="XSE"/>
+            <xs:enumeration value="ENV"/>
+            <xs:enumeration value="OTHER"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Color" default="TO BE ESTABLISHED - TBE">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="TO BE ESTABLISHED - TBE"> </xs:enumeration>
+            <xs:enumeration value="00-PLAIN ALUMINIUM - PA"/>
+            <xs:enumeration value="02-PRE GALVANIZED - PG"/>
+            <xs:enumeration value="03-ZINC ALUM - ZA"/>
+            <xs:enumeration value="04-SHASTA BLUE - SB"/>
+            <xs:enumeration value="05-FROST WHITE - FW"/>
+            <xs:enumeration value="07-CACTUS GREEN - CG"/>
+            <xs:enumeration value="11-ARABIAN BEIGE - AB"/>
+            <xs:enumeration value="12-TERRACOTTA - TC"/>
+            <xs:enumeration value="24-RED - RE"/>
+            <xs:enumeration value="25-AZURE BLUE - AB"/>
+            <xs:enumeration value="26-YELLOW - YE"/>
+            <xs:enumeration value="27-LEAF GREEN - LG"/>
+            <xs:enumeration value="28-SILVER METALLIC - SM"/>
+            <xs:enumeration value="29-GREY BLUE METALLIC - GB"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Remarks" type="RemarksType"> </xs:element>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="OpeningType">
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer"  default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="LouverType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer"  default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="FIXED"/>
+            <xs:enumeration value="ADJUSTABLE"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MountingType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SINGLE"/>
+            <xs:enumeration value="CONTINUOUS"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="WindowType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer" default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="STANDARD"/>
+            <xs:enumeration value="SPECIAL"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="OperationType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="FIXED"/>
+            <xs:enumeration value="HALF SLIDING"/>
+            <xs:enumeration value="FULL SLIDING"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocatedOn">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="STEEL PANEL"/>
+            <xs:enumeration value="BLOCK WALL"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Installation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SINGLE"/>
+            <xs:enumeration value="CONTINUOUS"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="FramedOpeningType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer"  minOccurs="0" default="1"/>
+      <xs:element name="LocationFrom" >
+        <xs:simpleType>
+          <xs:restriction base="xs:string" >
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Purpose" type="xs:string"/>
+      <xs:element name="CarryingWeight" type="xs:double" minOccurs="0" default="0"/>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="TranslucentPanelType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer" minOccurs="0" default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <!--<xs:element name="FullLength" type="xs:boolean"/>-->
+      <!--<xs:element name="Ratio" type="xs:integer" default="0"/>-->
+    </xs:all>
+
+  </xs:complexType>
+
+
+
+  <xs:complexType name="FiberglassRoofCurbType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer"  minOccurs="0" default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+
+
+      <xs:element name="CarryingLoad" type="xs:double" default="0"/>
+      <xs:element name="FramedOpening" type="xs:boolean"/>
+      <xs:element name="Location">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="RIDGE"/>
+            <xs:enumeration value="SLOPE"/>
+            <xs:enumeration value="AT RIDGE"/>
+            <xs:enumeration value="AT SLOPE"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="GravityRidgeVentillatorType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer"  minOccurs="0" default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+
+      <xs:element name="FullLength" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="Throat">
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+            <xs:enumeration value="300"/>
+            <xs:enumeration value="600"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Damper">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="WITHOUT"/>
+            <xs:enumeration value="WITH"/>
+            <xs:enumeration value="NONE"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Installation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SINGLE"/>
+            <xs:enumeration value="CONTINUOUS"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ShipAs">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="KNOCKED DOWN"/>
+            <xs:enumeration value="ASSEMBLED"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MaterialDescription" type="xs:string"/>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="SBO_Type">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="Unit" type="xs:string" default="0"/>
+      <xs:element name="Description" type="xs:string"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="PersonnelDoorType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer"  minOccurs="0" default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+
+            <xs:enumeration value="DOUBLE"/>
+            <xs:enumeration value="SINGLE"/>
+            <xs:enumeration value="PILOT"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Vision" type="xs:boolean"/>
+      <xs:element name="Hardware">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="STANDARD"/>
+            <xs:enumeration value="PANIC"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="AutoCloser" type="xs:boolean"/>
+
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="SlidingDoorType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer"  minOccurs="0" default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SINGLE LEFT"/>
+            <xs:enumeration value="SINGLE RIGHT"/>
+            <xs:enumeration value="DOUBLE SLIDING"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Support">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="B1"/>
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="T1"/>
+            <xs:enumeration value="T2"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ExteriorPanel">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="PanelType">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="SAME AS WALL"/>
+                  <xs:enumeration value="BY ZS"/>
+                  <xs:enumeration value="BY OTHERS"/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="PanelProfile" type="Cladding" minOccurs="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Trims">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SAME AS WALL"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="PilotDoor" type="xs:boolean"/>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="RollupDoorType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer"  minOccurs="0" default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Manufacturer">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="ZAMIL DOORS"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Operation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="MANUAL"/>
+            <xs:enumeration value="ELECTRICAL"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="PowerSupply" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Voltage">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="220V"/>
+                  <xs:enumeration value="380V"/>
+                  <xs:enumeration value="460V"/>
+                  <xs:enumeration value="480V"/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Phase">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="1PH"/>
+                  <xs:enumeration value="3PH"/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Hertz">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="50HZ"/>
+                  <xs:enumeration value="60HZ"/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="StandardComponents">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Curtain" type="ComponentType"/>
+            <xs:element name="Drum" type="ComponentType"/>
+            <xs:element name="RightBracket" type="ComponentType"/>
+            <xs:element name="LeftBracket" type="ComponentType"/>
+            <xs:element name="TensionBolt" type="ComponentType"/>
+            <xs:element name="ChainLockingClip" type="ComponentType"/>
+            <xs:element name="DoorGuideStopper" type="ComponentType"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="OptionalCompnents">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="RightDoorGuide" type="ComponentType"/>
+            <xs:element name="LeftDoorGuide" type="ComponentType"/>
+            <xs:element name="WindLockAndWindGuide" type="ComponentType"/>
+            <xs:element name="FireRelated">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="NOT REQUIRED"/>
+                  <xs:enumeration value="1HRS."/>
+                  <xs:enumeration value="2HRS."/>
+                  <xs:enumeration value="3HRS."/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="DoorHood" type="ComponentType"/>
+            <xs:element name="NylonBrush" type="ComponentType"/>
+
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExtraMB" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="HandChain" type="ComponentType"/>
+            <xs:element name="ChainWheel" type="ComponentType"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ExtraEB" minOccurs="0">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="BuiltinLimitSwitch" type="ComponentType"/>
+            <xs:element name="DegreeOfElectircMotorProtection">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="Value">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="IP50"/>
+                        <xs:enumeration value="IP55"/>
+                        <xs:enumeration value="NOT REQUIRED"/>
+                        <xs:enumeration value="NONE"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Quantity" type="xs:integer" default="0"/>
+                  <xs:element name="Remarks" type="xs:string"/>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="SwitchBox" type="ComponentType"/>
+            <xs:element name="PushButton" type="ComponentType" minOccurs="0"/>
+            <xs:element name="KeySwitch" type="ComponentType" minOccurs="0"/>
+            <xs:element name="MotorChain" type="ComponentType"/>
+
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+
+      <xs:element name="ExtraEO" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="SensorPhotoCell" type="ComponentType"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="OpenWallType">
+    <xs:all>
+      <xs:element name="FullLength" type="xs:boolean"/>
+      <xs:element name="OpenFor">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+
+            <xs:enumeration value="BLOCK WALL"/>
+            <xs:enumeration value="ACCESS"/>
+            <xs:enumeration value="PRECAST PANEL"/>
+            <xs:enumeration value="GLAZING"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Thickness" type="xs:double" default="0"/>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer" minOccurs="0" default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="PipeFlashingType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+
+      <xs:element name="OutsideDiameter">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="4-100"/>
+            <xs:enumeration value="101-175"/>
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Remarks" type="RemarksType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="PowerVentillatorType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="ReferenceTo">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SURFACE"/>
+            <xs:enumeration value="BAY"/>
+            <xs:enumeration value="SPAN"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="On" type="xs:integer"  minOccurs="0" default="1"/>
+      <xs:element name="LocationFrom">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BOTTOM LEFT"/>
+            <xs:enumeration value="BOTTOM RIGHT"/>
+            <xs:enumeration value="CENTER"/>
+            <xs:enumeration value="TOP LEFT"/>
+            <xs:enumeration value="TOP RIGHT"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="LocationX" type="xs:double" default="0"/>
+      <xs:element name="LocationY" type="xs:double" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="COLT"/>
+            <xs:enumeration value="NONE"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Location">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="RIDGE"/>
+            <xs:enumeration value="SLOPE"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Base">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="FIBREGLASS"/>
+            <xs:enumeration value="ALUM WITH ROOF CURB"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="FramedOpening" type="xs:boolean"/>
+      <xs:element name="PowerSupply">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Voltage">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="220V"/>
+                  <xs:enumeration value="380V"/>
+                  <xs:enumeration value=""/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Phase">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="1PH"/>
+                  <xs:enumeration value="3PH"/>
+                  <xs:enumeration value=""/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Hertz">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="50HZ"/>
+                  <xs:enumeration value="60HZ"/>
+                  <xs:enumeration value=""/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="LouversType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Louver" minOccurs="0" type="LouverType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WindowsType">
+    <xs:sequence>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Window" type="WindowType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FiberglassRoofCurbsType">
+    <xs:sequence>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="FiberglassRoofCurb" type="FiberglassRoofCurbType" minOccurs="0"
+      maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GravityRidgeVentillatorsType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="GravityRidgeVentillator" type="GravityRidgeVentillatorType" minOccurs="0"
+      maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OtherSBOType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="SBO" type="SBO_Type" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PersonnelDoorsType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="PersonnelDoor" type="PersonnelDoorType" minOccurs="0" maxOccurs="unbounded"
+/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SlidingDoorsType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="SlidingDoor" type="SlidingDoorType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RollupDoorsType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="RollupDoor" type="RollupDoorType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PipeFlashingsType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="PipeFlashing" type="PipeFlashingType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PowerVentilatorsType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="PowerVentilator" type="PowerVentillatorType" minOccurs="0"
+      maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FramedOpeningsType">
+    <xs:sequence>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="FramedOpening" type="FramedOpeningType" minOccurs="0" maxOccurs="unbounded"
+/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TranslucentPanelsType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="TranslucentPanel" type="TranslucentPanelType" minOccurs="0"
+      maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OpenWallsType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="OpenWall" type="OpenWallType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+
+
+  <xs:complexType name="CanopyType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="FullLength" type="xs:boolean"/>
+      <xs:element name="StartBay" type="xs:integer" default="0"/>
+      <xs:element name="EndBay" type="xs:integer" default="0"/>
+      <!--<xs:element name="Remarks" type="RemarksType"/>-->
+
+      <xs:element name="ClearHeight" type="xs:double" default="0"/>
+      <xs:element name="CanopyRoofSlope" type="xs:integer" default="0"/>
+      <xs:element name="EaveCondition" type="EaveConditionType"/>
+      <xs:element name="RoofPanel" type="PanelProfileType"/>
+      <xs:element name="SoffitPanel" type="PanelProfileType"/>
+      <xs:element name="Inside" type="xs:boolean"/>
+      <xs:element name="ValleyGutter" type="xs:boolean"/>
+      <xs:element name="WidthReference" default="CENTER OF THE COLUMN">
+        <xs:simpleType>
+          <xs:restriction base="xs:string" >
+            <xs:enumeration value="CENTER OF THE COLUMN"/>
+            <xs:enumeration value="OUT OF THE COLUMN"/>
+            <xs:enumeration value="OUT OF STEEL LINE"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="RoofExtensionType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="FullLength" type="xs:boolean"/>
+      <xs:element name="StartBay" type="xs:integer" default="0"/>
+      <xs:element name="EndBay" type="xs:integer" default="0"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+
+      <xs:element name="Insulated" type="xs:boolean"/>
+      <xs:element name="SoffitPanel" type="PanelProfileType"/>
+      <xs:element name="WidthReference">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="CENTER OF THE COLUMN"/>
+            <xs:enumeration value="OUT OF THE COLUMN"/>
+            <xs:enumeration value="OUT OF STEEL LINE"/>
+            <xs:enumeration value="NONE"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="FasciaType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="SurfaceEnum"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="FullLength" type="xs:boolean"/>
+      <xs:element name="StartBay" type="xs:integer" default="0"/>
+      <xs:element name="EndBay" type="xs:integer" default="0"/>
+      <!--<xs:element name="Remarks" type="RemarksType"/>-->
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="VERTICAL"/>
+            <xs:enumeration value="BOT CURV"/>
+            <xs:enumeration value="DBL CURV"/>
+            <xs:enumeration value="CEN CURV"/>
+            <xs:enumeration value="PARAPET"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ClearHeight" type="xs:double" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="Projection" type="xs:double" default="0"/>
+      <xs:element name="FrontPanel" type="PanelProfileType"/>
+      <xs:element name="SoffitPanel" type="PanelProfileType"/>
+      <xs:element name="BackupPanel" type="PanelProfileType"/>
+      <xs:element name="ValleyGutter" type="xs:boolean"/>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="RoofMonitorType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="AssignTo" type="xs:string"/>
+      <xs:element name="Width" type="xs:double" default="0"/>
+      <xs:element name="FullLength" type="xs:boolean"/>
+      <xs:element name="StartBay" type="xs:integer" default="0"/>
+      <xs:element name="EndBay" type="xs:integer" default="0"/>
+      <!--<xs:element name="Remarks" type="RemarksType"/>-->
+      <xs:element name="HeavyWind" type="xs:boolean"/>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="STANDARD (CURVED EAVE)"/>
+            <xs:enumeration value="SPECIAL"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+
+      <xs:element name="ThroatOpening" type="xs:double" default="0"/>
+      <xs:element name="Post">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INCLINED"/>
+            <xs:enumeration value="VERTICAL"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="RoofPanel" type="PanelProfileType"/>
+      <xs:element name="WallPanel" type="PanelProfileType"/>
+      <xs:element name="BirdScreen" type="xs:boolean"/>
+    </xs:all>
+
+  </xs:complexType>
+
+
+  <xs:complexType name="InteriorCatwalkType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="Width">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Width" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Length">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Length" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Area" type="xs:double" default="0"/>
+      <xs:element name="BottomHeightFromFFL" type="xs:double" default="0"/>
+      <xs:element name="Flooring">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="By" type="ByEnum"/>
+            <xs:element name="Type">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="GALV. GRATING"/>
+                  <xs:enumeration value="CHECK. PLATE"/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Thickness" type="xs:double" default="0"> </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Load">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="UniformLoad" type="xs:double" default="0"/>
+            <xs:element name="ConcentratedLoad" type="xs:double" default="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="HandrailLength" type="xs:double" default="0"/>
+      <!--<xs:element name="Remarks" type="RemarksType"/>-->
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="LadderType">
+
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PLAIN"/>
+            <xs:enumeration value="CAGED"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="Location">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INTERNAL"/>
+            <xs:enumeration value="EXTERNAL"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="From">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="FFL"/>
+            <xs:enumeration value="ROOF"/>
+            <xs:enumeration value="MEZZANINE"/>
+            <xs:enumeration value="ROOF WALKWAY"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="To">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="ROOF"/>
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="MEZZANINE"/>
+            <xs:enumeration value="ROOF PLATFORM"/>
+            <xs:enumeration value="ROOF WALKWAY"/>
+            <xs:enumeration value="CATWALK"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MidLanding" type="xs:boolean"/>
+      <xs:element name="Remarks" type="RemarksType"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="PartitionType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="LONG"/>
+            <xs:enumeration value="TRANS"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+
+      <xs:element name="Length">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Length" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="AlongGL" type="xs:string" default="0"/>
+      <xs:element name="Height" type="xs:double" default="0"/>
+      <xs:element name="SheetedSlides">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="ONE"/>
+            <xs:enumeration value="BOTH"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="OpenWallLength" type="xs:double" default="0"/>
+      <xs:element name="OpenWallHeight" type="xs:double" default="0"/>
+
+
+      <xs:element name="OpenWallPurpose">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="BLOCKWALL"/>
+            <xs:enumeration value="ACCESS"/>
+            <xs:enumeration value="PRECAST PANEL"/>
+            <xs:enumeration value="GLAZING"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Cladding">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Panel" type="PanelProfileType"/>
+            <xs:element name="Insulation" type="PanelProfileType"> </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+
+      <!--<xs:element name="Remarks" type="RemarksType"/>-->
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="RoofPlatformType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+
+      <xs:element name="Width">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Width" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Length">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Length" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Area" type="xs:double" default="0"/>
+      <xs:element name="BottomHeightFromFFL" type="xs:double" default="0"/>
+      <xs:element name="Flooring">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="By" type="ByEnum"/>
+            <xs:element name="Type">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="GALV. GRATING"/>
+                  <xs:enumeration value="CHECK. PLATE"/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Thickness" type="xs:double" default="0"> </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Load">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="UniformLoad" type="xs:double" default="0"/>
+            <xs:element name="ConcentratedLoad" type="xs:double" default="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="HandrailLength" type="xs:double" default="0"/>
+      <!--<xs:element name="Remarks" type="RemarksType"/>-->
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="RoofWalkwayType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="FLUSH"/>
+            <xs:enumeration value="ELEVATED"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Width">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Width" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Length">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Length" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Area" type="xs:double" default="0"/>
+      <xs:element name="BottomHeightFromFFL" type="xs:double" default="0"/>
+      <xs:element name="Flooring">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="By" type="ByEnum"/>
+            <xs:element name="Type">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="GALV. GRATING"/>
+                  <xs:enumeration value="CHECK. PLATE"/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Thickness" type="xs:double" default="0"> </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Load">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="UniformLoad" type="xs:double" default="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <!--<xs:element name="Remarks" type="RemarksType"/>-->
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="CanopiesType">
+    <xs:sequence>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Canopies" type="CanopyType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RoofExtensionsType">
+    <xs:sequence>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="RoofExtensions" type="RoofExtensionType" minOccurs="0" maxOccurs="unbounded"
+/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FasciasType">
+
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Fascias" type="FasciaType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RoofMonitorsType">
+
+    <xs:sequence>
+
+
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="RoofMonitors" type="RoofMonitorType" minOccurs="0" maxOccurs="unbounded"/>
+
+
+
+
+
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InteriorCatwalksType">
+    <xs:sequence>
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="InteriorCatwalks" type="InteriorCatwalkType" minOccurs="0"
+      maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LaddersType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Ladders" type="LadderType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PartitionsType">
+    <xs:sequence maxOccurs="1">
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Partitions" type="PartitionType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RoofPlatformsType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="RoofPlatforms" type="RoofPlatformType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RoofWalkwaysType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="RoofWalkways" type="RoofWalkwayType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StructuralSubsystemsType">
+    <xs:all>
+      <xs:element name="Canopies" type="CanopiesType"/>
+      <xs:element type="RoofExtensionsType" name="RoofExtensions"/>
+      <xs:element name="Fascias" type="FasciasType"/>
+      <xs:element type="RoofMonitorsType" name="RoofMonitors"/>
+      <xs:element name="InteriorCatwalks" type="InteriorCatwalksType"/>
+      <xs:element name="Ladders" type="LaddersType"/>
+      <xs:element name="Partitions" type="PartitionsType"/>
+      <xs:element type="RoofPlatformsType" name="RoofPlatforms"/>
+      <xs:element type="RoofWalkwaysType" name="RoofWalkways"/>
+      <xs:element name="Staircases" type="StaircasesType"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="CraneSystemType">
+
+    <xs:all>
+      <xs:element name="ID" type="xs:double" default="0"/>
+      <xs:element name="CraneZS_Scope">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="APPLY LOADS ONLY"/>
+            <xs:enumeration value="BRACKETS, RUNWAY BEAMS &amp; STOPPERS BY ZS"/>
+            <xs:enumeration value="BRACKETS ONLY"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CraneManufacturer">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="MORRIS"/>
+            <xs:enumeration value="CRANEMANN"/>
+            <xs:enumeration value="KONE"/>
+            <xs:enumeration value="SAUDI CRANES"/>
+            <xs:enumeration value="DEMAG"/>
+            <xs:enumeration value="OTHER"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CraneSystemAndRailsBy">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="ZAMIL STEEL"/>
+            <xs:enumeration value="OTHERS"/>
+
+            <xs:enumeration value="NONE"/>
+
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CranePowerSupply">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="380V 3PH 50HZ"/>
+            <xs:enumeration value="220V 1PH 50HZ"/>
+            <xs:enumeration value="380V 3PH 60HZ"/>
+            <xs:enumeration value="220V 1PH 60HZ"/>
+            <xs:enumeration value="NONE"/>
+
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="TR"/>
+            <xs:enumeration value="UH"/>
+            <xs:enumeration value="MR"/>
+            <xs:enumeration value="SG"/>
+            <xs:enumeration value="JB"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Span">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Width" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Run">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Length" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="HookHeightH3" type="xs:double" default="0"/>
+      <xs:element name="TopOfCraneBeamH1" type="xs:double" default="0"/>
+      <xs:element name="MinClr">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="VertH2" type="xs:double" default="0"/>
+            <xs:element name="HorizW2" type="xs:double" default="0"/>
+
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="LiftCapacity">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Crane" type="xs:double" default="0"/>
+            <xs:element name="Hoist" type="xs:double" default="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="WheelBase" type="xs:double" default="0"/>
+      <xs:element name="Weight">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Bridge" type="xs:double"  default="0"/>
+            <xs:element name="Trolley" type="xs:double"  default="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Speed">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Hoist" type="xs:double"  default="0"/>
+            <xs:element name="Trolley" type="xs:double"  default="0"/>
+            <xs:element name="Bridge" type="xs:double"  default="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Operation">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDANT"/>
+            <xs:enumeration value="CAB"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="CraneSystemsType">
+
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="CraneSystems" minOccurs="0" type="CraneSystemType" maxOccurs="unbounded">
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+
+  <xs:complexType name="StaircaseType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <!--<xs:element name="LocatedInMezzNo" type="xs:integer" default="0"/>-->
+      <xs:element name="Flight">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SINGLE"/>
+            <xs:enumeration value="DOUBLE"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Width" default="1000">
+        <!--<xs:simpleType>
+<xs:restriction base="xs:double">
+<xs:enumeration value="1000"/>
+<xs:enumeration value="1200"/>
+</xs:restriction>
+</xs:simpleType>-->
+      </xs:element>
+      <xs:element name="Landing">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="NONE"/>
+            <xs:enumeration value="TOP"/>
+            <xs:enumeration value="MIDDLE"/>
+            <xs:enumeration value="TOP AND MIDDLE"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Treads">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PAN"/>
+            <xs:enumeration value="CHECK. PLATE"/>
+            <xs:enumeration value="GALV. GRATING"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Handrails">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="CLASSIC"/>
+            <xs:enumeration value="INDUSTRIAL"/>
+            <xs:enumeration value="BY OTHERS"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Remarks" type="RemarksType"/>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="MezzanineType">
+    <xs:all>
+      <xs:element name="ID" type="xs:integer" default="0"/>
+      <xs:element name="SupplyScope" default="NONE">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="SUPPLY"/>
+            <xs:enumeration value="APPLY LOADS ONLY"/>
+            <xs:enumeration value="NONE"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+
+      <xs:element name="Loads">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="LiveLoad" type="xs:double" default="0.0"/>
+            <xs:element name="DeadLoad" type="xs:double" default="0.0"/>
+            <xs:element name="CollateralLoad" type="xs:double" default="0.0"/>
+            <xs:element name="OtherLoad" type="xs:double" default="0.0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="ClearHeightBelowBeam" type="xs:double" default="0.0"/>
+      <xs:element name="ClearHeightAboveJoist" type="xs:double" default="0.0"/>
+      <xs:element name="TopOfMezzFinishFromFFL" type="xs:double" default="0.0"/>
+      <xs:element name="Width">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Width" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Length">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Length" type="xs:double" default="0"/>
+            <xs:element name="FromGL" type="xs:string"/>
+            <xs:element name="ToGL" type="xs:string"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="MezzanineFloor">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="Decking">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="By" type="ByEnum"/>
+                  <xs:element name="Panel">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="NONE"/>
+                        <xs:enumeration value="PER DESIGN"/>
+                        <xs:enumeration value="PER SPECS"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="Floor">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="Type">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:enumeration value="CONCRETE"/>
+                        <xs:enumeration value="PLYWOOD"/>
+                        <xs:enumeration value="NONE"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Thickness" type="xs:double" default="0"> </xs:element>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Handrail">
+        <xs:complexType>
+          <xs:all>
+            <xs:element name="By" type="ByEnum"/>
+            <xs:element name="Type">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="IBC"/>
+                  <xs:enumeration value="CLASSIC"/>
+                  <xs:enumeration value="INDUSTRIAL"/>
+                  <xs:enumeration value="NONE"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="Length" type="xs:double" default="0"/>
+          </xs:all>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Area" type="xs:double" default="0.0"/>
+
+      <xs:element name="Staircases" type="StaircaseType" minOccurs="0"/>
+    </xs:all>
+
+  </xs:complexType>
+  <xs:complexType name="MezzaninesType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Mezzanines" type="MezzanineType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StaircasesType">
+    <xs:sequence>
+
+      <xs:element name="Remarks" type="RemarksType"/>
+      <xs:element name="Staircases" type="StaircaseType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ComponentType">
+    <xs:all>
+      <xs:element name="Value" type="xs:boolean"/>
+      <xs:element name="TypeOfPacking" type="xs:string"> </xs:element>
+      <xs:element name="Quantity" type="xs:string"/>
+      <xs:element name="Remarks" type="xs:string"/>
+    </xs:all>
+  </xs:complexType>
+
+</xs:schema>

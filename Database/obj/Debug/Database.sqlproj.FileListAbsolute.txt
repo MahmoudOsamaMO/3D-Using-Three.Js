@@ -1,0 +1,5 @@
+E:\Projects\PIS3D\Database\bin\Debug\Database.dacpac
+E:\Projects\PIS3D\Database\bin\Debug\Database.dll
+E:\Projects\PIS3D\Database\bin\Debug\Database.pdb
+E:\Projects\PIS3D\Database\obj\Debug\Database.dll
+E:\Projects\PIS3D\Database\obj\Debug\Database.pdb

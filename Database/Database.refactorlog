@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="3cca5064-d667-4b30-8547-ffd4f0dec0b5" ChangeDateTime="11/30/2016 18:04:42">
+    <Property Name="ElementName" Value="[dbo].[SurfaceFinishTable].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SurfaceFinishTable]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SurfaceFinish_ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="71ebba0b-ff0d-4a0f-a323-49b4763a4278" ChangeDateTime="11/30/2016 18:23:58">
+    <Property Name="ElementName" Value="[dbo].[SurfaceTreatmentTable].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SurfaceTreatmentTable]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SurfaceTreatment_ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d1ff03f7-a877-4e86-a5da-46283bb14054" ChangeDateTime="11/30/2016 18:24:52">
+    <Property Name="ElementName" Value="[dbo].[PaintSystemTable].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[PaintSystemTable]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PaintSystem_ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c922a153-13fc-4041-88c5-2017c4307701" ChangeDateTime="11/30/2016 18:25:34">
+    <Property Name="ElementName" Value="[dbo].[SecondarySurfaceFinishTable].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SecondarySurfaceFinishTable]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SecondarySurfaceFinish_ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d7dc56b4-77f5-42e5-8bb2-d562efabc521" ChangeDateTime="12/04/2016 10:53:20">
+    <Property Name="ElementName" Value="[dbo].[BracingTypeTable].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BracingTypeTable]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BracingType_ID" />
+  </Operation>
+</Operations>
